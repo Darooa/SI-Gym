@@ -8,9 +8,9 @@ var open = require('gulp-open');
 var Paths = {
   HERE: './',
   DIST: 'dist/',
-  CSS: './assets/css/',
-  SCSS_TOOLKIT_SOURCES: './assets/scss/argon-dashboard.scss',
-  SCSS: './assets/scss/**/**'
+  CSS: './pages/assets/css/',
+  SCSS_TOOLKIT_SOURCES: './pages/assets/scss/argon-dashboard.scss',
+  SCSS: './pages/assets/scss/**/**'
 };
 
 gulp.task('compile-scss', function() {
