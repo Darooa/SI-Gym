@@ -30,11 +30,19 @@
   <link href="assets/css/nucleo-svg.css" rel="stylesheet" />
   
   <!-- Font Awesome Icons -->
-   
   <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
   <link href="assets/css/nucleo-svg.css" rel="stylesheet" />
   <!-- CSS Files -->
   <link id="pagestyle" href="assets/css/argon-dashboard.css?v=2.0.4" rel="stylesheet" />
+
+  <!-- Jquery -->
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <!-- Datatables -->
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.css">
+ <link rel="stylesheet" type="text/css"
+        href="https://cdn.datatables.net/responsive/2.2.6/css/responsive.bootstrap.css">
 </head>
 
 <body class="g-sidenav-show   bg-gray-100">
@@ -67,8 +75,7 @@
         <li class="nav-item">
           <a class="nav-link " href="">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                <i class="fa-solid fa-layer-group"></i>
-                <!-- <i class="ni ni-single-02 text-dark text-sm opacity-10"></i> -->
+                <i class="ni ni-bullet-list-67 text-success text-sm opacity-10"></i>
             </div>
             <span class="nav-link-text ms-1">Categorias</span>
           </a>
@@ -76,7 +83,8 @@
         <li class="nav-item">
           <a class="nav-link active" href="">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="ni ni-single-copy-04 text-warning text-sm opacity-10"></i>
+              <!-- <i class="ni ni-single-copy-04 text-warning text-sm opacity-10"></i> -->
+              <i class="ni ni-box-2 text-warning text-sm opacity-10"></i>
             </div>
             <span class="nav-link-text ms-1">Productos</span>
           </a>
@@ -84,7 +92,7 @@
         <li class="nav-item">
           <a class="nav-link " href="./pages/sign-up.html">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="ni ni-collection text-info text-sm opacity-10"></i>
+              <i class="ni ni-cart text-info text-sm opacity-10"></i>
             </div>
             <span class="nav-link-text ms-1">Ventas</span>
           </a>
@@ -158,414 +166,240 @@
             </div>
 
 
-            <!-- Modal -->
+            <!---------------------------- MODAL AGREGAR PRODUCTO ------------------------------>
             <div class="modal fade" id="AgregarProducto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
+                  <form id="agregarProducto">
                     <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Agregar Producto</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
+                      <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">Agregar Producto</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                          </button>
+                      </div>
+                      <div class="modal-body">
+                            <div class="container">
 
-                        <form>
-                            <div class="form-group">
-                                <label for="example-text-input" class="form-control-label">Nombre</label>
-                                <input class="form-control" type="text" value="" id="">
-                            </div>
-                            <div class="form-group">
-                                <label for="example-text-input" class="form-control-label">Descripción</label>
-                                <input class="form-control" type="text" value="" id="">
-                            </div>
-                            <div class="form-group">
-                                <label for="example-text-input" class="form-control-label">Categoría</label>
-                                <input class="form-control" type="text" value="" id="">
-                            </div>
-                            <div class="form-group">
-                                <label for="example-number-input" class="form-control-label">Stock inicial</label>
-                                <input class="form-control" type="number" value="" id="">
-                            </div>
-                            <div class="form-group">
-                                <label for="example-number-input" class="form-control-label">Precio inicial</label>
-                                <input class="form-control" type="number" value="" id="">
-                            </div>
-                             <div class="form-group">
-                                <label for="example-number-input" class="form-control-label">Precio venta</label>
-                                <input class="form-control" type="number" value="" id="">
-                            </div>
-                        </form>
+                              <div class="row">
+                                <div class="col">
+                                  <div class="form-group">
+                                    <label for="TGYM_nombre" class="form-control-label">Nombre</label>
+                                    <input class="form-control" type="text" id="TGYM_nombre" name="TGYM_nombre">
+                                  </div>
+                                </div>                  
+                              </div>
 
+                              <div class="row">
+                                <div class="col">
+                                  <div class="form-group">
+                                    <label for="TGYM_marca" class="form-control-label">Marca</label>
+                                    <input class="form-control" type="text" id="TGYM_marca" name="TGYM_marca">
+                                  </div>
+                                </div>
+                                <div class="col">
+                                  <div class="form-group">
+                                    <label for="TGYM_contenido" class="form-control-label">Contenido</label>
+                                    <input class="form-control" type="text" id="TGYM_contenido" name="TGYM_contenido">
+                                  </div>
+                                </div>                    
+                              </div>
+
+                              <div class="row">
+                                <div class="col">
+                                  <div class="form-group">
+                                    <label for="TGYM_categoria">Categoría</label>
+                                    <select  class="form-control" id="TGYM_categoria" name="TGYM_categoria">
+                                      <?php
+                                            $conect = mysqli_connect("localhost","root","","bd_trasciendeprueba");
+                                            $conect->set_charset("utf8");
+                                            $qry_planes="SELECT * FROM categoria where estado='1'";
+		                                    if ($resultado = mysqli_query($conect, $qry_planes)) {
+		                                    /* obtener array asociativo */
+		                                    while ($row = mysqli_fetch_assoc($resultado)) {
+		                                        echo '<option value="'.$row["id_categoria"].'">'.$row["nombre"].'</option>';
+		                                    }
+		                                    /* liberar el conjunto de resultados */
+		                                    mysqli_free_result($resultado);
+		                                    }
+                                          echo "<br>";
+    	                                ?>
+                                    </select>
+                                  </div>
+                                </div>
+
+                                <div class="col">
+                                  <div class="form-group">
+                                    <label for="TGYM_stockinicial" class="form-control-label">Stock inicial</label>
+                                    <input class="form-control" type="text" id="TGYM_stockinicial" name="TGYM_stockinicial">
+                                  </div>
+                                </div>  
+                              </div>
+                              
+                              <div class="row">
+                                <div class="col">
+                                  <div class="form-group">
+                                    <label for="TGYM_descripcion" class="form-control-label">Descripción</label>
+                                    <input class="form-control" type="text" id="TGYM_descripcion" name="TGYM_descripcion">
+                                  </div>
+                                </div>  
+                              </div>
+                              
+                              <div class="row">
+                                <div class="col">
+                                  <div class="form-group">
+                                    <label for="TGYM_preciocompra" class="form-control-label">Precio Compra</label>
+                                    <input class="form-control" type="number" step="0.01" min="0" id="TGYM_preciocompra" name="preciocompra">
+                                  </div>
+                                </div>
+                                <div class="col">
+                                  <div class="form-group">
+                                    <label for="TGYM_precioventa" class="form-control-label">Precio venta</label>
+                                    <input class="form-control" type="number" step="0.01" min="0" id="TGYM_precioventa" name="TGYM_precioventa">
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                      </div>
+                      <div class="modal-footer">
+                          <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Cerrar</button>
+                          <button type="submit" class="btn bg-gradient-success">Guardar</button>
+                      </div>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Cerrar</button>
-                        <button type="button" class="btn bg-gradient-success">Guardar</button>
+                  </form>
+                </div>
+            </div>
+
+            <!------------------------------ MODAL EDITAR PRODUCTO ----------------------------->
+            <div class="modal fade" id="EDTProducto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <form id="agregarProducto">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">Agregar Producto</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                          </button>
+                      </div>
+                      <div class="modal-body">
+                            <div class="container">
+                                <input type="hidden" name="id" id="id" value="">
+                                <input type="hidden" name="trid" id="trid" value="">
+                              
+                                <div class="row">
+                                <div class="col">
+                                  <div class="form-group">
+                                    <label for="EDT_nombre" class="form-control-label">Nombre</label>                                
+                                    <input class="form-control" type="text" id="EDT_nombre" name="EDT_nombre">
+                                  </div>
+                                </div>                  
+                              </div>
+
+                              <div class="row">
+                                <div class="col">
+                                  <div class="form-group">
+                                    <label for="EDT_marca" class="form-control-label">Marca</label>
+                                    <input class="form-control" type="text" id="EDT_marca" name="TGYM_marca">
+                                  </div>
+                                </div>
+                                <div class="col">
+                                  <div class="form-group">
+                                    <label for="EDT_contenido" class="form-control-label">Contenido</label>
+                                    <input class="form-control" type="text" id="EDT_contenido" name="EDT_contenido">
+                                  </div>
+                                </div>                    
+                              </div>
+
+                              <div class="row">
+                                <div class="col">
+                                  <div class="form-group">
+                                    <label for="EDT_categoria">Categoría</label>
+                                    <select  class="form-control" id="EDT_categoria" name="EDT_categoria">
+                                      <?php
+                                            $conect = mysqli_connect("localhost","root","","bd_trasciendeprueba");
+                                            $conect->set_charset("utf8");
+                                            $qry_planes="SELECT * FROM categoria where estado='1'";
+		                                    if ($resultado = mysqli_query($conect, $qry_planes)) {
+		                                    /* obtener array asociativo */
+		                                    while ($row = mysqli_fetch_assoc($resultado)) {
+		                                        echo '<option value="'.$row["id_categoria"].'">'.$row["nombre"].'</option>';
+		                                    }
+		                                    /* liberar el conjunto de resultados */
+		                                    mysqli_free_result($resultado);
+		                                    }
+                                          echo "<br>";
+    	                                ?>
+                                    </select>
+                                  </div>
+                                </div>
+
+                                <div class="col">
+                                  <div class="form-group">
+                                    <label for="EDT_stock" class="form-control-label">Stock inicial</label>
+                                    <input class="form-control" type="text" id="EDT_stock" name="EDT_stock">
+                                  </div>
+                                </div>  
+                              </div>
+                              
+                              <div class="row">
+                                <div class="col">
+                                  <div class="form-group">
+                                    <label for="EDT_descripcion" class="form-control-label">Descripción</label>
+                                    <input class="form-control" type="text" id="EDT_descripcion" name="EDT_descripcion">
+                                  </div>
+                                </div>  
+                              </div>
+                              
+                              <div class="row">
+                                <div class="col">
+                                  <div class="form-group">
+                                    <label for="EDT_pcompra" class="form-control-label">Precio Compra</label>
+                                    <input class="form-control" type="number" step="0.01" min="0" id="EDT_pcompra" name="EDT_pcompra">
+                                  </div>
+                                </div>
+                                <div class="col">
+                                  <div class="form-group">
+                                    <label for="EDT_pventa" class="form-control-label">Precio venta</label>
+                                    <input class="form-control" type="number" step="0.01" min="0" id="EDT_pventa" name="EDT_pventa">
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                      </div>
+                      <div class="modal-footer">
+                          <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Cerrar</button>
+                          <button type="submit" class="btn bg-gradient-success">Guardar</button>
+                      </div>
                     </div>
-                    </div>
+                  </form>
                 </div>
             </div>
             
-            <div class="table-responsive">
-                <table class="table align-items-center justify-content-center mb-0">
+            <!-------------------------------------- TABLA ------------------------------------->
+            <!-- <table id="Clientes" class="table app-table-hover mb-0 display nowrap text-left"
+                                    cellspacing="0" width="100%" -->
+                <table id="Productos" class="table align-items-center justify-content-center" cellspacing="0" width="100%">
                   <thead>
                     <tr>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">#</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Nombre</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Descripción</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Marca</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Contenido</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Categoría</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Descripción</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Stock</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">P. Compra</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">P. Venta</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Agregado</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Acciones</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"></th>
+
 
                       <th></th>
                     </tr>
                   </thead>
-                  <tbody>
-                    <tr>
-                      <td>
-                        <div class="d-flex px-2">
-                          <div class="my-auto">
-                            <h6 class="mb-0 text-sm">001</h6>
-                          </div>
-                        </div>
-                      </td>
-                      <td>
-                        <p class="text-sm font-weight-bold mb-0">Proteina Whey</p>
-                      </td>
-                      <td>
-                        <span class="text-xs font-weight-bold">Whey 950 gr, sabor capuchino</span>
-                      </td>
-                      <td>
-                        <span class="text-xs font-weight-bold">Proteina</span>
-                      </td>
-                      <td>
-                        <span class="text-xs font-weight-bold">3</span>
-                      </td>
-                      <td>
-                        <span class="text-xs font-weight-bold">$ 1,025.00</span>
-                      </td>
-                      <td>
-                        <span class="text-xs font-weight-bold">$ 1,250.00</span>
-                      </td>
-                       <td>
-                        <span class="text-xs font-weight-bold">29/Agosto/2025</span>
-                      </td>
-                       <td>
-                        <span class="text-xs font-weight-bold">Editar | Eliminar</span>
-                      </td>
-                    </tr>
-                   
-                    <tr>
-                      <td>
-                        <div class="d-flex px-2">
-                          <div class="my-auto">
-                            <h6 class="mb-0 text-sm">002</h6>
-                          </div>
-                        </div>
-                      </td>
-                      <td>
-                        <p class="text-sm font-weight-bold mb-0">Barra Proteina</p>
-                      </td>
-                      <td>
-                        <span class="text-xs font-weight-bold">Whey 950 gr, sabor capuchino</span>
-                      </td>
-                      <td>
-                        <span class="text-xs font-weight-bold">Proteina</span>
-                      </td>
-                      <td>
-                        <span class="text-xs font-weight-bold">3</span>
-                      </td>
-                      <td>
-                        <span class="text-xs font-weight-bold">$ 1,025.00</span>
-                      </td>
-                      <td>
-                        <span class="text-xs font-weight-bold">$ 1,250.00</span>
-                      </td>
-                       <td>
-                        <span class="text-xs font-weight-bold">29/Agosto/2025</span>
-                      </td>
-                       <td>
-                        <span class="text-xs font-weight-bold">Editar | Eliminar</span>
-                      </td>
-                    </tr>
-
-                                        <tr>
-                      <td>
-                        <div class="d-flex px-2">
-                          <div class="my-auto">
-                            <h6 class="mb-0 text-sm">002</h6>
-                          </div>
-                        </div>
-                      </td>
-                      <td>
-                        <p class="text-sm font-weight-bold mb-0">Barra Proteina</p>
-                      </td>
-                      <td>
-                        <span class="text-xs font-weight-bold">Whey 950 gr, sabor capuchino</span>
-                      </td>
-                      <td>
-                        <span class="text-xs font-weight-bold">Proteina</span>
-                      </td>
-                      <td>
-                        <span class="text-xs font-weight-bold">3</span>
-                      </td>
-                      <td>
-                        <span class="text-xs font-weight-bold">$ 1,025.00</span>
-                      </td>
-                      <td>
-                        <span class="text-xs font-weight-bold">$ 1,250.00</span>
-                      </td>
-                       <td>
-                        <span class="text-xs font-weight-bold">29/Agosto/2025</span>
-                      </td>
-                       <td>
-                        <span class="text-xs font-weight-bold">Editar | Eliminar</span>
-                      </td>
-                    </tr>
-
-                                        <tr>
-                      <td>
-                        <div class="d-flex px-2">
-                          <div class="my-auto">
-                            <h6 class="mb-0 text-sm">002</h6>
-                          </div>
-                        </div>
-                      </td>
-                      <td>
-                        <p class="text-sm font-weight-bold mb-0">Barra Proteina</p>
-                      </td>
-                      <td>
-                        <span class="text-xs font-weight-bold">Whey 950 gr, sabor capuchino</span>
-                      </td>
-                      <td>
-                        <span class="text-xs font-weight-bold">Proteina</span>
-                      </td>
-                      <td>
-                        <span class="text-xs font-weight-bold">3</span>
-                      </td>
-                      <td>
-                        <span class="text-xs font-weight-bold">$ 1,025.00</span>
-                      </td>
-                      <td>
-                        <span class="text-xs font-weight-bold">$ 1,250.00</span>
-                      </td>
-                       <td>
-                        <span class="text-xs font-weight-bold">29/Agosto/2025</span>
-                      </td>
-                       <td>
-                        <span class="text-xs font-weight-bold">Editar | Eliminar</span>
-                      </td>
-                    </tr>
-
-                                        <tr>
-                      <td>
-                        <div class="d-flex px-2">
-                          <div class="my-auto">
-                            <h6 class="mb-0 text-sm">002</h6>
-                          </div>
-                        </div>
-                      </td>
-                      <td>
-                        <p class="text-sm font-weight-bold mb-0">Barra Proteina</p>
-                      </td>
-                      <td>
-                        <span class="text-xs font-weight-bold">Whey 950 gr, sabor capuchino</span>
-                      </td>
-                      <td>
-                        <span class="text-xs font-weight-bold">Proteina</span>
-                      </td>
-                      <td>
-                        <span class="text-xs font-weight-bold">3</span>
-                      </td>
-                      <td>
-                        <span class="text-xs font-weight-bold">$ 1,025.00</span>
-                      </td>
-                      <td>
-                        <span class="text-xs font-weight-bold">$ 1,250.00</span>
-                      </td>
-                       <td>
-                        <span class="text-xs font-weight-bold">29/Agosto/2025</span>
-                      </td>
-                       <td>
-                        <span class="text-xs font-weight-bold">Editar | Eliminar</span>
-                      </td>
-                    </tr>
-
-                                        <tr>
-                      <td>
-                        <div class="d-flex px-2">
-                          <div class="my-auto">
-                            <h6 class="mb-0 text-sm">002</h6>
-                          </div>
-                        </div>
-                      </td>
-                      <td>
-                        <p class="text-sm font-weight-bold mb-0">Barra Proteina</p>
-                      </td>
-                      <td>
-                        <span class="text-xs font-weight-bold">Whey 950 gr, sabor capuchino</span>
-                      </td>
-                      <td>
-                        <span class="text-xs font-weight-bold">Proteina</span>
-                      </td>
-                      <td>
-                        <span class="text-xs font-weight-bold">3</span>
-                      </td>
-                      <td>
-                        <span class="text-xs font-weight-bold">$ 1,025.00</span>
-                      </td>
-                      <td>
-                        <span class="text-xs font-weight-bold">$ 1,250.00</span>
-                      </td>
-                       <td>
-                        <span class="text-xs font-weight-bold">29/Agosto/2025</span>
-                      </td>
-                       <td>
-                        <span class="text-xs font-weight-bold">Editar | Eliminar</span>
-                      </td>
-                    </tr>
-
-                                        <tr>
-                      <td>
-                        <div class="d-flex px-2">
-                          <div class="my-auto">
-                            <h6 class="mb-0 text-sm">002</h6>
-                          </div>
-                        </div>
-                      </td>
-                      <td>
-                        <p class="text-sm font-weight-bold mb-0">Barra Proteina</p>
-                      </td>
-                      <td>
-                        <span class="text-xs font-weight-bold">Whey 950 gr, sabor capuchino</span>
-                      </td>
-                      <td>
-                        <span class="text-xs font-weight-bold">Proteina</span>
-                      </td>
-                      <td>
-                        <span class="text-xs font-weight-bold">3</span>
-                      </td>
-                      <td>
-                        <span class="text-xs font-weight-bold">$ 1,025.00</span>
-                      </td>
-                      <td>
-                        <span class="text-xs font-weight-bold">$ 1,250.00</span>
-                      </td>
-                       <td>
-                        <span class="text-xs font-weight-bold">29/Agosto/2025</span>
-                      </td>
-                       <td>
-                        <span class="text-xs font-weight-bold">Editar | Eliminar</span>
-                      </td>
-                    </tr>
-
-                                        <tr>
-                      <td>
-                        <div class="d-flex px-2">
-                          <div class="my-auto">
-                            <h6 class="mb-0 text-sm">002</h6>
-                          </div>
-                        </div>
-                      </td>
-                      <td>
-                        <p class="text-sm font-weight-bold mb-0">Barra Proteina</p>
-                      </td>
-                      <td>
-                        <span class="text-xs font-weight-bold">Whey 950 gr, sabor capuchino</span>
-                      </td>
-                      <td>
-                        <span class="text-xs font-weight-bold">Proteina</span>
-                      </td>
-                      <td>
-                        <span class="text-xs font-weight-bold">3</span>
-                      </td>
-                      <td>
-                        <span class="text-xs font-weight-bold">$ 1,025.00</span>
-                      </td>
-                      <td>
-                        <span class="text-xs font-weight-bold">$ 1,250.00</span>
-                      </td>
-                       <td>
-                        <span class="text-xs font-weight-bold">29/Agosto/2025</span>
-                      </td>
-                       <td>
-                        <span class="text-xs font-weight-bold">Editar | Eliminar</span>
-                      </td>
-                    </tr>
-
-                                        <tr>
-                      <td>
-                        <div class="d-flex px-2">
-                          <div class="my-auto">
-                            <h6 class="mb-0 text-sm">002</h6>
-                          </div>
-                        </div>
-                      </td>
-                      <td>
-                        <p class="text-sm font-weight-bold mb-0">Barra Proteina</p>
-                      </td>
-                      <td>
-                        <span class="text-xs font-weight-bold">Whey 950 gr, sabor capuchino</span>
-                      </td>
-                      <td>
-                        <span class="text-xs font-weight-bold">Proteina</span>
-                      </td>
-                      <td>
-                        <span class="text-xs font-weight-bold">3</span>
-                      </td>
-                      <td>
-                        <span class="text-xs font-weight-bold">$ 1,025.00</span>
-                      </td>
-                      <td>
-                        <span class="text-xs font-weight-bold">$ 1,250.00</span>
-                      </td>
-                       <td>
-                        <span class="text-xs font-weight-bold">29/Agosto/2025</span>
-                      </td>
-                       <td>
-                        <span class="text-xs font-weight-bold">Editar | Eliminar</span>
-                      </td>
-                    </tr>
-
-                                        <tr>
-                      <td>
-                        <div class="d-flex px-2">
-                          <div class="my-auto">
-                            <h6 class="mb-0 text-sm">002</h6>
-                          </div>
-                        </div>
-                      </td>
-                      <td>
-                        <p class="text-sm font-weight-bold mb-0">Barra Proteina</p>
-                      </td>
-                      <td>
-                        <span class="text-xs font-weight-bold">Whey 950 gr, sabor capuchino</span>
-                      </td>
-                      <td>
-                        <span class="text-xs font-weight-bold">Proteina</span>
-                      </td>
-                      <td>
-                        <span class="text-xs font-weight-bold">3</span>
-                      </td>
-                      <td>
-                        <span class="text-xs font-weight-bold">$ 1,025.00</span>
-                      </td>
-                      <td>
-                        <span class="text-xs font-weight-bold">$ 1,250.00</span>
-                      </td>
-                       <td>
-                        <span class="text-xs font-weight-bold">29/Agosto/2025</span>
-                      </td>
-                       <td>
-                        <span class="text-xs font-weight-bold">Editar | Eliminar</span>
-                      </td>
-                    </tr>
-                  </tbody>
+                  
                 </table>
-            </div>
+            
           </div>
         </div>
         
@@ -765,6 +599,14 @@
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="assets/js/argon-dashboard.min.js?v=2.0.4"></script>
+
+   <!-- Datatables --> 
+    <script src="//cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+    <script src="//cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>
+    <script src="//cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+
+    <!-- Funciones JS -->
+    <script src="../js/funcionesProductos.js"></script>
 </body>
 
 </html>
