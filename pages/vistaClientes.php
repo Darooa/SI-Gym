@@ -12,13 +12,13 @@
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
     <!-- Nucleo Icons -->
-    <link href="./assets/css/nucleo-icons.css" rel="stylesheet" />
-    <link href="./assets/css/nucleo-svg.css" rel="stylesheet" />
+    <link href="assets/css/nucleo-icons.css" rel="stylesheet" />
+    <link href="assets/css/nucleo-svg.css" rel="stylesheet" />
     <!-- Font Awesome Icons -->
     <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
-    <link href="./assets/css/nucleo-svg.css" rel="stylesheet" />
+    <link href="assets/css/nucleo-svg.css" rel="stylesheet" />
     <!-- CSS Files -->
-    <link id="pagestyle" href="./assets/css/argon-dashboard.css?v=2.0.4" rel="stylesheet" />
+    <link id="pagestyle" href="assets/css/argon-dashboard.css?v=2.0.4" rel="stylesheet" />
     <!-- Jquery -->
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -217,13 +217,13 @@
                                     <select class="select2 select-event-label form-select" name="tipoMembresia" id="tipoMembresia" required>
                                         <option selected disabled>Seleccionar...</option>
                                         <?php
-                                        $conect = mysqli_connect("localhost", "root", "", "ejemplo_bd");
+                                        $conect = mysqli_connect("localhost", "root", "", "bd_trasciende");
                                         $conect->set_charset("utf8");
-                                        $qry_planes = "SELECT * from membresias";
+                                        $qry_planes = "SELECT * from tb_membresias where estado=1";
                                         if ($resultado = mysqli_query($conect, $qry_planes)) {
                                             /* obtener array asociativo */
                                             while ($row = mysqli_fetch_assoc($resultado)) {
-                                                echo '<option value="' . $row["id_membresia"] . '" data-precio="' . $row["costo"] . '" data-dias="' . $row["dias"] . '"> ' . $row["nombreMembresia"] . ': ' . $row["dias"] . ' días' . '</option>';
+                                                echo '<option value="' . $row["id_membresia"] . '" data-precio="' . $row["precio"] . '" data-dias="' . $row["duracion"] . '"> ' . $row["membresia"] . ': ' . $row["duracion"] . ' días' . '</option>';
                                             }
                                             /* liberar el conjunto de resultados */
                                             mysqli_free_result($resultado);
@@ -312,13 +312,13 @@
                                     <select class="select2 select-event-label form-select" name="edit_tipoMembresia" id="edit_tipoMembresia" required>
                                         <option selected disabled>Seleccionar...</option>
                                         <?php
-                                        $conect = mysqli_connect("localhost", "root", "", "ejemplo_bd");
+                                        $conect = mysqli_connect("localhost", "root", "", "bd_trasciende");
                                         $conect->set_charset("utf8");
-                                        $qry_planes = "SELECT * from membresias";
+                                        $qry_planes = "SELECT * from tb_membresias where estado=1";
                                         if ($resultado = mysqli_query($conect, $qry_planes)) {
                                             /* obtener array asociativo */
                                             while ($row = mysqli_fetch_assoc($resultado)) {
-                                                echo '<option value="' . $row["id_membresia"] . '" data-precio="' . $row["costo"] . '" data-dias="' . $row["dias"] . '"> ' . $row["nombreMembresia"] . ': ' . $row["dias"] . ' días' . '</option>';
+                                                echo '<option value="' . $row["id_membresia"] . '" data-precio="' . $row["precio"] . '" data-dias="' . $row["duracion"] . '"> ' . $row["membresia"] . ': ' . $row["duracion"] . ' días' . '</option>';
                                             }
                                             /* liberar el conjunto de resultados */
                                             mysqli_free_result($resultado);
@@ -339,7 +339,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="example-text-input" class="form-control-label">Fecha de Inicio</label>
-                                    <input class="form-control" type="Date" id="edit_fechaInicio" name="edit_fechaInicio">
+                                    <input class="form-control" type="Date" id="edit_fechaInicio" name="edit_fechaInicio" readonly> 
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -361,10 +361,10 @@
     </main>
     </div>
     <!--   Core JS Files   -->
-    <script src="./assets/js/core/popper.min.js"></script>
-    <script src="./assets/js/core/bootstrap.min.js"></script>
-    <script src="./assets/js/plugins/perfect-scrollbar.min.js"></script>
-    <script src="./assets/js/plugins/smooth-scrollbar.min.js"></script>
+    <script src="assets/js/core/popper.min.js"></script>
+    <script src="assets/js/core/bootstrap.min.js"></script>
+    <script src="assets/js/plugins/perfect-scrollbar.min.js"></script>
+    <script src="assets/js/plugins/smooth-scrollbar.min.js"></script>
     <script>
         var win = navigator.platform.indexOf('Win') > -1;
         if (win && document.querySelector('#sidenav-scrollbar')) {
@@ -377,7 +377,7 @@
     <!-- Github buttons -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
-    <script src="./assets/js/argon-dashboard.min.js?v=2.0.4"></script>
+    <script src="assets/js/argon-dashboard.min.js?v=2.0.4"></script>
     <!-- Datatables -->
     <script src="//cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
     <script src="//cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>

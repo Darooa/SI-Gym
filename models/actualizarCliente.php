@@ -1,5 +1,5 @@
 <?php 
-include('../controllers/conection.php');
+include('../controllers/conexion_prueba.php');
 
    $edit_nombreCliente     =$_POST["edit_nombreCliente"]; 
    $edit_apellidosCliente  =$_POST["edit_apellidosCliente"];

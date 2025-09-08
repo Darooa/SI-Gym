@@ -1,9 +1,9 @@
 <?php
 $db_username 	= 'root';
 $db_password 	= '';
-$db_name 	= 'bd_trasciendeprueba';
+$db_name 	= 'bd_trasciende';
 $db_host 	= 'localhost';
-$con  = mysqli_connect('localhost','root','','bd_trasciendeprueba');
+$con  = mysqli_connect('localhost','root','','bd_trasciende');
 
 if(mysqli_connect_errno())
 {
@@ -15,7 +15,7 @@ function conectar(){
     $user="root";
     $pass="";
 
-    $bd="bd_trasciendeprueba";
+    $bd="bd_trasciende";
     $conexion=mysqli_connect($host,$user,$pass);
     mysqli_select_db($conexion,$bd);
     return $conexion;

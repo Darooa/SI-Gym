@@ -222,7 +222,7 @@
                                     <label for="TGYM_categoria">Categoría</label>
                                     <select  class="form-control" id="TGYM_categoria" name="TGYM_categoria">
                                       <?php
-                                            $conect = mysqli_connect("localhost","root","","bd_trasciendeprueba");
+                                            $conect = mysqli_connect("localhost","root","","bd_trasciende");
                                             $conect->set_charset("utf8");
                                             $qry_planes="SELECT * FROM categoria where estado='1'";
 		                                    if ($resultado = mysqli_query($conect, $qry_planes)) {
@@ -327,7 +327,7 @@
                                     <label for="EDT_categoria">Categoría</label>
                                     <select  class="form-control" id="EDT_categoria" name="EDT_categoria">
                                       <?php
-                                            $conect = mysqli_connect("localhost","root","","bd_trasciendeprueba");
+                                            $conect = mysqli_connect("localhost","root","","bd_trasciende");
                                             $conect->set_charset("utf8");
                                             $qry_planes="SELECT * FROM categoria where estado='1'";
 		                                    if ($resultado = mysqli_query($conect, $qry_planes)) {

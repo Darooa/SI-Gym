@@ -1,5 +1,5 @@
 <?php 
-include('../controllers/conection.php');
+include('../controllers/conexion_prueba.php');
 
 $output= array();
 $sql = "SELECT * FROM clientes ";

@@ -1,5 +1,5 @@
 <?php
-include('../controllers/conection.php');
+include('../controllers/conexion_prueba.php');
 // Obtener y verificar los datos del formulario
 $nombre        = isset($_POST['nombreCliente']) ? $_POST['nombreCliente'] : '';
 $apellidos     = isset($_POST['apellidosCliente']) ? $_POST['apellidosCliente'] : '';
