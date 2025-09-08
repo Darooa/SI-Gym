@@ -94,7 +94,7 @@ $(document).ready(function() {
  });
  
  // ********************************** EDITAR PRODUCTO *****************************
- $(document).on('submit', '#EDTProducto', function(e) {
+ $(document).on('submit', '#updateProducto', function(e) {
    e.preventDefault();
    //var tr = $(this).closest('tr');
    var EDT_nombre      = $('#EDT_nombre').val();
@@ -108,7 +108,7 @@ $(document).ready(function() {
   //  var EDT_agregado    = $('#EDT_agregado').val();
   //  var EDT_estado      = $('#EDT_estado').val();
 
-   var trid            = $('#trid').val();
+  //  var trid            = $('#trid').val();
    var id              = $('#id').val();
  
    if (EDT_nombre != '' && EDT_descripcion != '' && EDT_categoria != ''&& EDT_marca != '' && EDT_contenido != ''  && EDT_stock != ''  && EDT_pcompra != ''  && EDT_pventa != '') {
@@ -154,7 +154,7 @@ $(document).ready(function() {
  // ************************* CLICK AL BOTON EDITAR TABLA USUARIOS *****************
  $('#Productos').on('click', '.EDTProducto ', function(event) {
    var dataTableClientes = $('#Productos').DataTable();
-   var trid              = $(this).closest('tr').attr('id');
+  //  var trid              = $(this).closest('tr').attr('id');
    var id                = $(this).data('id');
    $('#EDTProducto').modal('show');
  
@@ -165,7 +165,7 @@ $(document).ready(function() {
      },
      type: 'POST',
      success: function(data) {
-       var json = JSON.parse(data);
+       var json = JSON.parse(data); 
        $('#EDT_nombre').val(json.nombre_producto);
        $('#EDT_descripcion').val(json.descripcion);
        $('#EDT_categoria').val(json.categoria);
