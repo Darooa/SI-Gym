@@ -5,6 +5,9 @@ $(document).ready(function () {
     var uno = document.getElementById('btnAE');
     var nombreRutina = document.getElementById('btnNombreRutina');
 
+    //Comprobar el inicio de sesion
+    
+
     //Función para obtener niveles
     $.ajax({
         url: '../models/rutinas/obtenerNiveles.php',
@@ -24,13 +27,14 @@ $(document).ready(function () {
 
     checkRutinaNueva.addEventListener('change', function () {
         let flag = $('#checkRutinaNueva').is(':checked')
+        console.log(flag)
         if (flag == true) {
             $('#flagInput').html(
                 `
-                <input class="form-control" type="text" id="rutinaNueva" placeholder="Principiante">
+                <input class="form-control" type="text" id="rutinaNueva" placeholder="Principiante" required>
                 `
             )
-        } else if(flag==false) {
+        } else if (flag == false) {
             $('#flagInput').html(
                 `
                 `
@@ -69,12 +73,67 @@ $(document).ready(function () {
             });
             $('#rutinas').html(template);
         })
+        uno.innerHTML = 'Agregar';
     })
 
     //Evento al agregar una rutina
     $('#agregar-rutina').submit(function (e) {
-        let rutinaNueva = $('#rutinaNueva').val();
-        if (rutinaNueva.trim() === "") {
+        rutinaNueva = $('#rutinaNueva').val()
+        if (rutinaNueva) {
+            //Rutina nueva
+            console.log('Rutina nueva')
+            const postData = {
+                nombre: $('#nombre').val(),
+                rutina: $('#rutina').val(),
+                id_rutina: $('#rutinaId').val(),
+                nivel : rutinaNueva
+            };
+            let url = edit === false ? '../models/rutinas/agregarRutina.php' : '../models/rutinas/editarRutina.php';
+            $.post(url, postData, function (response) {
+                console.log(response)
+                $.post('../models/rutinas/obtenerRutina.php', { nivel }, function (response) {
+                    console.log(response)
+                    let rutina = JSON.parse(response);
+                    let template = '';
+                    rutina.forEach(rutina => {
+                        template += `
+                <li class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg" >
+                  <div class="d-flex flex-column" rutinaId=${rutina.id_rutina}>
+                    <h6 class="mb-3 text-sm">
+                    <a href="#" class="rutina-item">${rutina.nombre}</a>
+                    </h6>
+                    <span class="mb-2 text-xs"><span class="text-dark font-weight-bold ms-sm-2">
+                    ${rutina.rutina.replace(/(\r\n|\r|\n)/g, "<br>")}
+                    </span></span>
+                  </div>
+                  <div rutinaId=${rutina.id_rutina} class="ms-auto text-end">
+                    <a class=" eliminar btn btn-link text-danger text-gradient px-3 mb-0" href="javascript:;"><i
+                        class="far fa-trash-alt me-2"></i>Eliminar</a>
+                  </div>
+                </li>
+                `
+                    });
+                    $('#rutinas').html(template);
+                })
+                if (uno.innerHTML === 'Editar') {
+                    Swal.fire({
+                        title: "Rutina Editada",
+                        icon: "success",
+                        draggable: true
+                    });
+                } else {
+                    Swal.fire({
+                        title: "Rutina Guardada",
+                        icon: "success",
+                        draggable: true
+                    });
+                }
+                $('#agregar-rutina').trigger('reset')
+                uno.innerHTML = 'Agregar';
+                edit = false;
+            });
+            location.reload()
+        } else {
             //Rutina existente
             const postData = {
                 nombre: $('#nombre').val(),
@@ -82,7 +141,6 @@ $(document).ready(function () {
                 id_rutina: $('#rutinaId').val(),
                 nivel: nivel
             };
-            console.log(postData);
             let url = edit === false ? '../models/rutinas/agregarRutina.php' : '../models/rutinas/editarRutina.php';
             $.post(url, postData, function (response) {
                 console.log(response)
@@ -124,57 +182,8 @@ $(document).ready(function () {
                     });
                 }
                 $('#agregar-rutina').trigger('reset')
-            });
-        } else {
-            //Rutina nueva
-            const postData = {
-                nombre: $('#nombre').val(),
-                rutina: $('#rutina').val(),
-                id_rutina: $('#rutinaId').val(),
-                nivel: rutinaNueva
-            };
-            console.log(postData);
-            let url = edit === false ? '../models/rutinas/agregarRutina.php' : '../models/rutinas/editarRutina.php';
-            $.post(url, postData, function (response) {
-                console.log(response)
-                $.post('../models/rutinas/obtenerRutina.php', { nivel }, function (response) {
-                    console.log(response)
-                    let rutina = JSON.parse(response);
-                    let template = '';
-                    rutina.forEach(rutina => {
-                        template += `
-                <li class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg" >
-                  <div class="d-flex flex-column" rutinaId=${rutina.id_rutina}>
-                    <h6 class="mb-3 text-sm">
-                    <a href="#" class="rutina-item">${rutina.nombre}</a>
-                    </h6>
-                    <span class="mb-2 text-xs"><span class="text-dark font-weight-bold ms-sm-2">
-                    ${rutina.rutina.replace(/(\r\n|\r|\n)/g, "<br>")}
-                    </span></span>
-                  </div>
-                  <div rutinaId=${rutina.id_rutina} class="ms-auto text-end">
-                    <a class=" eliminar btn btn-link text-danger text-gradient px-3 mb-0" href="javascript:;"><i
-                        class="far fa-trash-alt me-2"></i>Eliminar</a>
-                  </div>
-                </li>
-                `
-                    });
-                    $('#rutinas').html(template);
-                })
-                if (uno.innerHTML === 'Editar') {
-                    Swal.fire({
-                        title: "Rutina Editada",
-                        icon: "success",
-                        draggable: true
-                    });
-                } else {
-                    Swal.fire({
-                        title: "Rutina Guardada",
-                        icon: "success",
-                        draggable: true
-                    });
-                }
-                $('#agregar-rutina').trigger('reset')
+                uno.innerHTML = 'Agregar';
+                edit = false;
             });
         }
     })
