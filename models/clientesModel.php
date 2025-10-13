@@ -54,13 +54,16 @@ while($row = mysqli_fetch_assoc($query)){
     $sub_array[] = '<span class="text-secondary text-xs font-weight-bold">'.$row['fecha_limite'].'</span>';
 
 	if($row['estado']==1){
-		$sub_array[] = '<span class="badge bg-gradient-success">Activo</span>';
-		$sub_array[] = '<a href="javascript:void(0);" data-id="'.$row['id_cliente'].'" class="text-secondary font-weight-bold text-xs btnEditarCliente">Editar</a>';
+		$sub_array[] = '<span class="text-success font-weight-bold text-xs">Activo</span>';
+		$sub_array[] = '<form action="../pages/detalleCliente.php" method="POST" style="display:inline;">
+                            <input type="hidden" name="id" value="' . $row['id_cliente'] . '">
+                            <center><button type="submit" class="btn btn-primary">Ver</button></center>
+                        </form>';
 		$sub_array[] = '<a href="javascript:void(0);" data-id="'.$row['id_cliente'].'" class="text-secondary font-weight-bold text-xs btnDesactivarCliente">Baja</a>';
 	}
 	else {
-		$sub_array[] = '<span class="badge bg-gradient-secondary">Inactivo</span>';
-		$sub_array[] = '<a href="javascript:void(0);" data-id="'.$row['id_cliente'].'" class="text-secondary font-weight-bold text-xs btnEditarCliente" disabled>Editar</a>';
+		$sub_array[] = '<span class="text-danger font-weight-bold text-xs">Inactivo</span>';
+		$sub_array[] = '<center><a href="javascript:void(0);" data-id="'.$row['id_cliente'].'" class="btn btn-secondary" disabled>Ver</a></center>';
 		$sub_array[] = '<a href="javascript:void(0);" data-id="'.$row['id_cliente'].'" class="text-secondary font-weight-bold text-xs btnActivarCliente">Activar</a>';
 	}	
 
