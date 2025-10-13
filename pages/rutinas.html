@@ -9,18 +9,18 @@
   <title>
     Trasciende
   </title>
-  <!--Iconos y letras-->
+  <!--     Fuentes e iconos     -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
-  <!-- Iconos de núcleo -->
+  <!-- Nucleo -->
   <link href="assets/css/nucleo-icons.css" rel="stylesheet" />
   <link href="assets/css/nucleo-svg.css" rel="stylesheet" />
-  <!-- Font Awesome -->
+  <!-- Font Awesome Icons -->
   <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
   <link href="assets/css/nucleo-svg.css" rel="stylesheet" />
-  <!-- Archivos CSS -->
+  <!-- CSS Files -->
   <link id="pagestyle" href="assets/css/argon-dashboard.css?v=2.0.4" rel="stylesheet" />
   <!-- Alertas -->
-   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body class="g-sidenav-show   bg-gray-100">
@@ -59,7 +59,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="./routine.html">
+          <a class="nav-link active" href="./rutinas.html">
             <div
               class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="ni ni-app text-success text-sm opacity-10"></i>
@@ -68,12 +68,21 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" href="./pay.html">
+          <a class="nav-link" href="./membresias.html">
             <div
               class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="ni ni-credit-card text-warning text-sm opacity-10"></i>
             </div>
             <span class="nav-link-text ms-1">Membresías</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="./reportes.html">
+            <div
+              class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="ni ni-archive-2 text-info text-sm opacity-10"></i>
+            </div>
+            <span class="nav-link-text ms-1">Reportes</span>
           </a>
         </li>
         <li class="nav-item">
@@ -86,7 +95,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link " href="">
+          <a class="nav-link " href="./inicio-sesion.html">
             <div
               class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="ni ni-single-copy-04 text-warning text-sm opacity-10"></i>
@@ -97,7 +106,6 @@
       </ul>
     </div>
   </aside>
-
   <main class="main-content position-relative border-radius-lg ">
     <!-- Navbar -->
     <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl " id="navbarBlur"
@@ -106,55 +114,72 @@
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
             <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white" href="javascript:;">Inicio</a></li>
-            <li class="breadcrumb-item text-sm text-white active" aria-current="page">Membresías</li>
+            <li class="breadcrumb-item text-sm text-white active" aria-current="page">Rutinas</li>
           </ol>
-          <h6 class="font-weight-bolder text-white mb-0">Membresías</h6>
+          <h6 class="font-weight-bolder text-white mb-0">Rutinas</h6>
         </nav>
       </div>
     </nav>
     <!-- End Navbar -->
     <div class="container-fluid">
       <div class="row">
-        <div class="col-md-12 mt-4">
+        <div class="col-md-7 mt-4">
           <div class="card">
             <div class="card-header pb-0 px-3">
               <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12">
-                  <button type="button" class="btn btn-block btn-primary btn-default mb-3" data-bs-toggle="modal"
-                    data-bs-target="#modal-form">Nueva membresía</button>
-                  <div class="modal fade" id="modal-form" tabindex="-1" role="dialog" aria-labelledby="modal-form"
-                    aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered modal-md" role="document">
-                      <div class="modal-content">
-                        <div class="modal-body p-0">
-                          <div class="card card-plain">
-                            <div class="card-body">
-                              <form role="form text-left" id="agregar-membresia">
-                                <input type="hidden" id="membresiaId">
-                                <label for="example-text-input" class="form-control-label">Nombre</label>
-                                <input class="form-control" type="text" id="nombre" placeholder="Visita">
-                                <label for="example-text-input" class="form-control-label">Duración (días)</label>
-                                <input class="form-control" type="number" id="duracion" placeholder="1 día">
-                                <label for="example-text-input" class="form-control-label">Precio</label>
-                                <input class="form-control" type="number" id="precio" placeholder="$40">
-                                <div class="text-center">
-                                  <button type="submit" id="btnAE"
-                                    class="btn btn-round bg-gradient-primary btn-lg w-100 mt-4 mb-0">Agregar
-                                  </button>
-                                </div>
-                              </form>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                  <div class="dropdown">
+                    <button class="btn bg-gradient-success dropdown-toggle" type="button" id="dropdownMenuButton"
+                      data-bs-toggle="dropdown" aria-expanded="false">
+                      Rutina
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="niveles">
+                    </ul>
                   </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                  <h6 id="btnNombreRutina"></h6>
                 </div>
               </div>
             </div>
             <div class="card-body pt-4 p-3">
-              <ul class="list-group" id="membresias">
+              <ul class="list-group" id="rutinas">
               </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-5 mt-4">
+          <div class="card h-60 mb-4">
+            <div class="card-header pb-0 px-3">
+              <div class="row">
+                <div class="col-md-6">
+                  <h6 class="mb-0">Nueva Rutina</h6>
+                </div>
+              </div>
+            </div>
+            <div class="card-body pt-4 p-3">
+              <form id="agregar-rutina">
+                <input type="hidden" id="rutinaId">
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" id="checkRutinaNueva" >
+                  <label class="form-check-label" for="checkRutinaNueva">¿Rutina nueva?</label>
+                </div>
+                <p></p>
+                <div class="form-group" id="flagInput">
+                </div>
+                <div class="form-group">
+                  <label for="example-text-input" class="form-control-label">Dia / Parte a entrenar</label>
+                  <input class="form-control" type="text" id="nombre" placeholder="Lunes / Pecho" required>
+                </div>
+                <div class="form-group">
+                  <label for="example-text-input" class="form-control-label">Rutina</label>
+                  <textarea class="form-control" aria-label="With textarea" id="rutina"
+                    placeholder="Peck Fly 4 x 10" required></textarea>
+                </div>
+                <div class="text-center">
+                  <button type="sumbit" id="btnAE" class="btn btn-lg btn-dark btn-lg w-100 mt-4 mb-0">Agregar</button>
+                </div>
+              </form>
             </div>
           </div>
         </div>
@@ -257,14 +282,14 @@
       Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
     }
   </script>
-  <!-- Botones Github -->
+  <!-- Github buttons -->
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="assets/js/argon-dashboard.min.js?v=2.0.4"></script>
   <!-- Funciones JS -->
   <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
     crossorigin="anonymous"></script>
-  <script src="../js/funcionesMembresias.js"></script>
+  <script src="../js/funcionesRutinas.js"></script>
 </body>
 
 </html>

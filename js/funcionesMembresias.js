@@ -28,10 +28,9 @@ $(document).ready(function () {
                     icon: "success",
                     draggable: true
                 });
-                location.reload();
+                location.reload()
             }
         });
-
     })
 
     //Función para obtener membresias
@@ -100,6 +99,12 @@ $(document).ready(function () {
             $('#membresiaId').val(membresia.id_membresia)
             edit = true;
         })
-
     })
+
+    $(document).on('click','.salir',function () {
+        console.log('Salir de sesion')
+        $.post('../models/inicioSesion/salirSesion.php',function (res) {
+        });
+    })
+
 })
