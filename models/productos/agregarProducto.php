@@ -1,5 +1,5 @@
 <?php 
-include('../controllers/conexion_prueba.php');
+include('../../controllers/conexion_prueba.php');
 
 date_default_timezone_set('America/Mexico_City');
 

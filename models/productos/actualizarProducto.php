@@ -1,5 +1,5 @@
 <?php 
-include('../controllers/conexion_prueba.php');
+include('../../controllers/conexion_prueba.php');
 $EDT_nombre = $_POST['EDT_nombre'];
 $EDT_descripcion = $_POST['EDT_descripcion'];
 $EDT_categoria = $_POST['EDT_categoria'];

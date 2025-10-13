@@ -30,10 +30,12 @@
     <link href="assets/css/nucleo-svg.css" rel="stylesheet" />
 
     <!-- Font Awesome Icons -->
-    <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+    <!-- <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script> -->
     <link href="assets/css/nucleo-svg.css" rel="stylesheet" />
     <!-- CSS Files -->
     <link id="pagestyle" href="assets/css/argon-dashboard.css?v=2.0.4" rel="stylesheet" />
+
+    <!-- Boostrap -->
 
     <!-- Jquery -->
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
@@ -183,164 +185,165 @@
                         <div class="card-header pb-0 p-3">
                             <div class="d-flex justify-content-between">
                                 <h6 class="mb-2">Compra de Productos</h6>
+                                <button class="btn btn-success btn-md ms-auto" data-bs-toggle="modal"
+                                    data-bs-target="#AgregarProveedor">Agregar Proveedor</button>
+                            </div>
+                        </div>
+
+                        <!---------------------------- MODAL AGREGAR PROVEEDOR ------------------------------>
+                        <div class="modal fade" id="AgregarProveedor" tabindex="-1" role="dialog"
+                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <form id="agregarProducto">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Agregar Producto</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="container">
+
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <div class="form-group">
+                                                            <label for="TGYM_nombre"
+                                                                class="form-control-label">Nombre</label>
+                                                            <input class="form-control" type="text" id="TGYM_nombre"
+                                                                name="TGYM_nombre">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <div class="form-group">
+                                                            <label for="TGYM_marca"
+                                                                class="form-control-label">Dirección </label>
+                                                            <input class="form-control" type="text" id="TGYM_marca"
+                                                                name="TGYM_marca">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col">
+                                                        <div class="form-group">
+                                                            <label for="TGYM_contenido"
+                                                                class="form-control-label">Teléfono</label>
+                                                            <input class="form-control" type="text" id="TGYM_contenido"
+                                                                name="TGYM_contenido">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn bg-gradient-secondary"
+                                                data-bs-dismiss="modal">Cerrar</button>
+                                            <button type="submit" class="btn bg-gradient-success">Guardar</button>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                         <div class="card-body">
                             <p class="text-uppercase text-sm"></p>
 
+
+
+
                             <!-- AQUI VA A IR EL FORMULARIO -->
                             <div class="row">
                                 <div class="col-4">
-                                    <div class="form-group">
-                                        <label for="example-text-input" class="form-control-label">Proveedor</label>
-                                        <input class="form-control" type="text" value="">
+                                    <div class="form-group position-relative">
+                                        <label for="proveedor" class="form-control-label">Proveedor</label>
+                                        <input type="text" id="proveedor" class="form-control"
+                                            placeholder="Escribe el nombre">
+                                        <input type="hidden" id="proveedor_id" name="proveedor_id">
+
+                                        <div id="resultadosProveedor" class="list-group position-absolute w-100"
+                                            style="z-index:1000;"></div>
                                     </div>
                                 </div>
+
                                 <div class="col-3">
                                     <div class="form-group">
-                                        <label for="example-text-input" class="form-control-label">Fecha</label>
-                                        <input class="form-control" type="text" value="">
+                                        <label for="fecha" class="form-control-label">Fecha</label>
+                                        <input id="fecha" class="form-control" type="text" readonly>
                                     </div>
                                 </div>
+
                                 <div class="col-3">
                                     <div class="form-group">
-                                        <label for="example-text-input" class="form-control-label">No. de Compra</label>
-                                        <input class="form-control" type="text" value="">
+                                        <label for="no_compra" class="form-control-label">No. de Compra</label>
+                                        <input class="form-control" type="text" id="no_compra" readonly>
                                     </div>
                                 </div>
                                 <div class="col-2">
                                     <div class="form-group">
                                         <hr>
-                                        <button class="btn btn-success  ms-auto">Buscar productos</button>
+                                        <button class="btn btn-success  ms-auto" data-bs-toggle="modal"
+                                            data-bs-target="#buscarProductos">Buscar productos</button>
                                     </div>
                                 </div>
                             </div>
 
 
 
-                            <table id="" class="table align-items-center justify-content-center" cellspacing="0"
-                                width="100%">
+                            <table id="tablaCarrito" class="table align-items-center justify-content-center"
+                                cellspacing="0" width="100%">
                                 <thead>
                                     <tr>
                                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                            #</th>
+                                            ID</th>
                                         <th
                                             class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
                                             Producto</th>
                                         <th
                                             class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                            CANT.</th>
+                                            Marca</th>
+                                        <!-- <th
+                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                            Descripción</th> -->
                                         <th
                                             class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                            DESCRIPCIÓN</th>
+                                            Contenido</th>
                                         <th
                                             class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                            P. UNITARIO</th>
+                                            Precio compra</th>
                                         <th
                                             class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                            TOTAL</th>
-                                        <th></th>
+                                            Cantidad</th>
+                                        <th
+                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                            Subtotal</th>
+                                        <th
+                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                            Acción</th>
+
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>
-                                            <p class="text-sm font-weight-bold mb-0">1 </p>
-                                        </td>
-                                        <td>
-                                            <Span class="text-xs font-weight-bold">Proteina Whey sabor Galleta</span>
-                                        </td>
-                                        <td>
-                                            <span class="text-xs font-weight-bold">3</span>
-                                        </td>
-                                        <td>
-                                            <span class="text-xs font-weight-bold">En bote de 2.5 kg </span>
-                                        </td>
-                                        <td>
-                                            <span class="text-xs font-weight-bold"> $ 1,355.00 </span>
-                                        </td>
-                                        <td>
-                                            <span class="text-xs font-weight-bold"> $ 4,065.00 </span>
-                                        </td>
-                                        <td>
-                                            <span class="text-xs font-weight-bold"><i class="ni ni-basket text-warning text-sm opacity-10"></i></span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <p class="text-sm font-weight-bold mb-0">1 </p>
-                                        </td>
-                                        <td>
-                                            <Span class="text-xs font-weight-bold">Proteina Whey sabor Galleta</span>
-                                        </td>
-                                        <td>
-                                            <span class="text-xs font-weight-bold">3</span>
-                                        </td>
-                                        <td>
-                                            <span class="text-xs font-weight-bold">En bote de 2.5 kg </span>
-                                        </td>
-                                        <td>
-                                            <span class="text-xs font-weight-bold"> $ 1,355.00 </span>
-                                        </td>
-                                        <td>
-                                            <span class="text-xs font-weight-bold"> $ 4,065.00 </span>
-                                        </td>
-                                        <td>
-                                            <span class="text-xs font-weight-bold"><i class="ni ni-basket text-warning text-sm opacity-10"></i></span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <p class="text-sm font-weight-bold mb-0">1 </p>
-                                        </td>
-                                        <td>
-                                            <Span class="text-xs font-weight-bold">Proteina Whey sabor Galleta</span>
-                                        </td>
-                                        <td>
-                                            <span class="text-xs font-weight-bold">3</span>
-                                        </td>
-                                        <td>
-                                            <span class="text-xs font-weight-bold">En bote de 2.5 kg </span>
-                                        </td>
-                                        <td>
-                                            <span class="text-xs font-weight-bold"> $ 1,355.00 </span>
-                                        </td>
-                                        <td>
-                                            <span class="text-xs font-weight-bold"> $ 4,065.00 </span>
-                                        </td>
-                                        <td>
-                                            <span class="text-xs font-weight-bold"><i class="ni ni-basket text-warning text-sm opacity-10"></i></span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <p class="text-sm font-weight-bold mb-0"></p>
-                                        </td>
-                                        <td>
-                                            <Span class="text-xs font-weight-bold"></span>
-                                        </td>
-                                        <td>
-                                            <span class="text-xs font-weight-bold"></span>
-                                        </td>
-                                        <td>
-                                            <span class="text-xs font-weight-bold"> </span>
-                                        </td>
-                                        <td>
-                                            <span class="text-xs font-weight-bold"> Total $ </span>
-                                        </td>
-                                        <td>
-                                            <span class="text-xs font-weight-bold"> $ 4,065.00 </span>
-                                        </td>
-                                        <td>
-                                            <span class="text-xs font-weight-bold"> </span>
-                                        </td>
-                                    </tr>
+                                   
                                 </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="6" class="text-end"><strong>Total:</strong></td>
+                                        <td id="totalCarrito">0.00</td>
+                                        <td></td>
+                                    </tr>
+                                </tfoot>
                             </table>
+
+
+
+
                             <div class="card-header pb-0 p-3">
                                 <div class="d-flex justify-content-between">
-                                    <button class="btn btn-success btn-sm ms-auto" data-bs-toggle="modal"
-                                        data-bs-target="#AgregarProducto">Guardar</button>
+                                    <button class="btn btn-success btn-md ms-auto" data-bs-toggle="modal"
+                                        data-bs-target="#btnGuardarCompra" id="btnGuardarCompra">Guardar Compra</button>
+
                                 </div>
                             </div>
 
@@ -352,32 +355,78 @@
             </div>
 
 
+            <div class="row">
+                <div class="col-md-4">
 
+                    <!-- Modal -->
+                    <div class="modal fade" id="buscarProductos" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <table id="tablaProductos" class="table align-items-center justify-content-center"
+                                        cellspacing="0" width="100%">
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Producto</th>
+                                                <th>marca</th>
+                                                <!-- <th>descripcion</th> -->
+                                                <th>Contenido</th>
+                                                <th>Precio</th>
+                                                <th></th>
 
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
 
-
-
-            <!------------------------------------------------------------------------------>
-            <!--------------------------------- F O O T E R -------------------------------->
-            <!------------------------------------------------------------------------------>
-
-            <footer class="footer pt-3  ">
-                <div class="container-fluid">
-                    <div class="row align-items-center justify-content-lg-between">
-                        <div class="col-lg-6 mb-lg-0 mb-4">
-                            <div class="copyright text-center text-sm text-muted text-lg-start">
-                                © <script>
-                                document.write(new Date().getFullYear())
-                                </script>,
-                                Todos los derechos reservados <i class="fa fa-heart"></i>
-                                <a href="" class="font-weight-bold" target="_blank">Trasciende</a>.
                             </div>
                         </div>
-
                     </div>
                 </div>
-            </footer>
-        </div>
+
+
+
+
+
+
+
+                <!-- Dependencias -->
+                <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+                <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+
+
+
+
+                <!------------------------------------------------------------------------------>
+                <!--------------------------------- F O O T E R -------------------------------->
+                <!------------------------------------------------------------------------------>
+
+                <footer class="footer pt-3  ">
+                    <div class="container-fluid">
+                        <div class="row align-items-center justify-content-lg-between">
+                            <div class="col-lg-6 mb-lg-0 mb-4">
+                                <div class="copyright text-center text-sm text-muted text-lg-start">
+                                    © <script>
+                                    document.write(new Date().getFullYear())
+                                    </script>,
+                                    Todos los derechos reservados <i class="fa fa-heart"></i>
+                                    <a href="" class="font-weight-bold" target="_blank">Trasciende</a>.
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </footer>
+            </div>
     </main>
 
 
@@ -457,6 +506,13 @@
             </div>
         </div>
     </div>
+
+
+
+
+
+
+
     <!--   Core JS Files   -->
     <script src="assets/js/core/popper.min.js"></script>
     <script src="assets/js/core/bootstrap.min.js"></script>
@@ -565,8 +621,11 @@
     <script src="//cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>
     <script src="//cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
 
+    <!-- Boostrap -->
+
     <!-- Funciones JS -->
-    <script src="../js/"></script>
+    <script src="../js/funcionesCompras.js"></script>
+
 </body>
 
 </html>
