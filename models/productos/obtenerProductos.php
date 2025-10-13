@@ -1,4 +1,4 @@
-<?php include('../controllers/conexion_prueba.php');
+<?php include('../../controllers/conexion_prueba.php');
 
 $output= array();
 $sql = "SELECT * FROM productos ";
@@ -9,7 +9,7 @@ $total_all_rows = mysqli_num_rows($totalQuery);
 $columns = array(
 	0 => 'id_producto',
 	1 => 'nombre_producto',
-	2 => 'categoria',
+	2 => 'id_categoria',
 	3 => 'marca',
 	4 => 'contenido',
 	5 => 'descripcion',
@@ -57,7 +57,7 @@ while($row = mysqli_fetch_assoc($query))
 
 	$sub_array[] = '<span class="text-xs font-weight-bold">'.$row['marca'].'</span>';
     $sub_array[] = '<span class="text-xs font-weight-bold">'.$row['contenido'].'</span>';
-    $sub_array[] = '<span class="text-xs font-weight-bold">'.$row['categoria'].'</span>';
+    $sub_array[] = '<span class="text-xs font-weight-bold">'.$row['id_categoria'].'</span>';
     $sub_array[] = '<span class="text-xs font-weight-bold">'.$row['descripcion'].'</span>';
 
 	

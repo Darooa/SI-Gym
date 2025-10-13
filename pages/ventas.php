@@ -123,11 +123,11 @@
 
     </aside>
 
-    <!------------------------------------------------------------------------------>
-    <!------------------------------- N A V B A R ------------------------------>
-    <!------------------------------------------------------------------------------>
-
     <main class="main-content position-relative border-radius-lg ">
+        <!------------------------------------------------------------------------------>
+        <!------------------------------- N A V B A R ------------------------------>
+        <!------------------------------------------------------------------------------>
+
         <!-- Navbar -->
         <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl " id="navbarBlur"
             data-scroll="false">
@@ -177,48 +177,143 @@
         <!------------------------------------------------------------------------------>
 
         <div class="container-fluid py-4">
+            <div class="row">
+                <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+                    <div class="card">
+                        <div class="card-body p-3">
+                            <div class="row">
+                                <div class="col-8">
+                                    <div class="numbers">
+                                        <p class="text-sm mb-0 text-uppercase font-weight-bold">FECHA</p>
+                                        <h5 class="font-weight-bolder">
+                                            03 SEPT 2025
+                                        </h5>
+                                        <p class="mb-0">
+                                            <span class="text-success text-sm font-weight-bolder"></span>
+                                            Hoy
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="col-4 text-end">
+                                    <div
+                                        class="icon icon-shape bg-gradient-primary shadow-primary text-center rounded-circle">
+                                        <i class="ni ni-money-coins text-lg opacity-10" aria-hidden="true"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+                    <div class="card">
+                        <div class="card-body p-3">
+                            <div class="row">
+                                <div class="col-8">
+                                    <div class="numbers">
+                                        <p class="text-sm mb-0 text-uppercase font-weight-bold">PRODUCTOS</p>
+                                        <h5 class="font-weight-bolder">
+                                            95
+                                        </h5>
+                                        <p class="mb-0">
+                                            <span class="text-success text-sm font-weight-bolder">:) </span>
+                                            Pensare que ponerle
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="col-4 text-end">
+                                    <div
+                                        class="icon icon-shape bg-gradient-danger shadow-danger text-center rounded-circle">
+                                        <i class="ni ni-world text-lg opacity-10" aria-hidden="true"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+                    <div class="card">
+                        <div class="card-body p-3">
+                            <div class="row">
+                                <div class="col-8">
+                                    <div class="numbers">
+                                        <p class="text-sm mb-0 text-uppercase font-weight-bold">VENTAS HOY</p>
+                                        <h5 class="font-weight-bolder">
+                                            35
+                                        </h5>
+                                        <p class="mb-0">
+                                            <span class="text-danger text-sm font-weight-bolder"> :)</span>
+                                            Pensaré Que más ponerle
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="col-4 text-end">
+                                    <div
+                                        class="icon icon-shape bg-gradient-success shadow-success text-center rounded-circle">
+                                        <i class="ni ni-paper-diploma text-lg opacity-10" aria-hidden="true"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-sm-6">
+                    <div class="card">
+                        <div class="card-body p-3">
+                            <div class="row">
+                                <div class="col-8">
+                                    <div class="numbers">
+                                        <p class="text-sm mb-0 text-uppercase font-weight-bold">CAJA</p>
+                                        <h5 class="font-weight-bolder">
+                                            $103,430
+                                        </h5>
+                                        <p class="mb-0">
+                                            <span class="text-success text-sm font-weight-bolder">Usuario: </span>
+                                            Francisco Martinez
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="col-4 text-end">
+                                    <div
+                                        class="icon icon-shape bg-gradient-warning shadow-warning text-center rounded-circle">
+                                        <i class="ni ni-cart text-lg opacity-10" aria-hidden="true"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="row mt-4">
+
+
                 <div class="col-lg-12 mb-lg-0 mb-4">
                     <div class="card ">
                         <div class="card-header pb-0 p-3">
                             <div class="d-flex justify-content-between">
                                 <h6 class="mb-2">Venta de productos</h6>
+                                <!-- <button class="btn btn-success btn-md ms-auto" data-bs-toggle="modal" data-bs-target="#AgregarProducto">Ver Productos</button> -->
+
                             </div>
                         </div>
+
                         <div class="card-body">
                             <p class="text-uppercase text-sm"></p>
 
                             <!-- AQUI VA A IR EL FORMULARIO -->
                             <div class="row">
-                                <div class="col-4">
-                                    <div class="form-group">
-                                        <label for="example-text-input" class="form-control-label">Proveedor</label>
-                                        <input class="form-control" type="text" value="">
-                                    </div>
-                                </div>
-                                <div class="col-3">
-                                    <div class="form-group">
-                                        <label for="example-text-input" class="form-control-label">Fecha</label>
-                                        <input class="form-control" type="text" value="">
-                                    </div>
-                                </div>
-                                <div class="col-3">
-                                    <div class="form-group">
-                                        <label for="example-text-input" class="form-control-label">No. de Compra</label>
-                                        <input class="form-control" type="text" value="">
-                                    </div>
-                                </div>
+
                                 <div class="col-2">
                                     <div class="form-group">
                                         <hr>
-                                        <button class="btn btn-success  ms-auto">Buscar productos</button>
+                                        <button class="btn btn-success  ms-auto" data-bs-toggle="modal"
+                                            data-bs-target="#buscarProductos">Buscar productos</button>
                                     </div>
                                 </div>
                             </div>
 
 
 
-                            <table id="" class="table align-items-center justify-content-center" cellspacing="0"
+                            <table id="tablaVenta" class="table align-items-center justify-content-center" cellspacing="0"
                                 width="100%">
                                 <thead>
                                     <tr>
@@ -243,7 +338,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
+                                    <!-- <tr>
                                         <td>
                                             <p class="text-sm font-weight-bold mb-0">1 </p>
                                         </td>
@@ -265,82 +360,20 @@
                                         <td>
                                             <span class="text-xs font-weight-bold"><i class="ni ni-basket text-warning text-sm opacity-10"></i></span>
                                         </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <p class="text-sm font-weight-bold mb-0">1 </p>
-                                        </td>
-                                        <td>
-                                            <Span class="text-xs font-weight-bold">Proteina Whey sabor Galleta</span>
-                                        </td>
-                                        <td>
-                                            <span class="text-xs font-weight-bold">3</span>
-                                        </td>
-                                        <td>
-                                            <span class="text-xs font-weight-bold">En bote de 2.5 kg </span>
-                                        </td>
-                                        <td>
-                                            <span class="text-xs font-weight-bold"> $ 1,355.00 </span>
-                                        </td>
-                                        <td>
-                                            <span class="text-xs font-weight-bold"> $ 4,065.00 </span>
-                                        </td>
-                                        <td>
-                                            <span class="text-xs font-weight-bold"><i class="ni ni-basket text-warning text-sm opacity-10"></i></span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <p class="text-sm font-weight-bold mb-0">1 </p>
-                                        </td>
-                                        <td>
-                                            <Span class="text-xs font-weight-bold">Proteina Whey sabor Galleta</span>
-                                        </td>
-                                        <td>
-                                            <span class="text-xs font-weight-bold">3</span>
-                                        </td>
-                                        <td>
-                                            <span class="text-xs font-weight-bold">En bote de 2.5 kg </span>
-                                        </td>
-                                        <td>
-                                            <span class="text-xs font-weight-bold"> $ 1,355.00 </span>
-                                        </td>
-                                        <td>
-                                            <span class="text-xs font-weight-bold"> $ 4,065.00 </span>
-                                        </td>
-                                        <td>
-                                            <span class="text-xs font-weight-bold"><i class="ni ni-basket text-warning text-sm opacity-10"></i></span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <p class="text-sm font-weight-bold mb-0"></p>
-                                        </td>
-                                        <td>
-                                            <Span class="text-xs font-weight-bold"></span>
-                                        </td>
-                                        <td>
-                                            <span class="text-xs font-weight-bold"></span>
-                                        </td>
-                                        <td>
-                                            <span class="text-xs font-weight-bold"> </span>
-                                        </td>
-                                        <td>
-                                            <span class="text-xs font-weight-bold"> Total $ </span>
-                                        </td>
-                                        <td>
-                                            <span class="text-xs font-weight-bold"> $ 4,065.00 </span>
-                                        </td>
-                                        <td>
-                                            <span class="text-xs font-weight-bold"> </span>
-                                        </td>
-                                    </tr>
+                                    </tr> -->
+
                                 </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="6" class="text-end"><strong>Total:</strong></td>
+                                        <td id="totalCarrito">0.00</td>
+                                        <td></td>
+                                    </tr>
+                                </tfoot>
                             </table>
                             <div class="card-header pb-0 p-3">
                                 <div class="d-flex justify-content-between">
-                                    <button class="btn btn-success btn-sm ms-auto" data-bs-toggle="modal"
-                                        data-bs-target="#AgregarProducto">Buscar productos</button>
+                                    <button class="btn btn-success btn-sm ms-auto" id="btnGuardarVenta">Guardar Venta</button>
                                 </div>
                             </div>
 
@@ -350,6 +383,43 @@
                 </div>
 
             </div>
+
+
+
+            <!-- Modal -->
+            <div class="modal fade" id="buscarProductos" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <table id="tablaProductos" class="table align-items-center justify-content-center"
+                                cellspacing="0" width="100%">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Producto</th>
+                                        <th>marca</th>
+                                        <!-- <th>descripcion</th> -->
+                                        <th>Contenido</th>
+                                        <th>Precio</th>
+                                        <th></th>
+
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
 
 
 
@@ -566,7 +636,7 @@
     <script src="//cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
 
     <!-- Funciones JS -->
-    <script src="../js/"></script>
+    <script src="../js/funcionesVentas.js"></script>
 </body>
 
 </html>

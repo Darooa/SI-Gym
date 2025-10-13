@@ -13,7 +13,7 @@ $(document).ready(function() {
      'order'        : [],
      
      'ajax'         : {
-       'url'        : '../models/obtenerProductos.php',
+       'url'        : '../models/productos/obtenerProductos.php',
        'type'       : 'POST',
      },
      "aoColumnDefs" : [{
@@ -59,7 +59,7 @@ $(document).ready(function() {
        });
    } else { 
      $.ajax({
-       url: "../Models/agregarProducto.php",
+       url: "../Models/productos/agregarProducto.php",
        type: "post",
        data: {
           TGYM_nombre       : TGYM_nombre,
@@ -113,7 +113,7 @@ $(document).ready(function() {
  
    if (EDT_nombre != '' && EDT_descripcion != '' && EDT_categoria != ''&& EDT_marca != '' && EDT_contenido != ''  && EDT_stock != ''  && EDT_pcompra != ''  && EDT_pventa != '') {
      $.ajax({
-       url: "../Models/actualizarProducto.php",
+       url: "../Models/productos/actualizarProducto.php",
        type: "post",
        data: {
           EDT_nombre        : EDT_nombre, 
@@ -159,7 +159,7 @@ $(document).ready(function() {
    $('#EDTProducto').modal('show');
  
    $.ajax({
-     url: "../Models/obtenerProducto.php",
+     url: "../Models/productos/obtenerProducto.php",
      data: {
        id: id 
      },
@@ -211,7 +211,7 @@ $(document).ready(function() {
    }).then((result) => {
      if (result.isConfirmed) {
          $.ajax({
-             url       : "../Models/desactivarProducto.php", 
+             url       : "../Models/productos/desactivarProducto.php", 
              type      : "POST",
              datatype  : "json",    
              data:  { id     :id,
@@ -265,7 +265,7 @@ $(document).ready(function() {
   }).then((result) => {
     if (result.isConfirmed) {
         $.ajax({
-            url       : "../Models/activarProducto.php", 
+            url       : "../Models/productos/activarProducto.php", 
             type      : "POST",
             datatype  : "json",    
             data:  { id     :id,

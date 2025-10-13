@@ -224,7 +224,7 @@
                                       <?php
                                             $conect = mysqli_connect("localhost","root","","bd_trasciende");
                                             $conect->set_charset("utf8");
-                                            $qry_planes="SELECT * FROM categoria where estado='1'";
+                                            $qry_planes="SELECT * FROM categorias where estado='1'";
 		                                    if ($resultado = mysqli_query($conect, $qry_planes)) {
 		                                    /* obtener array asociativo */
 		                                    while ($row = mysqli_fetch_assoc($resultado)) {
@@ -329,7 +329,7 @@
                                       <?php
                                             $conect = mysqli_connect("localhost","root","","bd_trasciende");
                                             $conect->set_charset("utf8");
-                                            $qry_planes="SELECT * FROM categoria where estado='1'";
+                                            $qry_planes="SELECT * FROM categorias where estado='1'";
 		                                    if ($resultado = mysqli_query($conect, $qry_planes)) {
 		                                    /* obtener array asociativo */
 		                                    while ($row = mysqli_fetch_assoc($resultado)) {
@@ -395,7 +395,7 @@
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">#</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Nombre</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Marca</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Contenido</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Contenido</th> 
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Categoría</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Descripción</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Stock</th>

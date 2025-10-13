@@ -1,5 +1,5 @@
 <?php 
-include('../controllers/conexion_prueba.php');
+include('../../controllers/conexion_prueba.php');
 
 $id     = $_POST['id'];
 $sql    = "SELECT * FROM productos WHERE id_producto='$id' LIMIT 1";
