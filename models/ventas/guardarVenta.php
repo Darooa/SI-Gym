@@ -74,11 +74,20 @@ try {
     $stmtStk->execute();
   }
 
+  // Registrar ingreso en caja
+  $stmtCaja = $con->prepare("
+      INSERT INTO caja (tipo, concepto, monto, referencia, usuario)
+      VALUES ('INGRESO', 'Venta de productos', ?, ?, ?)
+  ");
+  $stmtCaja->bind_param("dsi", $total, $id_venta, $id_usuario);
+  $stmtCaja->execute();
+
+  // Confirmar todo
   $con->commit();
 
   echo json_encode([
     'status' => 'success',
-    'message'=> 'Venta registrada correctamente',
+    'message'=> 'Venta registrada correctamente y agregada a caja',
     'id_venta' => $id_venta,
     'total' => number_format($total, 2, '.', '')
   ]);

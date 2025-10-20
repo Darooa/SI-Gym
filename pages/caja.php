@@ -2,15 +2,6 @@
 =========================================================
 * Argon Dashboard 2 - v2.0.4
 =========================================================
-
-* Product Page: https://www.creative-tim.com/product/argon-dashboard
-* Copyright 2022 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://www.creative-tim.com/license)
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 -->
 <!DOCTYPE html>
 <html lang="en">
@@ -78,7 +69,7 @@
                     <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">INVENTARIO</h6>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="categorias.php">
+                    <a class="nav-link" href="categorias.php">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-bullet-list-67 text-success text-sm opacity-10"></i>
@@ -110,7 +101,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link " href="ventas.php">
+                    <a class="nav-link" href="ventas.php">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-shop text-info text-sm opacity-10"></i>
@@ -118,16 +109,26 @@
                         <span class="nav-link-text ms-1">Ventas</span>
                     </a>
                 </li>
+
+                <li class="nav-item">
+                    <a class="nav-link active" href="caja.php">
+                        <div
+                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="ni ni-shop text-info text-sm opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Caja</span>
+                    </a>
+                </li>
             </ul>
         </div>
 
     </aside>
 
-    <!------------------------------------------------------------------------------>
-    <!------------------------------- N A V B A R ------------------------------>
-    <!------------------------------------------------------------------------------>
-
     <main class="main-content position-relative border-radius-lg ">
+        <!------------------------------------------------------------------------------>
+        <!------------------------------- N A V B A R ------------------------------>
+        <!------------------------------------------------------------------------------>
+
         <!-- Navbar -->
         <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl " id="navbarBlur"
             data-scroll="false">
@@ -136,9 +137,9 @@
                     <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
                         <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white"
                                 href="javascript:;">Pages</a></li>
-                        <li class="breadcrumb-item text-sm text-white active" aria-current="page">Productos</li>
+                        <li class="breadcrumb-item text-sm text-white active" aria-current="page">Ventas</li>
                     </ol>
-                    <h6 class="font-weight-bolder text-white mb-0">Administración de Productos</h6>
+                    <h6 class="font-weight-bolder text-white mb-0">Venta de productos</h6>
                 </nav>
                 <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
                     <div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -177,65 +178,97 @@
         <!------------------------------------------------------------------------------>
 
         <div class="container-fluid py-4">
-            <div class="row mt-4">
+            
 
-                <div class="col-lg-5 mb-lg-0 mb-4">
-                    <div class="card">
+            <div class="row mt-4">
+                <div class="col-lg-12 mb-lg-0 mb-4">
+                    <div class="card ">
                         <div class="card-header pb-0 p-3">
                             <div class="d-flex justify-content-between">
-                                <h6 class="mb-2">Agregar nueva categoría</h6>
+                                <h6 class="mb-2">Movimientos de Caja</h6>
+                                <button class="btn btn-success btn-md ms-auto" id="btnCorteCaja">Realizar Corte</button>
+
                             </div>
                         </div>
 
                         <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <form id="formCategoria">
-                                        <div class="form-group">
-                                            <label for="nombreCategoria" class="form-control-label">Nombre de la
-                                                Categoría</label>
-                                            <input id="nombreCategoria" class="form-control" type="text" placeholder="Nombre de la categoría">
+                            <p class="text-uppercase text-sm"></p>
 
-                                        </div>
-                                        <div class="d-flex justify-content-between">
-                                            <button id="btnAgregarCategoria" class="btn btn-success">Agregar Categoría</button>
-
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Tabla de categorías -->
-                <div class="col-lg-7">
-                    <div class="card">
-                        <div class="card-header pb-0 p-3">
-                            <h6 class="mb-0">Listado de Categorías</h6>
-                        </div>
-
-                        <div class="table-responsive">
-                            <table id="tablaCategorias" class="table align-items-center justify-content-center" width="100%">
+                            <table id="tablaCaja" class="table table-striped align-items-center">
+                                <thead>
+                                <tr>
+                                    <th>Fecha</th>
+                                    <th>Tipo</th>
+                                    <th>Concepto</th>
+                                    <th>Monto</th>
+                                    <th>Referencia</th>
+                                    <th>Usuario</th>
+                                </tr>
+                                </thead>
+                                <tbody></tbody>
+                                <tfoot>
+                                <tr>
+                                    <td colspan="3" class="text-end"><strong>Total Ingresos:</strong></td>
+                                    <td id="totalIngresos" class="text-success fw-bold">$0.00</td>
+                                    <td colspan="2"></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" class="text-end"><strong>Total Egresos:</strong></td>
+                                    <td id="totalEgresos" class="text-danger fw-bold">$0.00</td>
+                                    <td colspan="2"></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" class="text-end"><strong>Saldo del Día:</strong></td>
+                                    <td id="saldoFinal" class="text-primary fw-bold">$0.00</td>
+                                    <td colspan="2"></td>
+                                </tr>
+                                </tfoot>
+                            </table>
+                            <!-- <table id="tablaVenta" class="table align-items-center justify-content-center" cellspacing="0"
+                                width="100%">
                                 <thead>
                                     <tr>
-                                    <th>#</th>
-                                    <th>Nombre</th>
-                                    <th>Estado</th>
-                                    <th>Acciones</th>
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                            #</th>
+                                        <th
+                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                            Producto</th>
+                                        <th
+                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                            CANT.</th>
+                                        <th
+                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                            DESCRIPCIÓN</th>
+                                        <th
+                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                            P. UNITARIO</th>
+                                        <th
+                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                            TOTAL</th>
+                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody></tbody>
-                                </table>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="5" class="text-end"><strong>Total:</strong></td>
+                                        <td id="totalVenta">0.00</td>
+                                        <td></td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                            <div class="card-header pb-0 p-3">
+                                <div class="d-flex justify-content-between">
+                                    <button class="btn btn-success btn-sm ms-auto" id="btnGuardarVenta">Guardar Venta</button>
+                                </div>
+                            </div> -->
+
+
                         </div>
                     </div>
                 </div>
+
             </div>
-
-
-
-
-
 
 
             <!------------------------------------------------------------------------------>
@@ -447,7 +480,7 @@
     <script src="//cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
 
     <!-- Funciones JS -->
-    <script src="../js/funcionesCategorias.js"></script>
+    <script src="../js/funcionesCaja.js"></script>
 </body>
 
 </html>

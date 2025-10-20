@@ -118,6 +118,16 @@
                         <span class="nav-link-text ms-1">Ventas</span>
                     </a>
                 </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="caja.php">
+                        <div
+                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="ni ni-shop text-info text-sm opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Caja</span>
+                    </a>
+                </li>
             </ul>
         </div>
 
@@ -365,8 +375,8 @@
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                        <td colspan="6" class="text-end"><strong>Total:</strong></td>
-                                        <td id="totalCarrito">0.00</td>
+                                        <td colspan="5" class="text-end"><strong>Total:</strong></td>
+                                        <td id="totalVenta">0.00</td>
                                         <td></td>
                                     </tr>
                                 </tfoot>

@@ -172,6 +172,31 @@ $(document).ready(function () {
 
 }); // ready
 
+function renderCarritoVenta() {
+  let tbody = $("#tablaVenta tbody");
+  tbody.empty();
+  let total = 0;
+
+  carritoVenta.forEach((p, i) => {
+    const subtotal = p.precio * p.cantidad;
+    total += subtotal;
+    tbody.append(`
+      <tr>
+        <td>${i + 1}</td>
+        <td>${p.nombre}</td>
+        <td><input type="number" min="1" value="${p.cantidad}" class="form-control form-control-sm cantidadVenta" data-index="${i}"></td>
+        <td>${p.descripcion}</td>
+        <td>$${p.precio.toFixed(2)}</td>
+        <td>$${subtotal.toFixed(2)}</td>
+        <td><button class="btn btn-danger btn-sm quitarVenta" data-index="${i}">X</button></td>
+      </tr>
+    `);
+  });
+
+  // Actualiza el total general
+  $("#totalVenta").text(`$${total.toFixed(2)}`);
+}
+
 // Utilidad: limpiar overlays SweetAlert/Bootstrap (fondo negro)
 function cleanupOverlays() {
   document.body.classList.remove('swal2-shown', 'swal2-height-auto', 'modal-open');
