@@ -1,7 +1,8 @@
 $(document).ready(function () {
+
   const fecha = new Date();
   const año = fecha.getFullYear(); // Devuelve el año
-  const mes = fecha.getMonth(); // Devuelve el mes (0-11)
+  const mes = fecha.getMonth() + 1; // Devuelve el mes (0-11)
   const dia = fecha.getDate(); // Devuelve el día del mes
 
   mostrarfecha.innerHTML = `Fecha: ${dia}/${mes}/${año}`
