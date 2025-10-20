@@ -1,5 +1,5 @@
 <?php
-include('../controllers/conexion_prueba.php');
+include('../../controllers/conexion_prueba.php');
 header('Content-Type: application/json');
 
 if (isset($_POST['id'])) {

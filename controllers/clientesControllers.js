@@ -13,7 +13,7 @@ $(document).ready(function() {
      'order'        : [],
      
      'ajax'         : {
-       'url'        : '../models/clientesModel.php',
+       'url'        : '../models/clientes/clientesModel.php',
        'type'       : 'POST',
      },
      "aoColumnDefs" : [{
@@ -59,7 +59,7 @@ $(document).on('submit', '#agregarCliente', function(e) {
 	e.preventDefault();
 	  var formData = new FormData(document.getElementById("agregarCliente"));
 	  $.ajax({
-		url: "../models/agregarClientes.php",
+		url: "../models/clientes/agregarClientes.php",
 		type: "post",
 		dataType: "html",
 		data: formData,
@@ -102,7 +102,7 @@ $(document).on('submit', '#agregarCliente', function(e) {
    $('#actualizarModal').modal('show');
  
    $.ajax({
-     url: "../models/obtenerCliente.php",
+     url: "../models/clientes/obtenerCliente.php",
      data: {
        id: id 
      },
@@ -143,7 +143,7 @@ $(document).on('submit', '#agregarCliente', function(e) {
     }).then((result) => {
       if (result.isConfirmed) {
         $.ajax({
-          url: '../models/bajaCliente.php',
+          url: '../models/clientes/bajaCliente.php',
           type: 'POST',
           data: { id: id},
           success: function (response) {
