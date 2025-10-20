@@ -2,15 +2,6 @@
 =========================================================
 * Argon Dashboard 2 - v2.0.4
 =========================================================
-
-* Product Page: https://www.creative-tim.com/product/argon-dashboard
-* Copyright 2022 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://www.creative-tim.com/license)
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 -->
 <!DOCTYPE html>
 <html lang="en">
@@ -78,7 +69,7 @@
                     <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">INVENTARIO</h6>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="categorias.php">
+                    <a class="nav-link" href="categorias.php">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-bullet-list-67 text-success text-sm opacity-10"></i>
@@ -110,7 +101,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link " href="ventas.php">
+                    <a class="nav-link" href="ventas.php">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-shop text-info text-sm opacity-10"></i>
@@ -118,16 +109,36 @@
                         <span class="nav-link-text ms-1">Ventas</span>
                     </a>
                 </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="caja.php">
+                        <div
+                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="ni ni-shop text-info text-sm opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Caja</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link active" href="reportesC.php">
+                        <div
+                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="ni ni-shop text-info text-sm opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Reportes Cajas</span>
+                    </a>
+                </li>
             </ul>
         </div>
 
     </aside>
 
-    <!------------------------------------------------------------------------------>
-    <!------------------------------- N A V B A R ------------------------------>
-    <!------------------------------------------------------------------------------>
-
     <main class="main-content position-relative border-radius-lg ">
+        <!------------------------------------------------------------------------------>
+        <!------------------------------- N A V B A R ------------------------------>
+        <!------------------------------------------------------------------------------>
+
         <!-- Navbar -->
         <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl " id="navbarBlur"
             data-scroll="false">
@@ -136,9 +147,9 @@
                     <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
                         <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white"
                                 href="javascript:;">Pages</a></li>
-                        <li class="breadcrumb-item text-sm text-white active" aria-current="page">Productos</li>
+                        <li class="breadcrumb-item text-sm text-white active" aria-current="page">Ventas</li>
                     </ol>
-                    <h6 class="font-weight-bolder text-white mb-0">Administración de Productos</h6>
+                    <h6 class="font-weight-bolder text-white mb-0">Venta de productos</h6>
                 </nav>
                 <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
                     <div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -177,65 +188,47 @@
         <!------------------------------------------------------------------------------>
 
         <div class="container-fluid py-4">
-            <div class="row mt-4">
+            
 
-                <div class="col-lg-5 mb-lg-0 mb-4">
-                    <div class="card">
+            <div class="row mt-4">
+                <div class="col-lg-12 mb-lg-0 mb-4">
+                    <div class="card ">
                         <div class="card-header pb-0 p-3">
                             <div class="d-flex justify-content-between">
-                                <h6 class="mb-2">Agregar nueva categoría</h6>
+                                <h6 class="mb-2">Historial de Cortes de Caja</h6>
+                                <div class="d-flex align-items-center gap-2">
+                                    <input type="date" id="fechaInicio" class="form-control form-control-sm">
+                                    <input type="date" id="fechaFin" class="form-control form-control-sm">
+                                    <button id="btnFiltrarCortes" class="btn btn-success btn-sm">Filtrar</button>
+                                </div>
                             </div>
                         </div>
 
                         <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <form id="formCategoria">
-                                        <div class="form-group">
-                                            <label for="nombreCategoria" class="form-control-label">Nombre de la
-                                                Categoría</label>
-                                            <input id="nombreCategoria" class="form-control" type="text" placeholder="Nombre de la categoría">
+                            <p class="text-uppercase text-sm"></p>
 
-                                        </div>
-                                        <div class="d-flex justify-content-between">
-                                            <button id="btnAgregarCategoria" class="btn btn-success">Agregar Categoría</button>
+                            
 
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Tabla de categorías -->
-                <div class="col-lg-7">
-                    <div class="card">
-                        <div class="card-header pb-0 p-3">
-                            <h6 class="mb-0">Listado de Categorías</h6>
-                        </div>
-
-                        <div class="table-responsive">
-                            <table id="tablaCategorias" class="table align-items-center justify-content-center" width="100%">
+                            <table id="tablaCortes" class="table table-striped align-items-center">
                                 <thead>
-                                    <tr>
-                                    <th>#</th>
-                                    <th>Nombre</th>
-                                    <th>Estado</th>
-                                    <th>Acciones</th>
-                                    </tr>
+                                <tr>
+                                    <th>ID Corte</th>
+                                    <th>Fecha Inicio</th>
+                                    <th>Fecha Fin</th>
+                                    <th>Total Ingresos</th>
+                                    <th>Total Egresos</th>
+                                    <th>Saldo Final</th>
+                                    <th>Usuario</th>
+                                </tr>
                                 </thead>
                                 <tbody></tbody>
-                                </table>
+                            </table>
+
                         </div>
                     </div>
                 </div>
+
             </div>
-
-
-
-
-
 
 
             <!------------------------------------------------------------------------------>
@@ -447,7 +440,7 @@
     <script src="//cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
 
     <!-- Funciones JS -->
-    <script src="../js/funcionesCategorias.js"></script>
+    <script src="../js/funcionesHistorialCortes.js"></script>
 </body>
 
 </html>

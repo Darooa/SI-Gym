@@ -79,12 +79,20 @@ try {
         $stmtStock->execute();
     }
 
-    // 8) Confirmar
+    // 8) Registrar movimiento en CAJA (egreso)
+    $stmtCaja = $con->prepare("
+        INSERT INTO caja (tipo, concepto, monto, referencia, usuario)
+        VALUES ('EGRESO', 'Compra de productos', ?, ?, ?)
+    ");
+    $stmtCaja->bind_param("dsi", $total, $codigo, $idUsuario);
+    $stmtCaja->execute();
+
+    // 9) Confirmar transacción
     $con->commit();
 
     echo json_encode([
         "status"  => "success",
-        "message" => "Compra registrada correctamente.",
+        "message" => "Compra registrada correctamente y registrada en caja.",
         "id_compra" => $idCompra,
         "total"   => number_format($total, 2, '.', '')
     ]);
