@@ -24,13 +24,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['id'])) {
   <link href="assets/css/nucleo-svg.css" rel="stylesheet" />
   <!-- CSS Files -->
   <link id="pagestyle" href="assets/css/argon-dashboard.css?v=2.0.4" rel="stylesheet" />
+  <link href="../pages/assets/css/estilosDetalleCliente.css" rel="stylesheet" />
 </head>
 
 <body class="g-sidenav-show bg-gray-100">
-  <div class="min-height-300 bg-success position-absolute w-100">
-    <button class="btn btn-primary btn-sm ms-auto ">Regresar</button>
-    <!-- <span class="mask bg-primary opacity-6"></span> -->
+  <div class="header-banner position-absolute w-100">
+    <button class="btn btn-primary btn-sm ms-auto m-3">Regresar</button>
   </div>
+
   <aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 " id="sidenav-main">
     <div class="sidenav-header">
       <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
@@ -66,7 +67,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['id'])) {
     </div>
     <?php
     include("../libs/phpqrcode/qrlib.php");
-
     $conect = mysqli_connect("localhost", "root", "", "bd_trasciende");
     if (!$conect) {
       die("Error de conexión: " . mysqli_connect_error());
@@ -94,7 +94,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['id'])) {
       echo "No disponible";
     }
 
-
     // Carpeta para guardar los QR
     $dir = "temp_qr/";
     if (!file_exists($dir)) {
@@ -114,6 +113,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['id'])) {
               <div class="d-flex align-items-center">
               </div>
             </div>
+            <!-- **********CARD PARA ACTUALIZACIÓN DE LA INFORMACIÓN DEL CLIENTE ************-->
             <div class="card-body">
               <p class="text-uppercase text-sm">Información del Cliente</p>
               <div class="row">
@@ -121,6 +121,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['id'])) {
                   <div class="form-group">
                     <input type="hidden" id="clienteId" name="clienteId" value="<?php echo $id ?>">
                     <label for="example-text-input" class="form-control-label">Nombre(s)</label>
+
                     <input class="form-control" type="text" value="<?php echo $nombre ?>">
                   </div>
                 </div>
@@ -151,19 +152,22 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['id'])) {
                     <div class="form-group">
                       <label for="example-text-input" class="form-control-label">Tipo de Membresía</label>
                       <select class="select2 select-event-label form-select" name="edit_tipoMembresia" id="edit_tipoMembresia">
-                        <option selected disabled>Seleccionar...</option>
+                        <option  value="">Seleccionar...</option>
                         <?php
                         $conect = mysqli_connect("localhost", "root", "", "bd_trasciende");
                         $conect->set_charset("utf8");
                         $qry_planes = "SELECT * from tb_membresias where estado=1";
-                        if ($resultado = mysqli_query($conect, $qry_planes)) {
-                          /* obtener array asociativo */
-                          while ($row = mysqli_fetch_assoc($resultado)) {
-                            echo '<option value="' . $row["id_membresia"] . '" data-precio="' . $row["precio"] . '" data-dias="' . $row["duracion"] . '"> ' . $row["membresia"] . ': ' . $row["duracion"] . ' días' . '</option>';
-                          }
-                          /* liberar el conjunto de resultados */
-                          mysqli_free_result($resultado);
-                        }
+                                                            if ($resultado = mysqli_query($conect, $qry_planes)) {
+                                                              /* obtener array asociativo */
+                                                              while ($row = mysqli_fetch_assoc($resultado)) {
+                                                                $selected = ($row["id_membresia"] == $id_membresia) ? "selected" : "";
+                                                                echo '<option value="' . $row["id_membresia"] . '" ' . $selected .
+                                                                  ' data-precio="' . $row["precio"] . '" data-dias="' . $row["duracion"] . '">' .
+                                                                  $row["membresia"] . ': ' . $row["duracion"] . ' días</option>';
+                                                              }
+                                                              /* liberar el conjunto de resultados */
+                                                              mysqli_free_result($resultado);
+                                                            }
                         echo "<br>";
                         ?>
                       </select>
@@ -197,6 +201,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['id'])) {
             </div>
           </div>
         </div>
+        <!-- *********** CARD DERECHO DE LA INFORMACIÓN DEL CLIENTE *******************-->
         <div class="col-md-4">
           <div class="card card-profile">
             <img src="" class="card-img-top bg-dark">
@@ -204,117 +209,47 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['id'])) {
               <div class="col-4 col-lg-4 order-lg-2">
                 <div class="mt-n4 mt-lg-n6 mb-4 mb-lg-0">
                   <a href="javascript:;">
-                    <img src="assets/img/image.png" class="rounded-circle img-fluid border border-2 border-white">
+                    <img src="assets/img/pesas.jpg" class="rounded-circle img-fluid border border-2 border-white">
                   </a>
                 </div>
               </div>
             </div>
-            <div class="card-header text-center border-0 pt-0 pt-lg-2 pb-4 pb-lg-3">
-
-            </div>
-            <style>
-              .card-body {
-                background-color: #f9fafc;
-                border-radius: 12px;
-                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-                padding: 20px 30px;
-              }
-
-              .cliente-info {
-                text-align: center;
-                color: #333;
-              }
-
-              .cliente-info h5 {
-                font-weight: 700;
-                font-size: 1.4rem;
-                color: #30e248ff;
-                margin-bottom: 12px;
-              }
-
-              .cliente-info div {
-                font-size: 0.95rem;
-                margin-bottom: 6px;
-                color: #555;
-              }
-
-              .cliente-info span {
-                color: #212529;
-                font-weight: 400;
-                margin-left: 4px;
-              }
-
-              .qr-section {
-                text-align: center;
-                margin-top: 25px;
-              }
-
-              .qr-section span {
-                display: block;
-                font-weight: 600;
-                color: #495057;
-                margin-bottom: 10px;
-              }
-
-              .qr-section img {
-                width: 130px;
-                height: 130px;
-                border: 2px solid #dee2e6;
-                border-radius: 8px;
-                padding: 8px;
-                background: white;
-                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-              }
-            </style>
-
             <div class="card-body pt-0">
               <div class="cliente-info mt-3">
                 <h5><?php echo $cliente ?></h5>
-                <div><span>Tipo de membresía:</span><?php echo $nombreMembresia ?></div>
-                <div><span>Tipo de rutina:</span>Nivel 1</div>
-                <div><span>Inicio de membresía:</span><?php echo $fechaIni ?></div>
-                <div><span>Vencimiento:</span><?php echo $fecha_lim ?></div>
-                <div><span>Folio:</span><?php echo $folio ?></div>
+                <div><span> <strong>Folio:</strong> </span><?php echo $folio ?></div>
+                <div><span><strong>Tipo de membresía:</strong> </span><?php echo $nombreMembresia ?></div>
+                <div><span><strong>Tipo de rutina:</strong> </span>Nivel 1</div>
+                <div><span><strong>Inicio de membresía:</strong> </span><?php echo $fechaIni ?></div>
+                <div><span><strong>Vencimiento: </strong></span><?php echo $fecha_lim ?></div>
               </div>
+              <br>
+              <!-- *** IMAGEN QR ********* -->
               <div class="qr-section">
                 <span>Código QR:</span>
-                <img src="<?php echo $filename ?>" alt="QR Cliente">
+                <img src="<?php echo $filename ?>" alt="QR Cliente" class="img-thumbnail zoomable-img" style="cursor: pointer; max-width: 150px;" data-bs-toggle="modal" data-bs-target="#zoomModal">
               </div>
+              <br>
               <a href='perfil.php?folio=<?php echo $folio ?>'>Ver perfil del cliente</a>
             </div>
-
           </div>
         </div>
       </div>
+<!-- ***********MODAL PARA VISUALIZACIÓN DEL QR EN ZOOM ******** -->
+<div class="modal fade" id="zoomModal" tabindex="-1" aria-labelledby="zoomModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-xl"> <!-- 🔸 tamaño grande -->
+    <div class="modal-content bg-transparent border-0 shadow-none">
+      <div class="modal-body text-center p-0">
+        <img id="zoomedImage" src="../pages/temp_qr/cliente_<?php echo $folio ?>" 
+             class="img-fluid rounded" 
+             style="max-width: 95vw; max-height: 95vh; object-fit: contain;"> <!-- 🔸 limita altura al 85% de pantalla -->
+      </div>
+    </div>
+  </div>
+</div>
       <footer class="footer pt-3  ">
         <div class="container-fluid">
           <div class="row align-items-center justify-content-lg-between">
-            <!-- <div class="col-lg-6 mb-lg-0 mb-4">
-              <div class="copyright text-center text-sm text-muted text-lg-start">
-                © <script>
-                  document.write(new Date().getFullYear())
-                </script>,
-                made with <i class="fa fa-heart"></i> by
-                <a href="https://www.creative-tim.com" class="font-weight-bold" target="_blank">Creative Tim</a>
-                for a better web.
-              </div>
-            </div> -->
-            <!-- <div class="col-lg-6">
-              <ul class="nav nav-footer justify-content-center justify-content-lg-end">
-                <li class="nav-item">
-                  <a href="https://www.creative-tim.com" class="nav-link text-muted" target="_blank">Creative Tim</a>
-                </li>
-                <li class="nav-item">
-                  <a href="https://www.creative-tim.com/presentation" class="nav-link text-muted" target="_blank">About Us</a>
-                </li>
-                <li class="nav-item">
-                  <a href="https://www.creative-tim.com/blog" class="nav-link text-muted" target="_blank">Blog</a>
-                </li>
-                <li class="nav-item">
-                  <a href="https://www.creative-tim.com/license" class="nav-link pe-0 text-muted" target="_blank">License</a>
-                </li>
-              </ul>
-            </div> -->
           </div>
         </div>
       </footer>
@@ -399,6 +334,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['id'])) {
       }
       Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
     }
+
+    /**********FUNCIÓN PARA AMPLIAR IMAGEN QR *********** */
+   document.querySelector('.zoomable-img').addEventListener('click', function() {
+      document.getElementById('zoomedImage').src = this.src;
+    });
   </script>
   <!-- Github buttons -->
   <script async defer src="https://buttons.github.io/buttons.js"></script>

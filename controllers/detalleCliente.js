@@ -1,19 +1,41 @@
 $(document).ready(function() {
      /*************MOSTRAR PRECIO EN INPUT AL SELECCIONAR UN TIPO DE MEMBRESÍA EN FORMULARIO EDITAR************ */
-    $("#edit_tipoMembresia").on("change", function () {
-        let precio = $(this).find(":selected").data("precio");
-        let dias = $(this).find(":selected").data("dias");
-            let hoy = new Date();
-            hoy.setDate(hoy.getDate() + dias);
-            // Obtener fecha local del navegador
-            let dia = ("0" + hoy.getDate()).slice(-2);
-            let mes = ("0" + (hoy.getMonth() + 1)).slice(-2);
-            let año = hoy.getFullYear();
-            // Formato YYYY-MM-DD
-            let fechaFin = `${año}-${mes}-${dia}`;
-             $("#edit_costo").val("$ " + precio);
-             $("#edit_fechaTermino").val(fechaFin);
-    });
+//  $('.select2').select2(); // Inicializa el plugin
+
+//   $("#edit_tipoMembresia").on("change", function () {
+//     let precio = $(this).find(":selected").data("precio");
+//     let dias = $(this).find(":selected").data("dias");
+
+//     if (!precio || !dias) return;
+
+//     let hoy = new Date();
+//     let hoyISO = hoy.toISOString().split('T')[0];
+//     hoy.setDate(hoy.getDate() + dias);
+
+//     let dia = ("0" + hoy.getDate()).slice(-2);
+//     let mes = ("0" + (hoy.getMonth() + 1)).slice(-2);
+//     let año = hoy.getFullYear();
+//     let fechaFin = `${año}-${mes}-${dia}`;
+
+//     $("#edit_costo").val("$ " + precio);
+//     $("#edit_fechaInicio").val(hoyISO);
+//     $("#edit_fechaTermino").val(fechaFin);
+//   });
+
+  // Escuchar el cambio en el select
+  document.getElementById('edit_tipoMembresia').addEventListener('change', function() {
+    // Obtener la opción seleccionada
+    const selectedOption = this.options[this.selectedIndex];
+
+    // Leer los atributos data-precio y data-dias
+    const precio = selectedOption.getAttribute('data-precio');
+    const dias = selectedOption.getAttribute('data-dias');
+
+    // Asignar los valores a los inputs
+    document.getElementById('precio').value = precio ? precio : '';
+    document.getElementById('duracion').value = dias ? dias : '';
+  });
+
 
 
 /*****************EDITAR CLIENTE ********************/

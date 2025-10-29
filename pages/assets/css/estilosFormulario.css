@@ -1,0 +1,41 @@
+/* Campos de formulario */
+.form-control,
+.form-select {
+  border-radius: 10px;
+  transition: all 0.2s ease;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: #2ecc71;
+  box-shadow: 0 0 0 0.2rem rgba(46, 204, 113, 0.25);
+}
+
+/* Etiquetas */
+.form-label {
+  font-weight: 600;
+  color: #34495e;
+}
+
+/* Botones */
+.btn-success {
+  background: linear-gradient(90deg, #2ecc71, #27ae60);
+  border: none;
+  transition: all 0.2s ease;
+}
+
+.btn-success:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(46, 204, 113, 0.4);
+}
+
+.btn-outline-secondary:hover {
+  background-color: #f8f9fa;
+}
+
+/* Inputs con ícono */
+.input-group-text {
+  background-color: #e9ecef;
+  border: none;
+  border-radius: 10px 0 0 10px;
+}
