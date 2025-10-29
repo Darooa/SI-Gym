@@ -29,11 +29,15 @@
     <link href="assets/css/nucleo-icons.css" rel="stylesheet" />
     <link href="assets/css/nucleo-svg.css" rel="stylesheet" />
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
     <!-- Font Awesome Icons -->
     <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
     <link href="assets/css/nucleo-svg.css" rel="stylesheet" />
     <!-- CSS Files -->
     <link id="pagestyle" href="assets/css/argon-dashboard.css?v=2.0.4" rel="stylesheet" />
+    <link id="pagestyle" href="assets/css/efectos-Dashboard.css" rel="stylesheet" />
+    <link id="pagestyle" href="assets/css/efectos-Ventas.css" rel="stylesheet" />
 
     <!-- Jquery -->
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
@@ -60,30 +64,31 @@
             </a>
         </div>
         <hr class="horizontal dark mt-0">
-        <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
+        <div class="collapse navbar-collapse w-auto" id="sidenav-collapse-main">
             <ul class="navbar-nav">
+                <!-- DASHBOARD -->
                 <li class="nav-item">
-                    <a class="nav-link " href="./pages/dashboard.html">
+                    <a class="nav-link" href="./pages/dashboard.html">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
+                            <i class="ni ni-tv-2 text-primary text-sm opacity-10 icon-animated"></i>
                         </div>
                         <span class="nav-link-text ms-1">Dashboard</span>
                     </a>
                 </li>
 
-
-
+                <!-- STOCK -->
                 <li class="nav-item mt-3">
-                    <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">INVENTARIO</h6>
+                    <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">STOCK</h6>
                 </li>
+
                 <li class="nav-item">
                     <a class="nav-link" href="categorias.php">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-bullet-list-67 text-success text-sm opacity-10"></i>
+                            <i class="ni ni-bullet-list-67 text-success text-sm opacity-10 icon-animated"></i>
                         </div>
-                        <span class="nav-link-text ms-1">Categorias</span>
+                        <span class="nav-link-text ms-1">Categorías</span>
                     </a>
                 </li>
 
@@ -91,8 +96,7 @@
                     <a class="nav-link" href="producto.php">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <!-- <i class="ni ni-single-copy-04 text-warning text-sm opacity-10"></i> -->
-                            <i class="ni ni-box-2 text-primary text-sm opacity-10"></i>
+                            <i class="ni ni-box-2 text-primary text-sm opacity-10 icon-animated"></i>
                         </div>
                         <span class="nav-link-text ms-1">Productos</span>
                     </a>
@@ -102,34 +106,54 @@
                     <a class="nav-link" href="compras.php">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <!-- <i class="ni ni-single-copy-04 text-warning text-sm opacity-10"></i> -->
-                            <i class="ni ni-cart text-warning text-sm opacity-10"></i>
+                            <i class="ni ni-cart text-warning text-sm opacity-10 icon-animated"></i>
                         </div>
                         <span class="nav-link-text ms-1">Compras</span>
                     </a>
+                </li>
+
+                <!-- VENTAS -->
+                <li class="nav-item mt-3">
+                    <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">VENTAS</h6>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link active" href="ventas.php">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-shop text-info text-sm opacity-10"></i>
+                            <i class="ni ni-shop text-info text-sm opacity-10 icon-animated"></i>
                         </div>
                         <span class="nav-link-text ms-1">Ventas</span>
                     </a>
+                </li>
+
+                <!-- FINANZAS -->
+                <li class="nav-item mt-3">
+                    <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">FINANZAS</h6>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link" href="caja.php">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-shop text-info text-sm opacity-10"></i>
+                            <i class="ni ni-credit-card text-danger text-sm opacity-10 icon-animated"></i>
                         </div>
                         <span class="nav-link-text ms-1">Caja</span>
                     </a>
                 </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="reportesC.php">
+                        <div
+                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="ni ni-chart-bar-32 text-dark text-sm opacity-10 icon-animated"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Reportes</span>
+                    </a>
+                </li>
             </ul>
         </div>
+
 
     </aside>
 
@@ -195,13 +219,10 @@
                                 <div class="col-8">
                                     <div class="numbers">
                                         <p class="text-sm mb-0 text-uppercase font-weight-bold">FECHA</p>
-                                        <h5 class="font-weight-bolder">
-                                            03 SEPT 2025
-                                        </h5>
-                                        <p class="mb-0">
-                                            <span class="text-success text-sm font-weight-bolder"></span>
-                                            Hoy
+                                        <h5 class="font-weight-bolder" id="fechaActual">Cargando...</h5>
+                                        <p class="mb-0"><span class="text-success text-sm font-weight-bolder">Hoy</span>
                                         </p>
+
                                     </div>
                                 </div>
                                 <div class="col-4 text-end">
@@ -221,13 +242,11 @@
                                 <div class="col-8">
                                     <div class="numbers">
                                         <p class="text-sm mb-0 text-uppercase font-weight-bold">PRODUCTOS</p>
-                                        <h5 class="font-weight-bolder">
-                                            95
-                                        </h5>
-                                        <p class="mb-0">
-                                            <span class="text-success text-sm font-weight-bolder">:) </span>
-                                            Pensare que ponerle
+                                        <h5 class="font-weight-bolder" id="totalProductos">--</h5>
+                                        <p class="mb-0" id="mensajeProductos"><span
+                                                class="text-success text-sm font-weight-bolder">🛍️</span> Cargando...
                                         </p>
+
                                     </div>
                                 </div>
                                 <div class="col-4 text-end">
@@ -247,13 +266,10 @@
                                 <div class="col-8">
                                     <div class="numbers">
                                         <p class="text-sm mb-0 text-uppercase font-weight-bold">VENTAS HOY</p>
-                                        <h5 class="font-weight-bolder">
-                                            35
-                                        </h5>
-                                        <p class="mb-0">
-                                            <span class="text-danger text-sm font-weight-bolder"> :)</span>
-                                            Pensaré Que más ponerle
-                                        </p>
+                                        <h5 class="font-weight-bolder" id="totalVentasHoy">--</h5>
+                                        <p class="mb-0"><span class="text-danger text-sm font-weight-bolder">📅</span>
+                                            Día actual</p>
+
                                     </div>
                                 </div>
                                 <div class="col-4 text-end">
@@ -266,20 +282,17 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-3 col-sm-6">
+                <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
                     <div class="card">
                         <div class="card-body p-3">
                             <div class="row">
                                 <div class="col-8">
                                     <div class="numbers">
                                         <p class="text-sm mb-0 text-uppercase font-weight-bold">CAJA</p>
-                                        <h5 class="font-weight-bolder">
-                                            $103,430
-                                        </h5>
-                                        <p class="mb-0">
-                                            <span class="text-success text-sm font-weight-bolder">Usuario: </span>
-                                            Francisco Martinez
-                                        </p>
+                                        <h5 class="font-weight-bolder" id="totalCaja">$0.00</h5>
+                                        <p class="mb-0"><span
+                                                class="text-success text-sm font-weight-bolder">Usuario:</span> <span
+                                                id="nombreUsuario">Francisco Martínez</span></p>
                                     </div>
                                 </div>
                                 <div class="col-4 text-end">
@@ -293,38 +306,28 @@
                     </div>
                 </div>
             </div>
+
             <div class="row mt-4">
-
-
                 <div class="col-lg-12 mb-lg-0 mb-4">
                     <div class="card ">
-                        <div class="card-header pb-0 p-3">
-                            <div class="d-flex justify-content-between">
-                                <h6 class="mb-2">Venta de productos</h6>
-                                <!-- <button class="btn btn-success btn-md ms-auto" data-bs-toggle="modal" data-bs-target="#AgregarProducto">Ver Productos</button> -->
-
+                        <div class="card-header d-flex justify-content-between align-items-center py-2 px-3">
+                            <div>
+                                <h5 class="mb-0">Venta de productos</h5>
+                                <small id="alertaStock" class="text-danger fw-bold"></small>
                             </div>
+
+                            <button class="btn btn-success  ms-auto" data-bs-toggle="modal"
+                                data-bs-target="#buscarProductos">
+                                <i class="fa-solid fa-magnifying-glass me-1"></i> Buscar productos
+                            </button>
                         </div>
+
 
                         <div class="card-body">
                             <p class="text-uppercase text-sm"></p>
 
-                            <!-- AQUI VA A IR EL FORMULARIO -->
-                            <div class="row">
-
-                                <div class="col-2">
-                                    <div class="form-group">
-                                        <hr>
-                                        <button class="btn btn-success  ms-auto" data-bs-toggle="modal"
-                                            data-bs-target="#buscarProductos">Buscar productos</button>
-                                    </div>
-                                </div>
-                            </div>
-
-
-
-                            <table id="tablaVenta" class="table align-items-center justify-content-center" cellspacing="0"
-                                width="100%">
+                            <table id="tablaVenta" class="table align-items-center justify-content-center"
+                                cellspacing="0" width="100%">
                                 <thead>
                                     <tr>
                                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
@@ -348,30 +351,6 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <!-- <tr>
-                                        <td>
-                                            <p class="text-sm font-weight-bold mb-0">1 </p>
-                                        </td>
-                                        <td>
-                                            <Span class="text-xs font-weight-bold">Proteina Whey sabor Galleta</span>
-                                        </td>
-                                        <td>
-                                            <span class="text-xs font-weight-bold">3</span>
-                                        </td>
-                                        <td>
-                                            <span class="text-xs font-weight-bold">En bote de 2.5 kg </span>
-                                        </td>
-                                        <td>
-                                            <span class="text-xs font-weight-bold"> $ 1,355.00 </span>
-                                        </td>
-                                        <td>
-                                            <span class="text-xs font-weight-bold"> $ 4,065.00 </span>
-                                        </td>
-                                        <td>
-                                            <span class="text-xs font-weight-bold"><i class="ni ni-basket text-warning text-sm opacity-10"></i></span>
-                                        </td>
-                                    </tr> -->
-
                                 </tbody>
                                 <tfoot>
                                     <tr>
@@ -383,7 +362,8 @@
                             </table>
                             <div class="card-header pb-0 p-3">
                                 <div class="d-flex justify-content-between">
-                                    <button class="btn btn-success btn-sm ms-auto" id="btnGuardarVenta">Guardar Venta</button>
+                                    <button class="btn btn-success  ms-auto" id="btnGuardarVenta">Guardar
+                                        Venta</button>
                                 </div>
                             </div>
 
@@ -391,10 +371,7 @@
                         </div>
                     </div>
                 </div>
-
             </div>
-
-
 
             <!-- Modal -->
             <div class="modal fade" id="buscarProductos" tabindex="-1" role="dialog"
@@ -402,27 +379,27 @@
                 <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                            <h5 class="modal-title" id="exampleModalLongTitle">Productos</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div class="modal-body">
-                            <table id="tablaProductos" class="table align-items-center justify-content-center"
-                                cellspacing="0" width="100%">
+                            <table id="tablaProductos" class="table table-hover align-middle text-center">
                                 <thead>
-                                    <tr>
+                                    <tr class="text-uppercase text-secondary" style="font-size: 0.8rem;">
                                         <th>ID</th>
                                         <th>Producto</th>
-                                        <th>marca</th>
-                                        <!-- <th>descripcion</th> -->
+                                        <th>Marca</th>
                                         <th>Contenido</th>
                                         <th>Precio</th>
+                                        <th>Stock</th>
                                         <th></th>
-
                                     </tr>
                                 </thead>
+                                <tbody></tbody>
                             </table>
+
                         </div>
 
                     </div>

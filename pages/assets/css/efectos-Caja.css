@@ -1,0 +1,42 @@
+/* Estilo general de la tabla de caja */
+#tablaCaja {
+  border-collapse: separate;
+  border-spacing: 0 6px;
+}
+
+#tablaCaja thead th {
+  background-color: #f8f9fa;
+  font-weight: 600;
+  padding: 10px;
+}
+
+#tablaCaja tbody tr {
+  background: #fff;
+  transition: all 0.3s ease;
+}
+
+#tablaCaja tbody tr:hover {
+  background: #f1f5ff;
+  transform: scale(1.01);
+}
+
+#tablaCaja tfoot td {
+  border-top: 2px solid #dee2e6;
+  font-size: 0.95rem;
+}
+
+/* Sombra ligera para el cuerpo */
+#tablaCaja tbody {
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  border-radius: 10px;
+}
+
+/* Animación de actualización de totales */
+.actualizando {
+  animation: flashBalance 0.4s ease-in-out;
+}
+
+@keyframes flashBalance {
+  0% { background-color: #ffffcc; }
+  100% { background-color: transparent; }
+}

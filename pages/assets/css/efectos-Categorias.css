@@ -1,0 +1,142 @@
+/* CATEGORIAS 
+
+/* Eliminar borde blanco de las cards */
+.card {
+  border: none !important;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+/* Opcional: mejorar el corte limpio entre header y body */
+.card-header {
+  border-bottom: none !important;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+
+/* Si usas un color de fondo del body claro, evita el borde visual */
+.card-body {
+  background-color: #fff;
+  border-top: none !important;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.06);
+}
+
+/* Tabla compacta y moderna */
+.table-sm > :not(caption) > * > * {
+  padding: 0.5rem 0.75rem;
+}
+
+.table th {
+  border-top: none;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: #6c757d;
+}
+
+.table-hover tbody tr {
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.table-hover tbody tr:hover {
+  background-color: rgba(0, 123, 255, 0.05);
+  transform: scale(1.01);
+}
+
+/* Iconos en las acciones */
+.btn-accion {
+  border: none;
+  background: transparent;
+  padding: 5px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+.btn-accion:hover {
+  transform: scale(1.2);
+}
+
+/* Botón actualizar */
+#btnRecargarCategorias {
+  transition: all 0.2s ease;
+}
+#btnRecargarCategorias:hover {
+  background-color: #f8f9fa;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
+}
+
+/* Compactar tabla */
+#tablaCategorias {
+  border-radius: 8px;
+  overflow: hidden;
+  font-size: 0.9rem;
+}
+
+/* === BOTONES DE ACCIÓN ELEGANTES === */
+.btn-icon {
+  background: none;
+  border: none;
+  padding: 6px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  opacity: 0.75;
+}
+
+.btn-icon:hover {
+  transform: scale(1.25);
+  opacity: 1;
+}
+
+/* Tamaño y color de íconos */
+.btn-icon i {
+  font-size: 1.25rem; /* íconos un poco más grandes */
+}
+
+.btn-icon .text-warning {
+  color: #f1c40f !important;
+}
+.btn-icon .text-danger {
+  color: #e74c3c !important;
+}
+.btn-icon .text-success {
+  color: #27ae60 !important;
+}
+
+/* Tooltip visual elegante */
+.btn-icon[title]:hover::after {
+  content: attr(title);
+  position: absolute;
+  background: rgba(0, 0, 0, 0.75);
+  color: #fff;
+  padding: 4px 8px;
+  font-size: 0.75rem;
+  border-radius: 4px;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  opacity: 0;
+  animation: fadeIn 0.3s forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+/* Centrar verticalmente en la tabla */
+.table td.text-center {
+  vertical-align: middle;
+}
+
+/* Pequeño ajuste para hover en fila */
+.table-hover tbody tr:hover {
+  background-color: rgba(0, 0, 0, 0.02);
+  transition: background-color 0.2s ease;
+}
+

@@ -34,6 +34,9 @@
     <link href="assets/css/nucleo-svg.css" rel="stylesheet" />
     <!-- CSS Files -->
     <link id="pagestyle" href="assets/css/argon-dashboard.css?v=2.0.4" rel="stylesheet" />
+    <link id="pagestyle" href="assets/css/efectos-Dashboard.css" rel="stylesheet" />
+    <link id="pagestyle" href="assets/css/efectos-Compras.css" rel="stylesheet" />
+
 
     <!-- Boostrap -->
 
@@ -62,30 +65,31 @@
             </a>
         </div>
         <hr class="horizontal dark mt-0">
-        <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
+        <div class="collapse navbar-collapse w-auto" id="sidenav-collapse-main">
             <ul class="navbar-nav">
+                <!-- DASHBOARD -->
                 <li class="nav-item">
-                    <a class="nav-link " href="./pages/dashboard.html">
+                    <a class="nav-link" href="./pages/dashboard.html">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
+                            <i class="ni ni-tv-2 text-primary text-sm opacity-10 icon-animated"></i>
                         </div>
                         <span class="nav-link-text ms-1">Dashboard</span>
                     </a>
                 </li>
 
-
-
+                <!-- STOCK -->
                 <li class="nav-item mt-3">
-                    <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">INVENTARIO</h6>
+                    <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">STOCK</h6>
                 </li>
+
                 <li class="nav-item">
                     <a class="nav-link" href="categorias.php">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-bullet-list-67 text-success text-sm opacity-10"></i>
+                            <i class="ni ni-bullet-list-67 text-success text-sm opacity-10 icon-animated"></i>
                         </div>
-                        <span class="nav-link-text ms-1">Categorias</span>
+                        <span class="nav-link-text ms-1">Categorías</span>
                     </a>
                 </li>
 
@@ -93,8 +97,7 @@
                     <a class="nav-link" href="producto.php">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <!-- <i class="ni ni-single-copy-04 text-warning text-sm opacity-10"></i> -->
-                            <i class="ni ni-box-2 text-primary text-sm opacity-10"></i>
+                            <i class="ni ni-box-2 text-primary text-sm opacity-10 icon-animated"></i>
                         </div>
                         <span class="nav-link-text ms-1">Productos</span>
                     </a>
@@ -104,24 +107,54 @@
                     <a class="nav-link active" href="compras.php">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <!-- <i class="ni ni-single-copy-04 text-warning text-sm opacity-10"></i> -->
-                            <i class="ni ni-cart text-warning text-sm opacity-10"></i>
+                            <i class="ni ni-cart text-warning text-sm opacity-10 icon-animated"></i>
                         </div>
                         <span class="nav-link-text ms-1">Compras</span>
                     </a>
                 </li>
 
+                <!-- VENTAS -->
+                <li class="nav-item mt-3">
+                    <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">VENTAS</h6>
+                </li>
+
                 <li class="nav-item">
-                    <a class="nav-link " href="ventas.php">
+                    <a class="nav-link" href="ventas.php">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-shop text-info text-sm opacity-10"></i>
+                            <i class="ni ni-shop text-info text-sm opacity-10 icon-animated"></i>
                         </div>
                         <span class="nav-link-text ms-1">Ventas</span>
                     </a>
                 </li>
+
+                <!-- FINANZAS -->
+                <li class="nav-item mt-3">
+                    <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">FINANZAS</h6>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="caja.php">
+                        <div
+                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="ni ni-credit-card text-danger text-sm opacity-10 icon-animated"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Caja</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="reportesC.php">
+                        <div
+                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="ni ni-chart-bar-32 text-dark text-sm opacity-10 icon-animated"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Reportes</span>
+                    </a>
+                </li>
             </ul>
         </div>
+
 
     </aside>
 
@@ -138,9 +171,9 @@
                     <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
                         <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white"
                                 href="javascript:;">Pages</a></li>
-                        <li class="breadcrumb-item text-sm text-white active" aria-current="page">Productos</li>
+                        <li class="breadcrumb-item text-sm text-white active" aria-current="page">Compras</li>
                     </ol>
-                    <h6 class="font-weight-bolder text-white mb-0">Administración de Productos</h6>
+                    <h6 class="font-weight-bolder text-white mb-0">Compras</h6>
                 </nav>
                 <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
                     <div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -220,8 +253,8 @@
                                                 <div class="row">
                                                     <div class="col">
                                                         <div class="form-group">
-                                                            <label for="TGYM_marca"
-                                                                class="form-control-label">Dirección </label>
+                                                            <label for="TGYM_marca" class="form-control-label">Dirección
+                                                            </label>
                                                             <input class="form-control" type="text" id="TGYM_marca"
                                                                 name="TGYM_marca">
                                                         </div>
@@ -325,7 +358,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                   
+
                                 </tbody>
                                 <tfoot>
                                     <tr>

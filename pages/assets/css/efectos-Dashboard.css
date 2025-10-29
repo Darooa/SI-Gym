@@ -1,0 +1,14 @@
+/* Animación elegante para los íconos del menú */
+.icon-animated {
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.nav-link:hover .icon-animated {
+  transform: scale(1.2) rotate(8deg);
+  opacity: 1;
+}
+
+.nav-link.active .icon-animated {
+  transform: scale(1.25);
+  filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.3));
+}

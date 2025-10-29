@@ -3,23 +3,13 @@
 include('../../controllers/conexion_prueba.php');
 
 $output = array();
-$sqlBase = "SELECT id_producto, nombre_producto, marca, contenido, p_venta FROM productos WHERE estado = 1";
+$sqlBase = "SELECT id_producto, nombre_producto, marca, contenido, p_venta, stock FROM productos WHERE estado = 1";
 $sql = $sqlBase;
 
 // Búsqueda
 if (isset($_POST['search']['value']) && $_POST['search']['value'] !== '') {
   $s = $con->real_escape_string($_POST['search']['value']);
   $sql .= " AND (nombre_producto LIKE '%$s%' OR marca LIKE '%$s%')";
-}
-
-// Orden
-$columns = ['id_producto','nombre_producto','marca','contenido','p_venta'];
-if (isset($_POST['order'])) {
-  $col = (int)$_POST['order'][0]['column'];
-  $dir = $_POST['order'][0]['dir'] === 'desc' ? 'DESC' : 'ASC';
-  $sql .= " ORDER BY " . $columns[$col] . " " . $dir;
-} else {
-  $sql .= " ORDER BY id_producto ASC";
 }
 
 // Paginación
@@ -40,7 +30,10 @@ while ($row = $query->fetch_assoc()) {
     '<span>'.$row['marca'].'</span>',
     '<span>'.$row['contenido'].'</span>',
     '<span>$'.number_format($row['p_venta'],2,'.',',').'</span>',
-    '<button class="btn btn-sm btn-primary AddProducto" title="Agregar"><i class="bx bx-cart-add"></i></button>'
+    '<span>'.$row['stock'].'</span>',
+    //  "stock" => (int)$row['stock'],
+    '<button class="btn-icon AddProducto" title="Agregar"><i class="fa-solid fa-circle-plus icon-add"></i>
+             </button>'
   ];
 }
 
