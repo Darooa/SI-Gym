@@ -9,48 +9,46 @@ $(document).ready(function () {
     .then(data => {
       const tabla = $("#tablaCategorias tbody");
       tabla.empty();
-
-      // Soportar ambas formas: array directo o {categorias:[...]}
       const categorias = Array.isArray(data) ? data : (data.categorias || []);
 
-      // (Opcional) Log para depurar si llegara vacío
-      // console.log("Respuesta categorias:", data);
-
       categorias.forEach(cat => {
-        const estado = cat.estado == 1
-          ? '<span class="badge bg-success">Activo</span>'
-          : '<span class="badge bg-secondary">Inactivo</span>';
+        const estado =
+          cat.estado == 1
+            ? '<span class="badge bg-success">Activo</span>'
+            : '<span class="badge bg-secondary">Inactivo</span>';
 
-        const btnAccion = cat.estado == 1
-          ? `<button class="btn btn-danger btn-sm eliminar" data-id="${cat.id_categoria}">
-               <i class="ni ni-fat-remove"></i>
-             </button>`
-          : `<button class="btn btn-success btn-sm activar" data-id="${cat.id_categoria}">
-               <i class="ni ni-check-bold"></i>
-             </button>`;
+        const btnAccion =
+          cat.estado == 1
+            ? `<button class="btn-icon eliminar" title="Desactivar" data-id="${cat.id_categoria}">
+                <i class="fa-solid fa-ban text-danger"></i>
+              </button>`
+            : `<button class="btn-icon activar" title="Activar" data-id="${cat.id_categoria}">
+                <i class="fa-solid fa-circle-check text-success"></i>
+              </button>`;
 
         tabla.append(`
           <tr>
             <td>${cat.id_categoria}</td>
             <td>${cat.nombre}</td>
             <td>${estado}</td>
-            <td>
-              <button class="btn btn-warning btn-sm editar"
-                      data-id="${cat.id_categoria}"
-                      data-nombre="${cat.nombre}">
-                <i class="ni ni-ruler-pencil"></i>
+            <td class="text-center">
+              <button class="btn-icon editar" title="Editar"
+                      data-id="${cat.id_categoria}" data-nombre="${cat.nombre}">
+                <i class="fa-solid fa-pen-to-square text-warning"></i>
               </button>
               ${btnAccion}
             </td>
           </tr>
         `);
       });
+
+
     })
     .catch(err => {
       console.error("Error cargando categorías:", err);
       Swal.fire("Error", "No se pudieron cargar las categorías.", "error");
     });
-}
+  }
 
 
   // Cargar categorías al iniciar

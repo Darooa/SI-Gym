@@ -1,20 +1,147 @@
 // funcionesVentas.js
 document.addEventListener("DOMContentLoaded", () => {
-  // Fecha automática (input con id="fecha_venta" si lo usas)
+
+  // =====================================================
+  // === FECHA AUTOMÁTICA EN FORMULARIO (si aplica) ===
+  // =====================================================
   const inputFecha = document.getElementById("fecha_venta");
   if (inputFecha) inputFecha.value = new Date().toISOString().split("T")[0];
-});
 
-$(document).ready(function () {
-  // =========================
-  // DataTable: Buscar productos (modal)
-  // =========================
+
+  // =====================================================
+  // === ALERTAS DE STOCK BAJO ===
+  // =====================================================
+  let productosBajoStock = [];
+  let alertaIndex = 0;
+  let alertaInterval;
+
+  function mostrarAlertaStock() {
+    const alerta = document.getElementById("alertaStock");
+    if (!alerta) return;
+
+    if (!productosBajoStock.length) {
+      alerta.textContent = "";
+      alerta.classList.remove("alerta-visible");
+      return;
+    }
+
+    const prod = productosBajoStock[alertaIndex];
+    alerta.textContent = `⚠️ Stock bajo: ${prod.nombre_producto} (${prod.stock} piezas)`;
+    alerta.classList.add("alerta-visible");
+
+    alertaIndex = (alertaIndex + 1) % productosBajoStock.length;
+    if (productosBajoStock.length > 1) {
+      setTimeout(() => alerta.classList.remove("alerta-visible"), 3000);
+    }
+  }
+
+function iniciarRotacionAlertas() {
+  if (alertaInterval) clearInterval(alertaInterval);
+  if (!productosBajoStock.length) return;
+  mostrarAlertaStock();
+  alertaInterval = setInterval(mostrarAlertaStock, 4000);
+}
+
+function cargarAlertasStock() {
+  fetch("../models/ventas/productos_bajo_stock.php")
+    .then(r => r.json())
+    .then(data => {
+      if (data.status === "ok") {
+        productosBajoStock = data.productos || [];
+        alertaIndex = 0;
+
+        if (alertaInterval) clearInterval(alertaInterval);
+
+        const alerta = document.getElementById("alertaStock");
+        if (!productosBajoStock.length) {
+          if (alerta) {
+            alerta.textContent = "";
+            alerta.classList.remove("alerta-visible");
+          }
+          return;
+        }
+
+        // Con 1 o más productos, inicia la rotación
+        iniciarRotacionAlertas();
+      }
+    })
+    .catch(err => console.error("Error al cargar alertas de stock:", err));
+}
+
+
+  // Llamada inicial de alertas
+  cargarAlertasStock();
+
+
+  // =====================================================
+  // === ACTUALIZACIÓN AUTOMÁTICA DE CARDS ===
+  // =====================================================
+  const fechaActual = document.getElementById("fechaActual");
+  const totalProductos = document.getElementById("totalProductos");
+  const mensajeProductos = document.getElementById("mensajeProductos");
+  const totalVentasHoy = document.getElementById("totalVentasHoy");
+  const totalCaja = document.getElementById("totalCaja");
+
+  const fecha = new Date();
+  const opciones = { day: "2-digit", month: "long", year: "numeric" };
+  if (fechaActual) fechaActual.textContent = fecha.toLocaleDateString("es-MX", opciones).toUpperCase();
+
+  function actualizarCards() {
+    fetch("../models/ventas/obtenerResumenVentas.php")
+      .then(res => res.json())
+      .then(data => {
+        if (data.status === "ok") {
+          const d = data.data;
+
+          const animar = (elemento) => {
+            elemento.classList.add("actualizando");
+            setTimeout(() => elemento.classList.remove("actualizando"), 400);
+          };
+
+          if (totalProductos) {
+            totalProductos.textContent = d.totalProductos.toLocaleString();
+            animar(totalProductos);
+
+            if (mensajeProductos) {
+              if (d.totalProductos === 0) {
+                mensajeProductos.innerHTML = `<span class="text-danger text-sm font-weight-bolder">😟</span> Sin productos registrados`;
+              } else if (d.totalProductos < 50) {
+                mensajeProductos.innerHTML = `<span class="text-warning text-sm font-weight-bolder">🧩</span> Inventario reducido`;
+              } else {
+                mensajeProductos.innerHTML = `<span class="text-success text-sm font-weight-bolder">🔥</span> Catálogo activo`;
+              }
+            }
+          }
+
+          if (totalVentasHoy) {
+            totalVentasHoy.textContent = d.totalVentasHoy.toLocaleString();
+            animar(totalVentasHoy);
+          }
+
+          if (totalCaja) {
+            totalCaja.textContent = `$${d.totalCaja.toLocaleString("es-MX", { minimumFractionDigits: 2 })}`;
+            animar(totalCaja);
+          }
+        } else {
+          console.warn("Error en datos de resumen:", data.message);
+        }
+      })
+      .catch(err => console.error("Error al cargar datos:", err));
+  }
+
+  actualizarCards();
+  setInterval(actualizarCards, 60000); // refrescar cada 1 min
+
+
+  // =====================================================
+  // === CONFIGURACIÓN DE TABLA DE PRODUCTOS (MODAL) ===
+  // =====================================================
   const dtProductos = $('#tablaProductos').DataTable({
     responsive: true,
     serverSide: true,
     processing: true,
     paging: true,
-    order: [],
+    ordering: false,
     ajax: { url: '../models/ventas/obtenerProductos.php', type: 'POST' },
     language: {
       lengthMenu: "Mostrar _MENU_",
@@ -25,23 +152,41 @@ $(document).ready(function () {
       sSearch: "Buscar:",
       oPaginate: { sFirst: "Primero", sLast: "Último", sNext: ">>", sPrevious: "<<" },
       sProcessing: "Procesando…"
+    },
+    rowCallback: function (row, data) {
+      const stock = parseInt($(data[5]).text() || data.stock || 0, 10); // índice o campo stock
+      const btn = $(row).find('.AddProducto');
+
+      if (stock <= 0) {
+        // Sin stock → desactivar botón e indicar visualmente
+        btn.prop('disabled', true)
+          .removeClass('btn-success')
+          .addClass('btn-secondary')
+          .html('<i class="fa-solid fa-ban"></i> Sin stock');
+
+        $(row).css({
+          opacity: '0.6',
+          pointerEvents: 'none'
+        });
+      }
     }
+
   });
 
-  // =========================
-  // Carrito en DOM
-  // =========================
-  let carrito = []; // {id, nombre, descripcion, precio, cantidad}
 
-  // Agregar desde modal
+  // =====================================================
+  // === CARRITO DE VENTA ===
+  // =====================================================
+  let carrito = [];
+
   $('#tablaProductos').on('click', '.AddProducto', function () {
     const row = $(this).closest('tr');
     const data = dtProductos.row(row).data();
-    // Ajusta índices según tu obtenerProductos.php
-    const id          = $(data[0]).text();            // ID
-    const nombre      = $(data[1]).text();            // Producto
-    const descripcion = $(data[3]).text();            // Contenido/desc
-    const precio      = parseFloat($(data[4]).text().replace('$','')); // P. venta
+
+    const id          = $(data[0]).text();
+    const nombre      = $(data[1]).text();
+    const descripcion = $(data[3]).text();
+    const precio      = parseFloat($(data[4]).text().replace('$',''));
 
     const existente = carrito.find(p => p.id === id);
     if (existente) {
@@ -60,23 +205,26 @@ $(document).ready(function () {
     carrito.forEach((p, idx) => {
       const sub = p.precio * p.cantidad;
       total += sub;
+
       tbody.append(`
-        <tr>
+        <tr class="tr-animar">
           <td>${idx + 1}</td>
           <td>${p.nombre}</td>
-          <td>
-            <input type="number" class="form-control form-control-sm cantItem" data-index="${idx}" min="1" value="${p.cantidad}">
-          </td>
+          <td><input type="number" class="form-control form-control-sm cantItem" data-index="${idx}" min="1" value="${p.cantidad}"></td>
           <td>${p.descripcion ?? ''}</td>
           <td>$${p.precio.toFixed(2)}</td>
           <td class="subtotal">$${sub.toFixed(2)}</td>
-          <td><button class="btn btn-sm btn-danger delItem" data-index="${idx}"><i class="bx bx-trash"></i></button></td>
+          <td><i class="fa-solid fa-trash-can icon-delete delItem" title="Eliminar" data-index="${idx}"></i></td>
         </tr>
       `);
     });
 
-    $('#totalVenta').text(`$${total.toFixed(2)}`);
+    const totalVenta = $('#totalVenta');
+    totalVenta.text(`$${total.toFixed(2)}`);
+    totalVenta.addClass('actualizando');
+    setTimeout(() => totalVenta.removeClass('actualizando'), 400);
   }
+
 
   // Editar cantidad
   $('#tablaVenta').on('input', '.cantItem', function () {
@@ -88,21 +236,27 @@ $(document).ready(function () {
     }
   });
 
-  // Eliminar del carrito
+
+  // Eliminar con animación
   $('#tablaVenta').on('click', '.delItem', function () {
+    const fila = $(this).closest('tr');
     const idx = $(this).data('index');
-    carrito.splice(idx, 1);
-    renderCarrito();
+
+    fila.addClass('tr-eliminar');
+    setTimeout(() => {
+      carrito.splice(idx, 1);
+      renderCarrito();
+    }, 350);
   });
 
-  // =========================
-  // Guardar venta
-  // =========================
-  $('#btnGuardarVenta').on('click', function () {
-    const usuario = 1; // TODO: toma de la sesión
-    const fecha   = document.getElementById("fecha_venta") ? document.getElementById("fecha_venta").value : new Date().toISOString().split('T')[0];
 
-    // Validaciones
+  // =====================================================
+  // === GUARDAR VENTA ===
+  // =====================================================
+  $('#btnGuardarVenta').on('click', function () {
+    const usuario = 1; 
+    const fecha = inputFecha ? inputFecha.value : new Date().toISOString().split('T')[0];
+
     if (!carrito.length) {
       Swal.fire({
         icon: 'info',
@@ -113,11 +267,7 @@ $(document).ready(function () {
       return;
     }
 
-     const total = parseFloat($('#totalVenta').text().replace('$', '')) || 0;
-    // const total = parseFloat(document.getElementById("totalVenta").innerText.replace(/[^\d.]/g, "")) || 0;
-    // const total        = parseFloat(document.getElementById("totalVenta").innerText.replace("$",""));
-
-    // Si el modal está abierto, ciérralo antes del Swal (evita fondo bloqueado)
+    const total = parseFloat($('#totalVenta').text().replace('$', '')) || 0;
     if ($('#buscarProductos').hasClass('show')) $('#buscarProductos').modal('hide');
 
     Swal.fire({
@@ -133,11 +283,10 @@ $(document).ready(function () {
     }).then(res => {
       if (!res.isConfirmed) return;
 
-      // Preparar payload
       const productos = carrito.map(p => ({
         id: parseInt(p.id, 10),
         cantidad: parseInt(p.cantidad, 10),
-        precio: parseFloat(p.precio)  // precio de venta
+        precio: parseFloat(p.precio)
       }));
 
       fetch('../models/ventas/guardarVenta.php', {
@@ -156,9 +305,13 @@ $(document).ready(function () {
             showConfirmButton: false,
             didClose: cleanupOverlays
           });
-          // Limpiar carrito
+
           carrito = [];
           renderCarrito();
+          cargarAlertasStock(); // Refrescar alertas después de venta
+          actualizarCards(); // Actualizar resumen
+          dtProductos.ajax.reload(null, false); // recarga datos sin reiniciar paginación
+
         } else {
           Swal.fire({ icon: 'error', title: 'Error', text: data.message || 'No se pudo registrar', didClose: cleanupOverlays });
         }
@@ -170,34 +323,14 @@ $(document).ready(function () {
     });
   });
 
-}); // ready
 
-function renderCarritoVenta() {
-  let tbody = $("#tablaVenta tbody");
-  tbody.empty();
-  let total = 0;
+}); // Fin de DOMContentLoaded
 
-  carritoVenta.forEach((p, i) => {
-    const subtotal = p.precio * p.cantidad;
-    total += subtotal;
-    tbody.append(`
-      <tr>
-        <td>${i + 1}</td>
-        <td>${p.nombre}</td>
-        <td><input type="number" min="1" value="${p.cantidad}" class="form-control form-control-sm cantidadVenta" data-index="${i}"></td>
-        <td>${p.descripcion}</td>
-        <td>$${p.precio.toFixed(2)}</td>
-        <td>$${subtotal.toFixed(2)}</td>
-        <td><button class="btn btn-danger btn-sm quitarVenta" data-index="${i}">X</button></td>
-      </tr>
-    `);
-  });
 
-  // Actualiza el total general
-  $("#totalVenta").text(`$${total.toFixed(2)}`);
-}
 
-// Utilidad: limpiar overlays SweetAlert/Bootstrap (fondo negro)
+// =====================================================
+// === UTILIDAD: LIMPIAR OVERLAYS SWEETALERT / MODAL ===
+// =====================================================
 function cleanupOverlays() {
   document.body.classList.remove('swal2-shown', 'swal2-height-auto', 'modal-open');
   document.body.style.overflow = '';

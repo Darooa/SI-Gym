@@ -15,7 +15,7 @@ $producto_fecha        = date("Y-m-d");
 $producto_estado       = '1';
 
 
-$sql= "INSERT INTO productos (`nombre_producto`, `descripcion`, `categoria`, `marca`, `contenido`, `stock`, `p_compra`, `p_venta`, `agregado`, `estado`)
+$sql= "INSERT INTO productos (`nombre_producto`, `descripcion`, `id_categoria`, `marca`, `contenido`, `stock`, `p_compra`, `p_venta`, `agregado`, `estado`)
     VALUES('$producto_nombre','$producto_descripcion','$producto_categoria','$producto_marca','$producto_contenido','$producto_stockinicial','$producto_preciocompra','$producto_precioventa','$producto_fecha','$producto_estado') ";	
     $query= mysqli_query($con,$sql);
     $lastId = mysqli_insert_id($con);

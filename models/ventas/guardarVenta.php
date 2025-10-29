@@ -75,12 +75,28 @@ try {
   }
 
   // Registrar ingreso en caja
-  $stmtCaja = $con->prepare("
-      INSERT INTO caja (tipo, concepto, monto, referencia, usuario)
-      VALUES ('INGRESO', 'Venta de productos', ?, ?, ?)
-  ");
-  $stmtCaja->bind_param("dsi", $total, $id_venta, $id_usuario);
-  $stmtCaja->execute();
+  // $stmtCaja = $con->prepare("
+  //     INSERT INTO caja (tipo, concepto, monto, referencia, usuario)
+  //     VALUES ('INGRESO', 'Venta de productos', ?, ?, ?)
+  // ");
+  // $stmtCaja->bind_param("dsi", $total, $id_venta, $id_usuario);
+  // $stmtCaja->execute();
+
+  // Registrar ingreso en caja_movimientos
+    $tipo        = "Ingreso";
+    $concepto    = "Venta #".$id_venta;
+    $monto       = $total;
+    $origen      = "Venta";
+    $id_usuario  = $id_usuario;
+
+    $stmtCajaMov = $con->prepare("
+      INSERT INTO caja_movimientos (tipo, concepto, monto, id_usuario, origen, id_referencia)
+      VALUES (?, ?, ?, ?, ?, ?)
+    ");
+    $stmtCajaMov->bind_param("ssdssi", $tipo, $concepto, $monto, $id_usuario, $origen, $id_venta);
+    $stmtCajaMov->execute();
+    $stmtCajaMov->close();
+
 
   // Confirmar todo
   $con->commit();

@@ -1,6 +1,6 @@
 $(document).ready(function() {
   var opcion;
-   // *************************** OBTENER DATOS DEL PRODUCTO ***********************
+   // *************************** OBTENER DATOS DEL PRODUCTO **********************
    var dataTableProductos = $('#Productos').DataTable({
      select:true,
      "fnCreatedRow": function(nRow, aData, iDataIndex) {
@@ -29,16 +29,16 @@ $(document).ready(function() {
        "infoFiltered": "(Filtrado de un total de _MAX_ registros.)",
        "sSearch"     : "Buscar:",
        "oPaginate"   : {
-           "sFirst"  : "Primero",
-           "sLast"   :"Último",
-           "sNext"   :"Siguiente",
-           "sPrevious": "Anterior"
+           "sFirst"  : "1",
+           "sLast"   :"1++",
+           "sNext"   :">",
+           "sPrevious": "<"
         },
         "sProcessing":"Procesando...",
    }
    });
   
- // ***************************** AGREGAR PRODUCTO **********************************
+ // ***************************** AGREGAR PRODUCTO ********************************
  $(document).on('submit', '#agregarProducto', function(e) {
    e.preventDefault();
    var TGYM_nombre      = $('#TGYM_nombre').val();
@@ -93,7 +93,7 @@ $(document).ready(function() {
    }
  });
  
- // ********************************** EDITAR PRODUCTO *****************************
+ // ********************************** UPDATE PRODUCTO ****************************
  $(document).on('submit', '#updateProducto', function(e) {
    e.preventDefault();
    //var tr = $(this).closest('tr');
@@ -151,7 +151,7 @@ $(document).ready(function() {
    }
  });
  
- // ************************* CLICK AL BOTON EDITAR TABLA USUARIOS *****************
+ // ************************* CLICK AL BOTON EDITAR TABLA PRODUCTOS****************
  $('#Productos').on('click', '.EDTProducto ', function(event) {
    var dataTableClientes = $('#Productos').DataTable();
   //  var trid              = $(this).closest('tr').attr('id');
@@ -168,7 +168,7 @@ $(document).ready(function() {
        var json = JSON.parse(data); 
        $('#EDT_nombre').val(json.nombre_producto);
        $('#EDT_descripcion').val(json.descripcion);
-       $('#EDT_categoria').val(json.categoria);
+       $('#EDT_categoria').val(json.id_categoria);
        $('#EDT_marca').val(json.marca);
        $('#EDT_contenido').val(json.contenido);
        $('#EDT_stock').val(json.stock);
@@ -183,7 +183,7 @@ $(document).ready(function() {
    })
  })
  
- // ******************************* DESACTIVAR PRODUCTO ***********************
+ // ******************************* DESACTIVAR PRODUCTO ***************************
  $(document).on('click', '.desactivarClienteBtn', function(event) {
    var table = $('#Productos').DataTable();
    event.preventDefault();
@@ -237,7 +237,7 @@ $(document).ready(function() {
    })
  })
  
- // ******************************* ACTIVAR PRODUCTO ***********************
+ // ******************************* ACTIVAR PRODUCTO ******************************
  $(document).on('click', '.activarClienteBtn', function(event) {
   var table = $('#Productos').DataTable();
   event.preventDefault();
@@ -292,3 +292,19 @@ $(document).ready(function() {
 })
 
  });
+
+ (() => {
+  "use strict";
+
+  const forms = document.querySelectorAll("form");
+
+  Array.from(forms).forEach(form => {
+    form.addEventListener("submit", event => {
+      if (!form.checkValidity()) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+      form.classList.add("was-validated");
+    }, false);
+  });
+})();

@@ -29,11 +29,16 @@
     <link href="assets/css/nucleo-icons.css" rel="stylesheet" />
     <link href="assets/css/nucleo-svg.css" rel="stylesheet" />
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
     <!-- Font Awesome Icons -->
     <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
     <link href="assets/css/nucleo-svg.css" rel="stylesheet" />
     <!-- CSS Files -->
     <link id="pagestyle" href="assets/css/argon-dashboard.css?v=2.0.4" rel="stylesheet" />
+    <link id="pagestyle" href="assets/css/efectos-Dashboard.css" rel="stylesheet" />
+    <link id="pagestyle" href="assets/css/efectos-Categorias.css" rel="stylesheet" />
+
 
     <!-- Jquery -->
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
@@ -60,30 +65,35 @@
             </a>
         </div>
         <hr class="horizontal dark mt-0">
-        <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
+
+        <!------------------------------------------------------------------------------>
+        <!---------------------- M E N U  I Z Q U I E R D A ---------------------------->
+        <!------------------------------------------------------------------------------>
+        <div class="collapse navbar-collapse w-auto" id="sidenav-collapse-main">
             <ul class="navbar-nav">
+                <!-- DASHBOARD -->
                 <li class="nav-item">
-                    <a class="nav-link " href="./pages/dashboard.html">
+                    <a class="nav-link" href="./pages/dashboard.html">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
+                            <i class="ni ni-tv-2 text-primary text-sm opacity-10 icon-animated"></i>
                         </div>
                         <span class="nav-link-text ms-1">Dashboard</span>
                     </a>
                 </li>
 
-
-
+                <!-- STOCK -->
                 <li class="nav-item mt-3">
-                    <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">INVENTARIO</h6>
+                    <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">STOCK</h6>
                 </li>
+
                 <li class="nav-item">
                     <a class="nav-link active" href="categorias.php">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-bullet-list-67 text-success text-sm opacity-10"></i>
+                            <i class="ni ni-bullet-list-67 text-success text-sm opacity-10 icon-animated"></i>
                         </div>
-                        <span class="nav-link-text ms-1">Categorias</span>
+                        <span class="nav-link-text ms-1">Categorías</span>
                     </a>
                 </li>
 
@@ -91,8 +101,7 @@
                     <a class="nav-link" href="producto.php">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <!-- <i class="ni ni-single-copy-04 text-warning text-sm opacity-10"></i> -->
-                            <i class="ni ni-box-2 text-primary text-sm opacity-10"></i>
+                            <i class="ni ni-box-2 text-primary text-sm opacity-10 icon-animated"></i>
                         </div>
                         <span class="nav-link-text ms-1">Productos</span>
                     </a>
@@ -102,24 +111,54 @@
                     <a class="nav-link" href="compras.php">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <!-- <i class="ni ni-single-copy-04 text-warning text-sm opacity-10"></i> -->
-                            <i class="ni ni-cart text-warning text-sm opacity-10"></i>
+                            <i class="ni ni-cart text-warning text-sm opacity-10 icon-animated"></i>
                         </div>
                         <span class="nav-link-text ms-1">Compras</span>
                     </a>
                 </li>
 
+                <!-- VENTAS -->
+                <li class="nav-item mt-3">
+                    <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">VENTAS</h6>
+                </li>
+
                 <li class="nav-item">
-                    <a class="nav-link " href="ventas.php">
+                    <a class="nav-link" href="ventas.php">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-shop text-info text-sm opacity-10"></i>
+                            <i class="ni ni-shop text-info text-sm opacity-10 icon-animated"></i>
                         </div>
                         <span class="nav-link-text ms-1">Ventas</span>
                     </a>
                 </li>
+
+                <!-- FINANZAS -->
+                <li class="nav-item mt-3">
+                    <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">FINANZAS</h6>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="caja.php">
+                        <div
+                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="ni ni-credit-card text-danger text-sm opacity-10 icon-animated"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Caja</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="reportesC.php">
+                        <div
+                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="ni ni-chart-bar-32 text-dark text-sm opacity-10 icon-animated"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Reportes</span>
+                    </a>
+                </li>
             </ul>
         </div>
+
 
     </aside>
 
@@ -136,9 +175,9 @@
                     <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
                         <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white"
                                 href="javascript:;">Pages</a></li>
-                        <li class="breadcrumb-item text-sm text-white active" aria-current="page">Productos</li>
+                        <li class="breadcrumb-item text-sm text-white active" aria-current="page">Categorías</li>
                     </ol>
-                    <h6 class="font-weight-bolder text-white mb-0">Administración de Productos</h6>
+                    <h6 class="font-weight-bolder text-white mb-0">Categorías</h6>
                 </nav>
                 <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
                     <div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -178,59 +217,71 @@
 
         <div class="container-fluid py-4">
             <div class="row mt-4">
-
+                <!-- FORMULARIO DE CATEGORÍA -->
                 <div class="col-lg-5 mb-lg-0 mb-4">
-                    <div class="card">
-                        <div class="card-header pb-0 p-3">
-                            <div class="d-flex justify-content-between">
-                                <h6 class="mb-2">Agregar nueva categoría</h6>
+                    <div class="card shadow-sm border-0">
+                        <div class="card-header bg-gradient-success text-white pb-2">
+                            <div class="d-flex align-items-center justify-content-between">
+                                <h6 class="mb-0"><i class="ni ni-folder-17 me-2"></i>Agregar nueva categoría</h6>
                             </div>
                         </div>
 
                         <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <form id="formCategoria">
-                                        <div class="form-group">
-                                            <label for="nombreCategoria" class="form-control-label">Nombre de la
-                                                Categoría</label>
-                                            <input id="nombreCategoria" class="form-control" type="text" placeholder="Nombre de la categoría">
-
-                                        </div>
-                                        <div class="d-flex justify-content-between">
-                                            <button id="btnAgregarCategoria" class="btn btn-success">Agregar Categoría</button>
-
-                                        </div>
-                                    </form>
+                            <form id="formCategoria">
+                                <div class="mb-3">
+                                    <label for="nombreCategoria" class="form-control-label fw-bold">Nombre de la
+                                        Categoría</label>
+                                    <div class="input-group input-group-outline">
+                                        <span class="input-group-text bg-transparent border-end-0"><i
+                                                class="ni ni-tag"></i></span>
+                                        <input id="nombreCategoria" class="form-control border-start-0 ps-2" type="text"
+                                            placeholder="Ejemplo: Bebidas energéticas">
+                                    </div>
                                 </div>
+
+                                <div class="text-end mt-3">
+                                    <button id="btnAgregarCategoria" type="submit"
+                                        class="btn btn-success px-4 shadow-sm">
+                                        <i class="ni ni-fat-add me-1"></i>Agregar
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TABLA DE CATEGORÍAS -->
+                <div class="col-lg-7">
+                    <div class="card shadow-sm border-0">
+                        <div
+                            class="card-header bg-gradient-primary text-white pb-2 d-flex justify-content-between align-items-center">
+                            <h6 class="mb-0"><i class="ni ni-bullet-list-67 me-2"></i>Listado de Categorías</h6>
+                           
+                        </div>
+
+                        <div class="card-body pt-3">
+                            <div class="table-responsive">
+                                <table id="tablaCategorias" class="table table-sm table-hover align-middle mb-0"
+                                    style="font-size: 0.9rem;">
+                                    <thead class="bg-light">
+                                        <tr class="text-secondary text-uppercase" style="font-size: 0.75rem;">
+                                            <th class="text-center">#</th>
+                                            <th>Nombre</th>
+                                            <th class="text-center">Estado</th>
+                                            <th class="text-center">Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- Contenido dinámico -->
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Tabla de categorías -->
-                <div class="col-lg-7">
-                    <div class="card">
-                        <div class="card-header pb-0 p-3">
-                            <h6 class="mb-0">Listado de Categorías</h6>
-                        </div>
-
-                        <div class="table-responsive">
-                            <table id="tablaCategorias" class="table align-items-center justify-content-center" width="100%">
-                                <thead>
-                                    <tr>
-                                    <th>#</th>
-                                    <th>Nombre</th>
-                                    <th>Estado</th>
-                                    <th>Acciones</th>
-                                    </tr>
-                                </thead>
-                                <tbody></tbody>
-                                </table>
-                        </div>
-                    </div>
-                </div>
             </div>
+
 
 
 

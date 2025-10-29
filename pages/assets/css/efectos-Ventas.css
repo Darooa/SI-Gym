@@ -1,0 +1,362 @@
+/* === Tarjetas del panel de ventas === */
+.card {
+  border: none;
+  border-radius: 16px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+.card-body .numbers h5 {
+  font-size: 1.3rem;
+  letter-spacing: 0.5px;
+}
+
+.card-body .numbers p.text-sm {
+  color: #7f8c8d;
+}
+
+.numbers h5 {
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+.numbers p.text-sm {
+  font-size: 0.85rem;
+  opacity: 0.8;
+}
+
+.icon-shape {
+  transition: transform 0.3s ease;
+}
+
+.icon-shape:hover {
+  transform: scale(1.1) rotate(5deg);
+}
+
+
+/* Efecto de parpadeo cuando los datos se actualizan */
+.actualizando {
+  animation: blinkUpdate 0.4s ease;
+}
+
+@keyframes blinkUpdate {
+  0% { background-color: rgba(46, 204, 113, 0.2); }
+  100% { background-color: transparent; }
+}
+
+
+/* ======= TABLAS DE VENTAS Y MODAL ======= */
+.table {
+  font-size: 0.9rem;
+  color: #34495e;
+}
+
+.table thead {
+  background-color: #f8f9fa;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.table-hover tbody tr:hover {
+  background-color: #f3f6f8;
+  transition: background-color 0.2s ease-in-out;
+}
+
+/* Bordes suaves */
+.table th,
+.table td {
+  border-color: #e5e8eb !important;
+}
+
+/* Iconos de acción */
+.btn-icon {
+  background: none;
+  border: none;
+  padding: 4px;
+  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+  opacity: 0.85;
+}
+
+.btn-icon:hover {
+  transform: scale(1.25);
+  opacity: 1;
+}
+
+/* Íconos individuales */
+.icon-add {
+  color: #1abc9c;
+  font-size: 1.25rem;
+}
+.icon-add:hover {
+  color: #16a085;
+  text-shadow: 0 0 5px rgba(26, 188, 156, 0.3);
+}
+
+.icon-delete {
+  color: #e74c3c;
+  font-size: 1.2rem;
+}
+.icon-delete:hover {
+  color: #c0392b;
+  text-shadow: 0 0 5px rgba(231, 76, 60, 0.3);
+}
+
+/* Footer de total */
+#totalVenta {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #27ae60;
+}
+
+
+/* ======= MODAL DE PRODUCTOS ======= */
+#buscarProductos .modal-dialog {
+  max-width: 900px;
+}
+
+#buscarProductos .modal-body {
+  padding: 1.5rem 2rem;
+}
+
+/* Centrar tabla en el modal */
+#tablaProductos {
+  margin: 0 auto; /* centra horizontalmente */
+  width: 95% !important;
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+/* Encabezado más sutil */
+#tablaProductos thead {
+  background-color: #f8f9fa;
+  border-bottom: 2px solid #e1e5ea;
+}
+
+#tablaProductos th {
+  text-align: center;
+  font-size: 0.8rem;
+  color: #7b8a97;
+  letter-spacing: 0.5px;
+  padding: 10px;
+}
+
+/* Centrar las celdas */
+#tablaProductos td {
+  text-align: center;
+  vertical-align: middle;
+}
+
+/* Efecto hover */
+#tablaProductos tbody tr:hover {
+  background-color: #f5f8fa;
+  transition: background-color 0.2s ease;
+}
+
+/* Borde suave entre filas */
+#tablaProductos tbody td {
+  border-color: #ececec !important;
+}
+
+
+
+/* === PAGINACIÓN DATATABLES – ESTILO PROFESIONAL === */
+
+/* Contenedor de la paginación */
+.dataTables_wrapper .dataTables_paginate {
+  margin-top: 10px;
+  text-align: center;
+}
+
+/* Botones de paginación */
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+  border: none !important;
+  background: transparent !important;
+  color: #2c3e50 !important;
+  font-weight: 600;
+  border-radius: 8px;
+  padding: 4px 10px;
+  margin: 0 2px;
+  transition: all 0.2s ease-in-out;
+}
+
+/* Hover sobre botones */
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+  background: rgba(39, 174, 96, 0.15) !important; /* verde claro al pasar */
+  color: #27ae60 !important;
+}
+
+/* Botón activo (página actual) */
+.dataTables_wrapper .dataTables_paginate .paginate_button.current {
+  background: linear-gradient(90deg, #2ecc71, #27ae60) !important;
+  color: #fff !important;
+  border: none !important;
+  box-shadow: 0 0 8px rgba(39, 174, 96, 0.3);
+  font-weight: 700;
+}
+
+/* Botón deshabilitado (anterior/siguiente cuando no hay más páginas) */
+.dataTables_wrapper .dataTables_paginate .paginate_button.disabled {
+  color: #bdc3c7 !important;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Íconos de anterior y siguiente */
+.dataTables_wrapper .dataTables_paginate .paginate_button.previous,
+.dataTables_wrapper .dataTables_paginate .paginate_button.next {
+  font-weight: 700;
+}
+
+
+
+/* === TABLA PRINCIPAL DE VENTAS === */
+#tablaVenta {
+  width: 100%;
+  font-size: 0.9rem;
+  color: #34495e;
+  background-color: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* Encabezado */
+#tablaVenta thead {
+  background-color: #f9fafb;
+  border-bottom: 2px solid #e5e8eb;
+}
+
+#tablaVenta th {
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 0.8rem;
+  color: #7f8c8d;
+  padding: 10px;
+  text-align: center;
+}
+
+/* Celdas */
+#tablaVenta td {
+  text-align: center;
+  vertical-align: middle;
+  border-color: #ecf0f1 !important;
+  padding: 8px 10px;
+}
+
+/* Efecto hover */
+#tablaVenta tbody tr:hover {
+  background-color: #f5f8fa;
+  transition: background-color 0.2s ease-in-out;
+}
+
+/* Input de cantidad */
+#tablaVenta input.cantItem {
+  width: 70px;
+  text-align: center;
+  border-radius: 6px;
+  border: 1px solid #dcdfe3;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+#tablaVenta input.cantItem:focus {
+  outline: none;
+  box-shadow: 0 0 6px rgba(46, 204, 113, 0.3);
+  transform: scale(1.05);
+}
+
+/* Ícono eliminar elegante */
+.icon-delete {
+  color: #e74c3c;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.icon-delete:hover {
+  color: #c0392b;
+  transform: scale(1.2);
+  text-shadow: 0 0 5px rgba(231, 76, 60, 0.3);
+}
+
+/* Total general */
+#totalVenta {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #27ae60;
+  transition: color 0.4s ease, transform 0.3s ease;
+}
+
+/* Animación del total al actualizar */
+#totalVenta.actualizando {
+  color: #2ecc71;
+  transform: scale(1.1);
+}
+
+/* Sombra suave al agregar o eliminar fila */
+.tr-animar {
+  animation: fadeInRow 0.4s ease-in-out;
+}
+
+@keyframes fadeInRow {
+  from {
+    background-color: rgba(39, 174, 96, 0.15);
+  }
+  to {
+    background-color: transparent;
+  }
+}
+
+
+/* === ANIMACIÓN AL ELIMINAR FILA === */
+.tr-eliminar {
+  animation: fadeOutRow 0.35s ease forwards;
+}
+
+@keyframes fadeOutRow {
+  from {
+    opacity: 1;
+    transform: scale(1);
+    background-color: rgba(231, 76, 60, 0.1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.97);
+    height: 0;
+    background-color: transparent;
+  }
+}
+
+
+.icon-delete:active {
+  animation: shakeIcon 0.2s ease;
+}
+
+@keyframes shakeIcon {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-8deg); }
+  75% { transform: rotate(8deg); }
+}
+
+/**************************************/
+/* Área de notificación de stock bajo */
+#alertaStock {
+  display: inline-block;
+  min-height: 20px;
+  margin-top: 3px;
+  color: #e74c3c;
+  font-size: 0.85rem;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+/* Animaciones */
+.alerta-visible {
+  opacity: 1 !important;
+}

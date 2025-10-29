@@ -25,6 +25,7 @@
     <link href="assets/css/nucleo-svg.css" rel="stylesheet" />
     <!-- CSS Files -->
     <link id="pagestyle" href="assets/css/argon-dashboard.css?v=2.0.4" rel="stylesheet" />
+    <link id="pagestyle" href="assets/css/efectos-Dashboard.css" rel="stylesheet" />
 
     <!-- Jquery -->
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
@@ -51,30 +52,31 @@
             </a>
         </div>
         <hr class="horizontal dark mt-0">
-        <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
+        <div class="collapse navbar-collapse w-auto" id="sidenav-collapse-main">
             <ul class="navbar-nav">
+                <!-- DASHBOARD -->
                 <li class="nav-item">
-                    <a class="nav-link " href="./pages/dashboard.html">
+                    <a class="nav-link" href="./pages/dashboard.html">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
+                            <i class="ni ni-tv-2 text-primary text-sm opacity-10 icon-animated"></i>
                         </div>
                         <span class="nav-link-text ms-1">Dashboard</span>
                     </a>
                 </li>
 
-
-
+                <!-- STOCK -->
                 <li class="nav-item mt-3">
-                    <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">INVENTARIO</h6>
+                    <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">STOCK</h6>
                 </li>
+
                 <li class="nav-item">
                     <a class="nav-link" href="categorias.php">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-bullet-list-67 text-success text-sm opacity-10"></i>
+                            <i class="ni ni-bullet-list-67 text-success text-sm opacity-10 icon-animated"></i>
                         </div>
-                        <span class="nav-link-text ms-1">Categorias</span>
+                        <span class="nav-link-text ms-1">Categorías</span>
                     </a>
                 </li>
 
@@ -82,8 +84,7 @@
                     <a class="nav-link" href="producto.php">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <!-- <i class="ni ni-single-copy-04 text-warning text-sm opacity-10"></i> -->
-                            <i class="ni ni-box-2 text-primary text-sm opacity-10"></i>
+                            <i class="ni ni-box-2 text-primary text-sm opacity-10 icon-animated"></i>
                         </div>
                         <span class="nav-link-text ms-1">Productos</span>
                     </a>
@@ -93,34 +94,54 @@
                     <a class="nav-link" href="compras.php">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <!-- <i class="ni ni-single-copy-04 text-warning text-sm opacity-10"></i> -->
-                            <i class="ni ni-cart text-warning text-sm opacity-10"></i>
+                            <i class="ni ni-cart text-warning text-sm opacity-10 icon-animated"></i>
                         </div>
                         <span class="nav-link-text ms-1">Compras</span>
                     </a>
+                </li>
+
+                <!-- VENTAS -->
+                <li class="nav-item mt-3">
+                    <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">VENTAS</h6>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link" href="ventas.php">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-shop text-info text-sm opacity-10"></i>
+                            <i class="ni ni-shop text-info text-sm opacity-10 icon-animated"></i>
                         </div>
                         <span class="nav-link-text ms-1">Ventas</span>
                     </a>
+                </li>
+
+                <!-- FINANZAS -->
+                <li class="nav-item mt-3">
+                    <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">FINANZAS</h6>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link active" href="caja.php">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-shop text-info text-sm opacity-10"></i>
+                            <i class="ni ni-credit-card text-danger text-sm opacity-10 icon-animated"></i>
                         </div>
                         <span class="nav-link-text ms-1">Caja</span>
                     </a>
                 </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="reportesC.php">
+                        <div
+                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="ni ni-chart-bar-32 text-dark text-sm opacity-10 icon-animated"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Reportes</span>
+                    </a>
+                </li>
             </ul>
         </div>
+
 
     </aside>
 
@@ -178,93 +199,124 @@
         <!------------------------------------------------------------------------------>
 
         <div class="container-fluid py-4">
-            
+
 
             <div class="row mt-4">
                 <div class="col-lg-12 mb-lg-0 mb-4">
                     <div class="card ">
                         <div class="card-header pb-0 p-3">
-                            <div class="d-flex justify-content-between">
+                            <div class="d-flex justify-content-between align-items-center">
                                 <h6 class="mb-2">Movimientos de Caja</h6>
-                                <button class="btn btn-success btn-md ms-auto" id="btnCorteCaja">Realizar Corte</button>
-
+                                <div>
+                                    <button class="btn btn-outline-success btn-sm me-2" data-bs-toggle="modal"
+                                        data-bs-target="#modalMovimientoCaja">
+                                        <i class="fa-solid fa-plus"></i> Registrar Movimiento
+                                    </button>
+                                    <button class="btn btn-success btn-sm" id="btnCorteCaja">
+                                        <i class="fa-solid fa-cash-register"></i> Realizar Corte
+                                    </button>
+                                </div>
                             </div>
+
                         </div>
 
                         <div class="card-body">
                             <p class="text-uppercase text-sm"></p>
 
-                            <table id="tablaCaja" class="table table-striped align-items-center">
-                                <thead>
-                                <tr>
-                                    <th>Fecha</th>
-                                    <th>Tipo</th>
-                                    <th>Concepto</th>
-                                    <th>Monto</th>
-                                    <th>Referencia</th>
-                                    <th>Usuario</th>
-                                </tr>
-                                </thead>
-                                <tbody></tbody>
-                                <tfoot>
-                                <tr>
-                                    <td colspan="3" class="text-end"><strong>Total Ingresos:</strong></td>
-                                    <td id="totalIngresos" class="text-success fw-bold">$0.00</td>
-                                    <td colspan="2"></td>
-                                </tr>
-                                <tr>
-                                    <td colspan="3" class="text-end"><strong>Total Egresos:</strong></td>
-                                    <td id="totalEgresos" class="text-danger fw-bold">$0.00</td>
-                                    <td colspan="2"></td>
-                                </tr>
-                                <tr>
-                                    <td colspan="3" class="text-end"><strong>Saldo del Día:</strong></td>
-                                    <td id="saldoFinal" class="text-primary fw-bold">$0.00</td>
-                                    <td colspan="2"></td>
-                                </tr>
-                                </tfoot>
-                            </table>
-                            <!-- <table id="tablaVenta" class="table align-items-center justify-content-center" cellspacing="0"
-                                width="100%">
+                            <table id="tablaCaja" class="table align-items-center justify-content-center mb-0"
+                                cellspacing="0" width="100%">
                                 <thead>
                                     <tr>
                                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                             #</th>
-                                        <th
-                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                            Producto</th>
-                                        <th
-                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                            CANT.</th>
-                                        <th
-                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                            DESCRIPCIÓN</th>
-                                        <th
-                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                            P. UNITARIO</th>
-                                        <th
-                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                            TOTAL</th>
-                                        <th></th>
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                            Fecha</th>
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                            Tipo</th>
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                            Concepto</th>
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                            Monto</th>
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                            Usuario</th>
                                     </tr>
                                 </thead>
-                                <tbody></tbody>
+                                <tbody>
+                                    <!-- Filas cargadas dinámicamente -->
+                                </tbody>
                                 <tfoot>
                                     <tr>
-                                        <td colspan="5" class="text-end"><strong>Total:</strong></td>
-                                        <td id="totalVenta">0.00</td>
+                                        <td colspan="4" class="text-end pe-5"><strong>Total Ingresos:</strong></td>
+                                        <td id="totalIngresos" class="text-success fw-bold text-end pe-5">$0.00</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4" class="text-end pe-5"><strong>Total Egresos:</strong></td>
+                                        <td id="totalEgresos" class="text-danger fw-bold text-end pe-5">$0.00</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4" class="text-end pe-5"><strong>Saldo del Día:</strong></td>
+                                        <td id="saldoFinal" class="text-primary fw-bold text-end pe-5 fs-6">$0.00</td>
                                         <td></td>
                                     </tr>
                                 </tfoot>
                             </table>
-                            <div class="card-header pb-0 p-3">
-                                <div class="d-flex justify-content-between">
-                                    <button class="btn btn-success btn-sm ms-auto" id="btnGuardarVenta">Guardar Venta</button>
-                                </div>
-                            </div> -->
-
 
                         </div>
+
+                        <!-- MODAL REGISTRAR MOVIMIENTO -->
+                        <div class="modal fade" id="modalMovimientoCaja" tabindex="-1"
+                            aria-labelledby="modalMovimientoCajaLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <form id="formMovimientoCaja" class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="modalMovimientoCajaLabel">Registrar Movimiento de
+                                            Caja</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Cerrar"></button>
+                                    </div>
+
+                                    <div class="modal-body">
+                                        <div class="mb-3">
+                                            <label for="tipoMovimiento" class="form-label">Tipo de Movimiento</label>
+                                            <select id="tipoMovimiento" name="tipo" class="form-select" required>
+                                                <option value="">Seleccione...</option>
+                                                <option value="Ingreso">Ingreso</option>
+                                                <option value="Egreso">Egreso</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label for="conceptoMovimiento" class="form-label">Concepto</label>
+                                            <input type="text" id="conceptoMovimiento" name="concepto"
+                                                class="form-control" placeholder="Ej. Pago de luz, Renta, Aportación..."
+                                                required>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label for="montoMovimiento" class="form-label">Monto</label>
+                                            <input type="number" id="montoMovimiento" name="monto" class="form-control"
+                                                step="0.01" min="0" placeholder="$0.00" required>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label for="notaMovimiento" class="form-label">Nota (opcional)</label>
+                                            <textarea id="notaMovimiento" name="nota" class="form-control" rows="2"
+                                                placeholder="Detalles adicionales..."></textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn bg-gradient-secondary"
+                                            data-bs-dismiss="modal">Cancelar</button>
+                                        <button type="submit" class="btn bg-gradient-success">Guardar
+                                            Movimiento</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
 

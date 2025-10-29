@@ -25,6 +25,8 @@
     <link href="assets/css/nucleo-svg.css" rel="stylesheet" />
     <!-- CSS Files -->
     <link id="pagestyle" href="assets/css/argon-dashboard.css?v=2.0.4" rel="stylesheet" />
+    <link id="pagestyle" href="assets/css/efectos-Dashboard.css" rel="stylesheet" />
+
 
     <!-- Jquery -->
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
@@ -51,30 +53,31 @@
             </a>
         </div>
         <hr class="horizontal dark mt-0">
-        <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
+        <div class="collapse navbar-collapse w-auto" id="sidenav-collapse-main">
             <ul class="navbar-nav">
+                <!-- DASHBOARD -->
                 <li class="nav-item">
-                    <a class="nav-link " href="./pages/dashboard.html">
+                    <a class="nav-link" href="./pages/dashboard.html">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
+                            <i class="ni ni-tv-2 text-primary text-sm opacity-10 icon-animated"></i>
                         </div>
                         <span class="nav-link-text ms-1">Dashboard</span>
                     </a>
                 </li>
 
-
-
+                <!-- STOCK -->
                 <li class="nav-item mt-3">
-                    <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">INVENTARIO</h6>
+                    <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">STOCK</h6>
                 </li>
+
                 <li class="nav-item">
                     <a class="nav-link" href="categorias.php">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-bullet-list-67 text-success text-sm opacity-10"></i>
+                            <i class="ni ni-bullet-list-67 text-success text-sm opacity-10 icon-animated"></i>
                         </div>
-                        <span class="nav-link-text ms-1">Categorias</span>
+                        <span class="nav-link-text ms-1">Categorías</span>
                     </a>
                 </li>
 
@@ -82,8 +85,7 @@
                     <a class="nav-link" href="producto.php">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <!-- <i class="ni ni-single-copy-04 text-warning text-sm opacity-10"></i> -->
-                            <i class="ni ni-box-2 text-primary text-sm opacity-10"></i>
+                            <i class="ni ni-box-2 text-primary text-sm opacity-10 icon-animated"></i>
                         </div>
                         <span class="nav-link-text ms-1">Productos</span>
                     </a>
@@ -93,28 +95,37 @@
                     <a class="nav-link" href="compras.php">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <!-- <i class="ni ni-single-copy-04 text-warning text-sm opacity-10"></i> -->
-                            <i class="ni ni-cart text-warning text-sm opacity-10"></i>
+                            <i class="ni ni-cart text-warning text-sm opacity-10 icon-animated"></i>
                         </div>
                         <span class="nav-link-text ms-1">Compras</span>
                     </a>
+                </li>
+
+                <!-- VENTAS -->
+                <li class="nav-item mt-3">
+                    <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">VENTAS</h6>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link" href="ventas.php">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-shop text-info text-sm opacity-10"></i>
+                            <i class="ni ni-shop text-info text-sm opacity-10 icon-animated"></i>
                         </div>
                         <span class="nav-link-text ms-1">Ventas</span>
                     </a>
+                </li>
+
+                <!-- FINANZAS -->
+                <li class="nav-item mt-3">
+                    <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">FINANZAS</h6>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link" href="caja.php">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-shop text-info text-sm opacity-10"></i>
+                            <i class="ni ni-credit-card text-danger text-sm opacity-10 icon-animated"></i>
                         </div>
                         <span class="nav-link-text ms-1">Caja</span>
                     </a>
@@ -124,13 +135,14 @@
                     <a class="nav-link active" href="reportesC.php">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-shop text-info text-sm opacity-10"></i>
+                            <i class="ni ni-chart-bar-32 text-dark text-sm opacity-10 icon-animated"></i>
                         </div>
-                        <span class="nav-link-text ms-1">Reportes Cajas</span>
+                        <span class="nav-link-text ms-1">Reportes</span>
                     </a>
                 </li>
             </ul>
         </div>
+
 
     </aside>
 
@@ -188,7 +200,7 @@
         <!------------------------------------------------------------------------------>
 
         <div class="container-fluid py-4">
-            
+
 
             <div class="row mt-4">
                 <div class="col-lg-12 mb-lg-0 mb-4">
@@ -207,19 +219,19 @@
                         <div class="card-body">
                             <p class="text-uppercase text-sm"></p>
 
-                            
+
 
                             <table id="tablaCortes" class="table table-striped align-items-center">
                                 <thead>
-                                <tr>
-                                    <th>ID Corte</th>
-                                    <th>Fecha Inicio</th>
-                                    <th>Fecha Fin</th>
-                                    <th>Total Ingresos</th>
-                                    <th>Total Egresos</th>
-                                    <th>Saldo Final</th>
-                                    <th>Usuario</th>
-                                </tr>
+                                    <tr>
+                                        <th>ID Corte</th>
+                                        <th>Fecha Inicio</th>
+                                        <th>Fecha Fin</th>
+                                        <th>Total Ingresos</th>
+                                        <th>Total Egresos</th>
+                                        <th>Saldo Final</th>
+                                        <th>Usuario</th>
+                                    </tr>
                                 </thead>
                                 <tbody></tbody>
                             </table>

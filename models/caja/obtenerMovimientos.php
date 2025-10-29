@@ -1,30 +1,50 @@
 <?php
-include('../../controllers/conexion_prueba.php');
 header('Content-Type: application/json; charset=utf-8');
+include('../../controllers/conexion_prueba.php'); // $con (mysqli)
 
-// Obtener movimientos del día actual
-$sql = "SELECT c.fecha, c.tipo, c.concepto, c.monto, c.referencia, u.nombre AS usuario
-        FROM caja c
-        LEFT JOIN usuarios u ON c.usuario = u.id_usuario
-        WHERE DATE(c.fecha) = CURDATE()
-        ORDER BY c.fecha ASC";
+try {
+  $qry = "
+    SELECT 
+      id_movimiento,
+      DATE_FORMAT(fecha, '%d/%m/%Y %H:%i') AS fecha,
+      tipo,
+      concepto,
+      monto,
+      COALESCE(nota, '') AS nota,
+      id_usuario,
+      origen,
+      id_referencia
+    FROM caja_movimientos
+    ORDER BY fecha DESC
+  ";
 
-$result = $con->query($sql);
+  $res = $con->query($qry);
+  $movimientos = [];
 
-$movimientos = [];
-$totalIngresos = 0;
-$totalEgresos = 0;
+  while ($row = $res->fetch_assoc()) {
+    // Obtener nombre de usuario (si existe tabla usuarios)
+    $usuario = 'Usuario #' . $row['id_usuario'];
 
-while ($row = $result->fetch_assoc()) {
-    $movimientos[] = $row;
-    if ($row['tipo'] === 'ingreso') $totalIngresos += $row['monto'];
-    else if ($row['tipo'] === 'egreso') $totalEgresos += $row['monto'];
+    // Si más adelante tienes tabla usuarios:
+    // $u = $con->query("SELECT nombre FROM usuarios WHERE id_usuario = ".$row['id_usuario']." LIMIT 1");
+    // if ($u && $ur = $u->fetch_assoc()) $usuario = $ur['nombre'];
+
+    $movimientos[] = [
+      'fecha'       => $row['fecha'],
+      'tipo'        => $row['tipo'],
+      'concepto'    => $row['concepto'],
+      'monto'       => $row['monto'],
+      'nota'        => $row['nota'],
+      'usuario'     => $usuario,
+      'origen'      => $row['origen'],
+      'referencia'  => $row['id_referencia']
+    ];
+  }
+
+  echo json_encode([
+    'status' => 'ok',
+    'movimientos' => $movimientos
+  ]);
+} catch (Throwable $e) {
+  echo json_encode(['status'=>'error', 'message'=>$e->getMessage()]);
 }
-
-echo json_encode([
-    'status' => 'success',
-    'movimientos' => $movimientos,
-    'totalIngresos' => number_format($totalIngresos, 2, '.', ','),
-    'totalEgresos' => number_format($totalEgresos, 2, '.', ','),
-    'saldoFinal' => number_format(($totalIngresos - $totalEgresos), 2, '.', ',')
-]);

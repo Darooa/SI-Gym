@@ -79,13 +79,21 @@ try {
         $stmtStock->execute();
     }
 
-    // 8) Registrar movimiento en CAJA (egreso)
-    $stmtCaja = $con->prepare("
-        INSERT INTO caja (tipo, concepto, monto, referencia, usuario)
-        VALUES ('EGRESO', 'Compra de productos', ?, ?, ?)
-    ");
-    $stmtCaja->bind_param("dsi", $total, $codigo, $idUsuario);
-    $stmtCaja->execute();
+    /// Registrar egreso en caja_movimientos
+        $tipo        = "Egreso";
+        $concepto    = "Compra #".$idCompra;
+        $monto       = $total;
+        $origen      = "Compra";
+        $id_usuario  = $idUsuario;
+
+        $stmtCajaMov = $con->prepare("
+        INSERT INTO caja_movimientos (tipo, concepto, monto, id_usuario, origen, id_referencia)
+        VALUES (?, ?, ?, ?, ?, ?)
+        ");
+        $stmtCajaMov->bind_param("ssdssi", $tipo, $concepto, $monto, $id_usuario, $origen, $idCompra);
+        $stmtCajaMov->execute();
+        $stmtCajaMov->close();
+
 
     // 9) Confirmar transacción
     $con->commit();
