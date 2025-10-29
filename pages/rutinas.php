@@ -1,3 +1,10 @@
+<?php
+session_start();
+if(!isset($_SESSION['user']) && $_SESSION['user'] != "eli"){
+    header("Location: http://localhost/trasciende/SI-Gym/pages/inicio-sesion.php");
+    exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -59,7 +66,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" href="./rutinas.html">
+          <a class="nav-link active" href="./rutinas.php">
             <div
               class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="ni ni-app text-success text-sm opacity-10"></i>
@@ -68,7 +75,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="./membresias.html">
+          <a class="nav-link" href="./membresias.php">
             <div
               class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="ni ni-credit-card text-warning text-sm opacity-10"></i>
@@ -77,7 +84,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="./reportes.html">
+          <a class="nav-link" href="./reportes.php">
             <div
               class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="ni ni-archive-2 text-info text-sm opacity-10"></i>
@@ -95,7 +102,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link " href="./inicio-sesion.html">
+          <a class="salir nav-link " href="./inicio-sesion.php">
             <div
               class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="ni ni-single-copy-04 text-warning text-sm opacity-10"></i>

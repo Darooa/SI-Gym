@@ -236,4 +236,11 @@ $(document).ready(function () {
     html2pdf().set(options).from(element).save();
   })
 
+
+   $(document).on('click','.salir',function () {
+        console.log('Salir de sesion')
+        $.post('../models/inicioSesion/salirSesion.php',function (res) {
+        });
+    })
+
 })
