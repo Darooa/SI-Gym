@@ -1,3 +1,10 @@
+<?php
+session_start();
+if(!isset($_SESSION['user']) && $_SESSION['user'] != "eli"){
+    header("Location: http://localhost/trasciende/SI-Gym/pages/inicio-sesion.php");
+    exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -89,10 +96,12 @@
             </div>
             <hr class="horizontal dark my-1">
             <div class="card-body pt-sm-3 pt-0 overflow-auto" >
+              <a href="./vistaClientes.php">
                 <div class="d-flex">
-                    <button class="btn bg-gradient-secondary w-100 px-3 mb-2 active me-2" data-class="bg-white"
+                      <button class="btn bg-gradient-secondary w-100 px-3 mb-2 active me-2" data-class="bg-white"
                         >Inicio</button>
-                </div>
+                      </div>
+                    </a>
                 <div class="d-flex">
                     <button class="btn bg-gradient-secondary w-100 px-3 mb-2 active me-2" data-class="bg-white"
                         >Usuarios</button>
