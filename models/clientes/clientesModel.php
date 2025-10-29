@@ -2,16 +2,16 @@
 include('../../controllers/conexion_prueba.php');
 
 $output= array();
-$sql = "SELECT * FROM clientes ";
+$sql = "SELECT * FROM listado_clientes ";
 $totalQuery = mysqli_query($con, $sql);
 $total_all_rows = mysqli_num_rows($totalQuery);
 
 $columns = array(
-	0 => 'id_cliente',
+	0 => 'id',
 	1 => 'nombre',
 	2 => 'apellidos',
 	3 => 'telefono',
-	4 => 'tipo_membresia',
+	4 => 'membresia',
 	5 => 'fecha_limite',
 	6 => 'estado',
 );
@@ -22,7 +22,7 @@ if(isset($_POST['search']['value']) && $_POST['search']['value'] != ''){
   	$searchSql .= " WHERE nombre LIKE '%".$search_value."%' OR apellidos LIKE '%".$search_value."%'";
 }
 
-$orderSql = " ORDER BY id_cliente DESC ";
+$orderSql = " ORDER BY id DESC ";
 if(isset($_POST['order'])){
  	$column_name = $_POST['order'][0]['column'];
  	$order = $_POST['order'][0]['dir'];
@@ -46,25 +46,25 @@ $data = array();
 
 while($row = mysqli_fetch_assoc($query)){
 	$sub_array = array();
-    $sub_array[] = '<span class="text-secondary text-xs font-weight-bold">'.$row['id_cliente'].'</span>';
+    $sub_array[] = '<span class="text-secondary text-xs font-weight-bold">'.$row['id'].'</span>';
 	$sub_array[] = '<span class="text-secondary text-xs font-weight-bold">'.$row['nombre'].'</span>';
     $sub_array[] = '<span class="text-secondary text-xs font-weight-bold">'.$row['apellidos'].'</span>';
 	$sub_array[] = '<span class="text-secondary text-xs font-weight-bold">'.$row['telefono'].'</span>';
-	$sub_array[] = '<span class="text-secondary text-xs font-weight-bold">'.$row['tipo_membresia'].'</span>';
+	$sub_array[] = '<span class="text-secondary text-xs font-weight-bold">'.$row['membresia'].'</span>';
     $sub_array[] = '<span class="text-secondary text-xs font-weight-bold">'.$row['fecha_limite'].'</span>';
 
 	if($row['estado']==1){
 		$sub_array[] = '<span class="text-success font-weight-bold text-xs">Activo</span>';
 		$sub_array[] = '<form action="../pages/detalleCliente.php" method="POST" style="display:inline;">
-                            <input type="hidden" name="id" value="' . $row['id_cliente'] . '">
+                            <input type="hidden" name="id" value="' . $row['id'] . '">
                             <center><button type="submit" class="btn btn-primary">Ver</button></center>
                         </form>';
-		$sub_array[] = '<a href="javascript:void(0);" data-id="'.$row['id_cliente'].'" class="text-secondary font-weight-bold text-xs btnDesactivarCliente">Baja</a>';
+		$sub_array[] = '<a href="javascript:void(0);" data-id="'.$row['id'].'" class="btn btn-danger font-weight-bold text-xs btnDesactivarCliente">Baja</a>';
 	}
 	else {
 		$sub_array[] = '<span class="text-danger font-weight-bold text-xs">Inactivo</span>';
-		$sub_array[] = '<center><a href="javascript:void(0);" data-id="'.$row['id_cliente'].'" class="btn btn-secondary" disabled>Ver</a></center>';
-		$sub_array[] = '<a href="javascript:void(0);" data-id="'.$row['id_cliente'].'" class="text-secondary font-weight-bold text-xs btnActivarCliente">Activar</a>';
+		$sub_array[] = '<center><a href="javascript:void(0);" data-id="'.$row['id'].'" class="btn btn-secondary" disabled>Ver</a></center>';
+		$sub_array[] = '<a href="javascript:void(0);" data-id="'.$row['id'].'" class="btn btn-success font-weight-bold text-xs btnActivarCliente">Activar</a>';
 	}	
 
 	$data[] = $sub_array;
