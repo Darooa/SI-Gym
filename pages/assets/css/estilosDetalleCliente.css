@@ -58,23 +58,45 @@
 
               .qr-section {
                 text-align: center;
-                margin-top: 25px;
-              }
-
-              .qr-section span {
-                display: block;
-                font-weight: 600;
-                color: #495057;
-                margin-bottom: 10px;
-              }
-
-              .qr-section img {
-                width: 130px;
-                height: 130px;
-                border: 2px solid #dee2e6;
-                border-radius: 8px;
-                padding: 8px;
-                background: white;
-                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-              }
-              
+                  margin-top: 25px;
+                }
+                
+                .qr-section span {
+                  display: block;
+                  font-weight: 600;
+                  color: #495057;
+                  margin-bottom: 10px;
+                }
+                
+                .qr-section img {
+                  width: 130px;
+                  height: 130px;
+                  border: 2px solid #dee2e6;
+                  border-radius: 8px;
+                  padding: 8px;
+                  background: white;
+                  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+                }
+                
+                .profile-image {
+                  display: flex;
+                  justify-content: center;
+                }
+                
+                .card {
+                  background: #fff;
+                  border-radius: 1rem;
+                }
+                
+                .text-muted {
+                  font-size: 0.9rem;
+                }
+                
+                .qr-section img:hover {
+                  transform: scale(1.05);
+                  transition: 0.3s ease;
+                }
+                
+                .border-start {
+                  border-color: #d1e7dd !important;
+                }

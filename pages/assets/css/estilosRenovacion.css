@@ -1,0 +1,32 @@
+.info-item {
+  transition: all 0.3s ease;
+}
+
+.info-item:hover {
+  background-color: #eafaf1;
+  transform: translateY(-2px);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.text-success {
+  color: #21a768 !important;
+}
+ .header-banner {
+                min-height: 400px;
+                /* altura visible del banner */
+                background-image: url('../img/banner_3.jpg');
+                background-size: cover;
+                background-position: center top;
+                background-repeat: no-repeat;
+                position: relative;
+                border-bottom: 40px solid #1fa064ff;
+                /* línea verde en la parte inferior */
+                box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+                /* opcional, da relieve */
+              }
+                            .card-body {
+                background-color: #f9fafc;
+                border-radius: 12px;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+                padding: 20px 30px;
+              }

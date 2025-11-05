@@ -25,43 +25,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['id'])) {
   <!-- CSS Files -->
   <link id="pagestyle" href="assets/css/argon-dashboard.css?v=2.0.4" rel="stylesheet" />
   <link href="../pages/assets/css/estilosDetalleCliente.css" rel="stylesheet" />
+<!-- Alert -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body class="g-sidenav-show bg-gray-100">
   <div class="header-banner position-absolute w-100">
-    <button class="btn btn-primary btn-sm ms-auto m-3">Regresar</button>
   </div>
-
-  <aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 " id="sidenav-main">
-    <div class="sidenav-header">
-      <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
-      <a class="navbar-brand m-0" href=" https://demos.creative-tim.com/argon-dashboard/pages/dashboard.html " target="_blank">
-        <img src="assets/img/logo-ct-dark.png" class="navbar-brand-img h-100" alt="main_logo">
-        <span class="ms-1 font-weight-bold">Argon Dashboard 2</span>
-      </a>
-    </div>
-    <hr class="horizontal dark mt-0">
-    <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link " href="../pages/dashboard.html">
-            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
-            </div>
-            <span class="nav-link-text ms-1">Dashboard</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link " href="../pages/tables.html">
-            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="ni ni-calendar-grid-58 text-warning text-sm opacity-10"></i>
-            </div>
-            <span class="nav-link-text ms-1">Tables</span>
-          </a>
-        </li>
-      </ul>
-    </div>
-  </aside>
   <div class="main-content position-relative max-height-vh-100 h-100">
     <div class="card shadow-lg mx-4 card-profile-bottom">
     </div>
@@ -107,146 +77,93 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['id'])) {
     ?>
     <div class="container-fluid py-4">
       <div class="row">
-        <div class="col-md-8">
-          <div class="card">
-            <div class="card-header pb-0">
-              <div class="d-flex align-items-center">
-              </div>
-            </div>
-            <!-- **********CARD PARA ACTUALIZACIÓN DE LA INFORMACIÓN DEL CLIENTE ************-->
-            <div class="card-body">
-              <p class="text-uppercase text-sm">Información del Cliente</p>
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <input type="hidden" id="clienteId" name="clienteId" value="<?php echo $id ?>">
-                    <label for="example-text-input" class="form-control-label">Nombre(s)</label>
+        <!-- *********** CARD DE LA INFORMACIÓN Y ACTUALIZACIÓN DEL CLIENTE *******************-->
+        <div class="col-md-10 mx-auto">
+          <div class="card border-0 shadow-lg rounded-4 p-4">
+            <div class="row align-items-center">
+              <!-- columna de información del cliente -->
+              <div class="col-md-5 text-center">
+                <div class="position-relative">
+                  <img src="assets/img/banner_4.jpg" class="card-img-top bg-dark rounded-4" style="height: 80px; object-fit: cover; width: 100%;">
 
-                    <input class="form-control" type="text" value="<?php echo $nombre ?>">
+                  <!-- Imagen circular -->
+                  <div class="profile-image mt-n5">
+                    <img src="assets/img/pesas.jpg"
+                      class="rounded-circle border border-3 border-white shadow-sm"
+                      style="width: 150px; height: 150px; object-fit: cover;">
                   </div>
                 </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label for="example-text-input" class="form-control-label">Apellidos</label>
-                    <input class="form-control" type="text" value="<?php echo $apellidos ?>">
+                <!-- Datos del cliente -->
+                <div class="cliente-info mt-4 text-start ps-md-4">
+                  <h5 class="fw-bold mb-1"><?php echo $cliente ?></h5>
+                  <p class="text-muted small mb-2"><strong>Folio:</strong> <?php echo $folio ?></p>
+                  <p class="text-muted small mb-2"><strong>Membresía:</strong> <?php echo $nombreMembresia ?></p>
+                  <!-- <p class="text-muted small mb-2"><strong>Tipo de rutina:</strong> Nivel 1</p> -->
+                  <p class="text-muted small mb-2"><strong>Inicio:</strong> <?php echo $fechaIni ?></p>
+                  <p class="text-muted small mb-3"><strong>Vencimiento:</strong> <?php echo $fecha_lim ?></p>
+
+                  <!-- QR -->
+                  <div class="qr-section mt-3 text-center">
+                    <span class="d-block mb-2 fw-semibold">Código QR:</span>
+                    <img src="<?php echo $filename ?>" alt="QR Cliente"
+                      class="img-thumbnail zoomable-img shadow-sm"
+                      style="cursor: pointer; max-width: 120px;"
+                      data-bs-toggle="modal" data-bs-target="#zoomModal">
                   </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label for="example-text-input" class="form-control-label">Teléfono</label>
-                    <input class="form-control" type="text" value="<?php echo $telefono ?>">
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label for="example-text-input" class="form-control-label">Fecha de Nacimiento</label>
-                    <input class="form-control" type="Date" value="<?php echo $fecha_n ?>">
-                  </div>
-                </div>
-              </div>
-              <hr class="horizontal dark">
-              <p class="text-uppercase text-sm">Información de Membresía</p>
-              <div class="row">
-                <div class="row">
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label for="example-text-input" class="form-control-label">Tipo de Membresía</label>
-                      <select class="select2 select-event-label form-select" name="edit_tipoMembresia" id="edit_tipoMembresia">
-                        <option  value="">Seleccionar...</option>
-                        <?php
-                        $conect = mysqli_connect("localhost", "root", "", "bd_trasciende");
-                        $conect->set_charset("utf8");
-                        $qry_planes = "SELECT * from tb_membresias where estado=1";
-                                                            if ($resultado = mysqli_query($conect, $qry_planes)) {
-                                                              /* obtener array asociativo */
-                                                              while ($row = mysqli_fetch_assoc($resultado)) {
-                                                                $selected = ($row["id_membresia"] == $id_membresia) ? "selected" : "";
-                                                                echo '<option value="' . $row["id_membresia"] . '" ' . $selected .
-                                                                  ' data-precio="' . $row["precio"] . '" data-dias="' . $row["duracion"] . '">' .
-                                                                  $row["membresia"] . ': ' . $row["duracion"] . ' días</option>';
-                                                              }
-                                                              /* liberar el conjunto de resultados */
-                                                              mysqli_free_result($resultado);
-                                                            }
-                        echo "<br>";
-                        ?>
-                      </select>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label for="example-text-input" class="form-control-label">Costo</label>
-                      <input class="form-control" type="Text" id="edit_costo" name="edit_costo" value="<?php echo $precio ?>" readonly>
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label for="example-text-input" class="form-control-label">Fecha de Inicio</label>
-                      <input class="form-control" type="Date" id="edit_fechaInicio" name="edit_fechaInicio" value="<?php echo $fechaIni ?>" readonly>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label for="example-text-input" class="form-control-label">Fecha de término</label>
-                      <input class="form-control" type="Date" id="edit_fechaTermino" name="edit_fechaTermino" value="<?php echo $fecha_lim ?>" readonly>
-                    </div>
+                  <div class="mt-3 text-center">
+                    <a href='perfil.php?folio=<?php echo $folio ?>' class="text-decoration-none text-success fw-semibold">
+                      <i class="fas fa-user me-1"></i> Ver perfil del cliente
+                    </a>
                   </div>
                 </div>
               </div>
-              <div class="row">
-                <button class="btn btn-primary btn-sm ms-auto ">Actualizar</button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- *********** CARD DERECHO DE LA INFORMACIÓN DEL CLIENTE *******************-->
-        <div class="col-md-4">
-          <div class="card card-profile">
-            <img src="" class="card-img-top bg-dark">
-            <div class="row justify-content-center">
-              <div class="col-4 col-lg-4 order-lg-2">
-                <div class="mt-n4 mt-lg-n6 mb-4 mb-lg-0">
-                  <a href="javascript:;">
-                    <img src="assets/img/pesas.jpg" class="rounded-circle img-fluid border border-2 border-white">
+
+              <!-- inputs de actualización -->
+              <div class="col-md-7 border-start ps-4 mt-4 mt-md-0">
+                <div class="text-end">
+                  <a href="vistaClientes.php" class="btn btn-text-primary">
+                    <i class="bx bx-left-arrow-alt me-2"></i> Regresar
                   </a>
                 </div>
+                <h6 class="text-uppercase text-success mb-3">Actualizar información</h6>
+                <form id="actualizarClientes">
+                  <div class="mb-3">
+                    <input type="hidden" id="clienteId" name="clienteId" value="<?php echo $id ?>">
+                    <label for="example-text-input" class="form-control-label">Nombre(s)</label>
+                    <input class="form-control" type="text" id="nombreCliente" name="nombreCliente" value="<?php echo $nombre ?>">
+                  </div>
+                  <div class="mb-3">
+                    <label for="example-text-input" class="form-control-label">Apellidos</label>
+                    <input class="form-control" type="text" id="apellidosCliente" name="apellidosCliente" value="<?php echo $apellidos ?>">
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="example-text-input" class="form-control-label">Teléfono</label>
+                    <input class="form-control" type="text" id="telefonoCliente" name="telefonoCliente" value="<?php echo $telefono ?>">
+                  </div>
+                  <div class="mb-3">
+                    <label for="example-text-input" class="form-control-label">Fecha de Nacimiento</label>
+                    <input class="form-control" type="date" id="fechaCliente" name="fechaCliente" value="<?php echo date('Y-m-d', strtotime($fecha_n)); ?>">
+                  </div>
+                  <button type="submit" class="btn btn-success w-100">Actualizar</button>
+                </form>
               </div>
+
             </div>
-            <div class="card-body pt-0">
-              <div class="cliente-info mt-3">
-                <h5><?php echo $cliente ?></h5>
-                <div><span> <strong>Folio:</strong> </span><?php echo $folio ?></div>
-                <div><span><strong>Tipo de membresía:</strong> </span><?php echo $nombreMembresia ?></div>
-                <div><span><strong>Tipo de rutina:</strong> </span>Nivel 1</div>
-                <div><span><strong>Inicio de membresía:</strong> </span><?php echo $fechaIni ?></div>
-                <div><span><strong>Vencimiento: </strong></span><?php echo $fecha_lim ?></div>
-              </div>
-              <br>
-              <!-- *** IMAGEN QR ********* -->
-              <div class="qr-section">
-                <span>Código QR:</span>
-                <img src="<?php echo $filename ?>" alt="QR Cliente" class="img-thumbnail zoomable-img" style="cursor: pointer; max-width: 150px;" data-bs-toggle="modal" data-bs-target="#zoomModal">
-              </div>
-              <br>
-              <a href='perfil.php?folio=<?php echo $folio ?>'>Ver perfil del cliente</a>
+          </div>
+        </div>
+
+      </div>
+      <!-- ***********MODAL PARA VISUALIZACIÓN DEL QR EN ZOOM ******** -->
+      <div class="modal fade" id="zoomModal" tabindex="-1" aria-labelledby="zoomModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl"> <!--tamaño grande -->
+          <div class="modal-content bg-transparent border-0 shadow-none">
+            <div class="modal-body text-center p-0">
+              <img id="zoomedImage" src="" alt="Zoom QR" class="img-fluid rounded" style="max-width: 95vw; max-height: 95vh; object-fit: contain;"> <!-- 🔸 limita altura al 85% de pantalla -->
             </div>
           </div>
         </div>
       </div>
-<!-- ***********MODAL PARA VISUALIZACIÓN DEL QR EN ZOOM ******** -->
-<div class="modal fade" id="zoomModal" tabindex="-1" aria-labelledby="zoomModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-xl"> <!-- 🔸 tamaño grande -->
-    <div class="modal-content bg-transparent border-0 shadow-none">
-      <div class="modal-body text-center p-0">
-        <img id="zoomedImage" src="../pages/temp_qr/cliente_<?php echo $folio ?>" 
-             class="img-fluid rounded" 
-             style="max-width: 95vw; max-height: 95vh; object-fit: contain;"> <!-- 🔸 limita altura al 85% de pantalla -->
-      </div>
-    </div>
-  </div>
-</div>
       <footer class="footer pt-3  ">
         <div class="container-fluid">
           <div class="row align-items-center justify-content-lg-between">
@@ -322,6 +239,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['id'])) {
     </div>
   </div>
   <!--   Core JS Files   -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="assets/js/core/popper.min.js"></script>
   <script src="assets/js/core/bootstrap.min.js"></script>
   <script src="assets/js/plugins/perfect-scrollbar.min.js"></script>
@@ -336,7 +254,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['id'])) {
     }
 
     /**********FUNCIÓN PARA AMPLIAR IMAGEN QR *********** */
-   document.querySelector('.zoomable-img').addEventListener('click', function() {
+    document.querySelector('.zoomable-img').addEventListener('click', function() {
       document.getElementById('zoomedImage').src = this.src;
     });
   </script>

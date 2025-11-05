@@ -46,12 +46,13 @@ if ($resultado && mysqli_num_rows($resultado) > 0) {
     <!-- CSS Files -->
     <link id="pagestyle" href="assets/css/argon-dashboard.css?v=2.0.4" rel="stylesheet" />
 </head>
+
 <body class="g-sidenav-show bg-gray-100">
     <div class="min-height-300 bg-success position-absolute w-100"></div>
     <!-- <span class="mask bg-primary opacity-6"></span> -->
     </div>
     <div class="main-content position-relative max-height-vh-100 h-100">
-<!-- ESTILOS PARA EL MODAL DEL VIDEO  -->
+        <!-- ESTILOS PARA EL MODAL DEL VIDEO  -->
         <style>
             /* Estilos estéticos */
             .modal-content {
@@ -76,7 +77,7 @@ if ($resultado && mysqli_num_rows($resultado) > 0) {
                 display: block;
             }
         </style>
-<!-- ================MODAL PARA MOSTRAR EL VIDEO INICIAL======================= -->
+        <!-- ================MODAL PARA MOSTRAR EL VIDEO INICIAL======================= -->
         <div class="modal fade" id="videoModal" tabindex="-1" aria-labelledby="videoModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" style="max-width: 600px;"> <!-- Modal más pequeño -->
                 <div class="modal-content" style="border-radius: 12px; overflow: hidden;">
@@ -93,7 +94,7 @@ if ($resultado && mysqli_num_rows($resultado) > 0) {
                 </div>
             </div>
         </div>
-<!-- TÉRMINO DEL MODAL -->
+        <!-- TÉRMINO DEL MODAL -->
         <div class="container-fluid py-4">
             <div class="row">
                 <div class="col-md-4">
@@ -103,7 +104,7 @@ if ($resultado && mysqli_num_rows($resultado) > 0) {
                             <div class="col-4 col-lg-4 order-lg-2">
                                 <div class="mt-n4 mt-lg-n6 mb-4 mb-lg-0">
                                     <a href="javascript:;">
-                                        <img src="assets/img/image.png" class="rounded-circle img-fluid border border-2 border-white">
+                                        <img src="assets/img/pesas.jpg" class="rounded-circle img-fluid border border-2 border-white">
                                     </a>
                                 </div>
                             </div>
@@ -147,14 +148,14 @@ if ($resultado && mysqli_num_rows($resultado) > 0) {
                                 <!-- <button class="btn btn-primary btn-sm ms-auto">Settings</button> -->
                             </div>
                         </div>
-<!-- *************MUESTRA LA RUTINA AL CLIENTE ************************-->
-                        <?php 
+                        <!-- *************MUESTRA LA RUTINA AL CLIENTE ************************-->
+                        <?php
                         $consulta1 = "SELECT nombre, rutina FROM tb_rutinas WHERE nivel = '$rutina'";
                         $resultados = mysqli_query($con, $consulta1);
-                                $ejercicios = [];
-                                if (!$resultados) {
-                                    die("Error en la consulta de rutina: " . mysqli_error($con));
-                                }
+                        $ejercicios = [];
+                        if (!$resultados) {
+                            die("Error en la consulta de rutina: " . mysqli_error($con));
+                        }
                         while ($rows = mysqli_fetch_assoc($resultados)) {
                             $ejercicios[] = $rows;
                         }
@@ -169,30 +170,38 @@ if ($resultado && mysqli_num_rows($resultado) > 0) {
                                     </div>
                                 </div>
                             </div>
-
                             <hr class="horizontal dark">
                             <p class="text-uppercase text-sm">Descripción de la Rutina</p>
-
                             <div class="row">
-                                <div class="col-md-1"></div>
-
-                                <?php
-                                // Iterar los 5 ejercicios disponibles
-                                for ($i = 0; $i < 5; $i++) {
+                                <?php for ($i = 0; $i < 5; $i++):
                                     $nombre = $ejercicios[$i]['nombre'] ?? '';
                                     $descripcion = $ejercicios[$i]['rutina'] ?? '';
+                                    $idAcordeon = "accordionItem" . $i; // ID único por cada ejercicio
                                 ?>
-                                    <div class="col-md-2 col-12">
-                                        <div class="form-group mb-2">
-                                            <label class="form-control-label">Nombre:</label>
-                                            <input class="form-control bg-light" type="text" value="<?php echo htmlspecialchars($nombre); ?>" readonly>
+                                    <div class="col-md-2 col-12 mb-3">
+                                        <label class="form-control-label">Nombre:</label>
+                                        <input class="form-control bg-light mb-2" type="text" value="<?php echo htmlspecialchars($nombre); ?>" readonly>
+
+                                        <div class="accordion" id="accordion-<?php echo $i; ?>">
+                                            <div class="accordion-item">
+                                                <h2 class="accordion-header" id="heading-<?php echo $i; ?>">
+                                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#<?php echo $idAcordeon; ?>" aria-expanded="false">
+                                                        Ver rutina
+                                                    </button>
+                                                </h2>
+                                                <div id="<?php echo $idAcordeon; ?>" class="accordion-collapse collapse" data-bs-parent="#accordion-<?php echo $i; ?>">
+                                                    <div class="accordion-body">
+                                                        Hola
+                                                        <?php echo nl2br(htmlspecialchars($descripcion)); ?>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="form-group">
-                                            <textarea class="form-control bg-light" rows="10" readonly><?php echo htmlspecialchars($descripcion); ?></textarea>
-                                        </div>
+
                                     </div>
-                                <?php } ?>
+                                <?php endfor; ?>
                             </div>
+
                         </div>
 
                     </div>
@@ -274,6 +283,8 @@ if ($resultado && mysqli_num_rows($resultado) > 0) {
             </div>
         </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
     <!--   Core JS Files   -->
     <script src="assets/js/core/popper.min.js"></script>
     <script src="assets/js/core/bootstrap.min.js"></script>

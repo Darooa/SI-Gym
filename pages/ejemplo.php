@@ -118,3 +118,127 @@
                                 </form>
                             </div>
                         </div>
+
+
+
+
+
+
+
+
+                        <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <span><strong>Nombre del cliente: </strong> <?php echo $cliente ?></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <span><strong>Fecha de Inicio: </strong> <?php echo $fechaIni ?></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <span><strong>Tipo de membresía: </strong> <?php echo $nombreMembresia ?></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <span><strong>Fecha de término: </strong> <?php echo $fecha_lim ?></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <span><strong>Folio: </strong> <?php echo $folio ?></span>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                             <div class="col-md-8">
+          <div class="card">
+            <div class="card-header pb-0">
+              <div class="d-flex align-items-center">
+              </div>
+            </div>
+            <!-- **********CARD PARA ACTUALIZACIÓN DE LA INFORMACIÓN DEL CLIENTE ************-->
+            <div class="card-body">
+           
+              <p class="text-uppercase text-sm">Información del Cliente</p>
+              
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <input type="hidden" id="clienteId" name="clienteId" value="<?php echo $id ?>">
+                    <label for="example-text-input" class="form-control-label">Nombre(s)</label>
+                    <input class="form-control" type="text" value="<?php echo $nombre ?>">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="example-text-input" class="form-control-label">Apellidos</label>
+                    <input class="form-control" type="text" value="<?php echo $apellidos ?>">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="example-text-input" class="form-control-label">Teléfono</label>
+                    <input class="form-control" type="text" value="<?php echo $telefono ?>">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="example-text-input" class="form-control-label">Fecha de Nacimiento</label>
+                    <input class="form-control" type="Date" value="<?php echo $fecha_n ?>">
+                  </div>
+                </div>
+              </div>
+              <hr class="horizontal dark">
+             
+              <div class="row">
+                <button class="btn btn-primary btn-sm ms-auto ">Actualizar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+
+
+         <div class="row">
+                                <div class="col-md-1"></div>
+                                <?php
+                                // Iterar los 5 ejercicios disponibles
+                                for ($i = 0; $i < 5; $i++) {
+                                    $nombre = $ejercicios[$i]['nombre'] ?? '';
+                                    $descripcion = $ejercicios[$i]['rutina'] ?? '';
+                                ?>
+                                    <div class="col-md-2 col-12">
+                                        <div class="form-group mb-2">
+                                            <label class="form-control-label">Nombre:</label>
+                                            <input class="form-control bg-light" type="text" value="<?php echo htmlspecialchars($nombre); ?>" readonly>
+                                        </div>
+                                        <div class="form-group">
+                                            
+                                            <textarea class="form-control bg-light" rows="10" readonly><?php echo htmlspecialchars($descripcion); ?></textarea>
+                                        </div>
+                                    </div>
+                                <?php } ?>
+                            </div>
