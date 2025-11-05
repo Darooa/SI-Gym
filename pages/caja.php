@@ -206,7 +206,7 @@
                     <div class="card ">
                         <div class="card-header pb-0 p-3">
                             <div class="d-flex justify-content-between align-items-center">
-                                <h6 class="mb-2">Movimientos de Caja</h6>
+                                <h6 class="mb-2" id="tituloCaja">Movimientos de Caja</h6>
                                 <div>
                                     <button class="btn btn-outline-success btn-sm me-2" data-bs-toggle="modal"
                                         data-bs-target="#modalMovimientoCaja">

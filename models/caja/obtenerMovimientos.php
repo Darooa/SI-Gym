@@ -1,50 +1,45 @@
 <?php
+// models/caja/obtenerMovimientos.php
 header('Content-Type: application/json; charset=utf-8');
-include('../../controllers/conexion_prueba.php'); // $con (mysqli)
+include('../../controllers/conexion_prueba.php');
 
 try {
-  $qry = "
-    SELECT 
-      id_movimiento,
-      DATE_FORMAT(fecha, '%d/%m/%Y %H:%i') AS fecha,
-      tipo,
-      concepto,
-      monto,
-      COALESCE(nota, '') AS nota,
-      id_usuario,
-      origen,
-      id_referencia
-    FROM caja_movimientos
-    ORDER BY fecha DESC
-  ";
+  date_default_timezone_set('America/Mexico_City');
+  $hoy = date('Y-m-d');
 
-  $res = $con->query($qry);
-  $movimientos = [];
+  // Solo movimientos del día sin corte asignado (pantalla Caja = operación del día)
+  $sql = "SELECT
+            id_movimiento,
+            DATE_FORMAT(fecha, '%d/%m/%Y %H:%i') AS fecha,
+            tipo,              -- 'Ingreso' / 'Egreso'
+            concepto,
+            monto,             -- siempre positivo (el signo lo da 'tipo')
+            COALESCE(nota,'') AS nota,
+            id_usuario,
+            COALESCE(origen,'Manual') AS origen
+          FROM caja_movimientos
+          WHERE DATE(fecha) = ? AND id_corte IS NULL
+          ORDER BY fecha DESC, id_movimiento DESC";
 
+  $stmt = $con->prepare($sql);
+  $stmt->bind_param("s", $hoy);
+  $stmt->execute();
+  $res = $stmt->get_result();
+
+  $movs = [];
   while ($row = $res->fetch_assoc()) {
-    // Obtener nombre de usuario (si existe tabla usuarios)
-    $usuario = 'Usuario #' . $row['id_usuario'];
-
-    // Si más adelante tienes tabla usuarios:
-    // $u = $con->query("SELECT nombre FROM usuarios WHERE id_usuario = ".$row['id_usuario']." LIMIT 1");
-    // if ($u && $ur = $u->fetch_assoc()) $usuario = $ur['nombre'];
-
-    $movimientos[] = [
-      'fecha'       => $row['fecha'],
-      'tipo'        => $row['tipo'],
-      'concepto'    => $row['concepto'],
-      'monto'       => $row['monto'],
-      'nota'        => $row['nota'],
-      'usuario'     => $usuario,
-      'origen'      => $row['origen'],
-      'referencia'  => $row['id_referencia']
+    $usuario = 'Usuario #'.$row['id_usuario']; // Ajusta si tienes tabla usuarios
+    $movs[] = [
+      'fecha'    => $row['fecha'],
+      'tipo'     => $row['tipo'],
+      'concepto' => $row['concepto'],
+      'monto'    => $row['monto'],
+      'usuario'  => $usuario,
+      'origen'   => $row['origen'],
     ];
   }
 
-  echo json_encode([
-    'status' => 'ok',
-    'movimientos' => $movimientos
-  ]);
+  echo json_encode(['status'=>'ok','movimientos'=>$movs]);
 } catch (Throwable $e) {
-  echo json_encode(['status'=>'error', 'message'=>$e->getMessage()]);
+  echo json_encode(['status'=>'error','message'=>$e->getMessage()]);
 }

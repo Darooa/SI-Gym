@@ -360,3 +360,19 @@
 .alerta-visible {
   opacity: 1 !important;
 }
+
+
+
+/* 🎃 Efecto de telarañas en esquinas */
+
+
+
+.spiderweb.top-left { top: 5px; left: 5px; transform: rotate(10deg); }
+.spiderweb.top-right { top: 5px; right: 5px; transform: rotate(-10deg); }
+.spiderweb.bottom-left { bottom: 5px; left: 5px; transform: rotate(180deg); }
+.spiderweb.bottom-right { bottom: 5px; right: 5px; transform: rotate(200deg); }
+
+@keyframes aparecer {
+  0% { opacity: 0; transform: scale(0.8); }
+  100% { opacity: 0.25; transform: scale(1); }
+}

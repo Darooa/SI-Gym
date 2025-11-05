@@ -40,3 +40,9 @@
   0% { background-color: #ffffcc; }
   100% { background-color: transparent; }
 }
+
+.swal2-icon.swal2-info {
+  border-color: #00d084 !important;
+  color: #00d084 !important;
+}
+
