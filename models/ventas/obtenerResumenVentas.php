@@ -2,7 +2,6 @@
 header('Content-Type: application/json');
 require_once('../../controllers/conexion_prueba.php');
 
-
 try {
     $response = [];
 
@@ -18,13 +17,19 @@ try {
     $rowVentas = $resVentas->fetch_assoc();
     $response['totalVentasHoy'] = (int)$rowVentas['totalVentasHoy'];
 
-    // ======== TOTAL EN CAJA ========
-    $sqlCaja = "SELECT IFNULL(SUM(monto), 0) AS totalCaja FROM caja";
+    // ======== TOTAL EN CAJA (saldo del día) ========
+    $sqlCaja = "
+        SELECT 
+            IFNULL(SUM(CASE WHEN tipo = 'Ingreso' THEN monto ELSE 0 END), 0) -
+            IFNULL(SUM(CASE WHEN tipo = 'Egreso' THEN monto ELSE 0 END), 0) AS saldo
+        FROM caja_movimientos
+        WHERE DATE(fecha) = CURDATE()
+    ";
     $resCaja = $con->query($sqlCaja);
     $rowCaja = $resCaja->fetch_assoc();
-    $response['totalCaja'] = (float)$rowCaja['totalCaja'];
+    $response['totalCaja'] = (float)$rowCaja['saldo'];
 
-    // ======== FECHA ACTUAL (por si quieres desde servidor) ========
+    // ======== FECHA ACTUAL (desde el servidor) ========
     $response['fechaServidor'] = date("d/m/Y");
 
     echo json_encode(['status' => 'ok', 'data' => $response]);

@@ -84,7 +84,13 @@ function cargarAlertasStock() {
 
   const fecha = new Date();
   const opciones = { day: "2-digit", month: "long", year: "numeric" };
-  if (fechaActual) fechaActual.textContent = fecha.toLocaleDateString("es-MX", opciones).toUpperCase();
+  if (fechaActual)if (fechaActual) {
+  const meses = ["ENE","FEB","MAR","ABR","MAY","JUN","JUL","AGO","SEP","OCT","NOV","DIC"];
+  const dia = String(fecha.getDate()).padStart(2, "0");
+  const mes = meses[fecha.getMonth()];
+  const año = fecha.getFullYear();
+  fechaActual.textContent = `${dia} ${mes} ${año}`;
+}
 
   function actualizarCards() {
     fetch("../models/ventas/obtenerResumenVentas.php")
@@ -104,11 +110,11 @@ function cargarAlertasStock() {
 
             if (mensajeProductos) {
               if (d.totalProductos === 0) {
-                mensajeProductos.innerHTML = `<span class="text-danger text-sm font-weight-bolder">😟</span> Sin productos registrados`;
+                mensajeProductos.innerHTML = `<span class="text-danger text-sm font-weight-bolder">😟</span> Sin productos`;
               } else if (d.totalProductos < 50) {
-                mensajeProductos.innerHTML = `<span class="text-warning text-sm font-weight-bolder">🧩</span> Inventario reducido`;
+                mensajeProductos.innerHTML = `<span class="text-warning text-sm font-weight-bolder">🧩</span> Limitado`;
               } else {
-                mensajeProductos.innerHTML = `<span class="text-success text-sm font-weight-bolder">🔥</span> Catálogo activo`;
+                mensajeProductos.innerHTML = `<span class="text-success text-sm font-weight-bolder">🔥</span> Catálogo`;
               }
             }
           }
@@ -325,6 +331,49 @@ function cargarAlertasStock() {
 
 
 }); // Fin de DOMContentLoaded
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  // 🎃 Solo activar entre el 15 de octubre y el 20 de noviembre
+  const hoy = new Date();
+  const inicio = new Date(hoy.getFullYear(), 9, 15);  // 15 de octubre
+  const fin = new Date(hoy.getFullYear(), 10, 20);    // 20 de noviembre
+
+  if (hoy >= inicio && hoy <= fin) {
+    const emojis = ["💀", "🕯️", "🦇", "🎃"];
+
+    setInterval(() => {
+      const span = document.createElement("span");
+      span.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+      span.style.position = "fixed";
+      span.style.left = Math.random() * 100 + "vw";
+      span.style.top = "-2em";
+      span.style.fontSize = (Math.random() * 1.2 + 1) + "rem"; // tamaños aleatorios
+      span.style.opacity = "0.8";
+      span.style.zIndex = "9999";
+      span.style.animation = "caer 10s linear";
+      document.body.appendChild(span);
+      setTimeout(() => span.remove(), 10000);
+    }, 10000);
+  } else {
+    console.log("🎃 Animación desactivada (fuera de temporada Día de Muertos).");
+  }
+});
+
+// Animación de caída
+const style = document.createElement("style");
+style.textContent = `
+@keyframes caer {
+  0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+}
+`;
+document.head.appendChild(style);
+
+
+
+
 
 
 

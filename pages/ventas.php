@@ -50,6 +50,7 @@
 </head>
 
 <body class="g-sidenav-show   bg-gray-100">
+    
     <div class="min-height-300 bg-success position-absolute w-100"></div>
     <aside
         class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 "
@@ -290,9 +291,9 @@
                                     <div class="numbers">
                                         <p class="text-sm mb-0 text-uppercase font-weight-bold">CAJA</p>
                                         <h5 class="font-weight-bolder" id="totalCaja">$0.00</h5>
-                                        <p class="mb-0"><span
-                                                class="text-success text-sm font-weight-bolder">Usuario:</span> <span
-                                                id="nombreUsuario">Francisco Martínez</span></p>
+                                        <p class="text-sm mb-0">
+                                            <i class="fa-solid fa-user-circle me-1"></i> <?= $usuarioNombre ?? '—' ?>
+                                        </p>
                                     </div>
                                 </div>
                                 <div class="col-4 text-end">
@@ -426,7 +427,7 @@
                                 © <script>
                                 document.write(new Date().getFullYear())
                                 </script>,
-                                Todos los derechos reservados <i class="fa fa-heart"></i>
+                                Todos los derechos reservados 
                                 <a href="" class="font-weight-bold" target="_blank">Trasciende</a>.
                             </div>
                         </div>
@@ -624,6 +625,15 @@
 
     <!-- Funciones JS -->
     <script src="../js/funcionesVentas.js"></script>
+<!-- 
+    <div class="spiderweb top-left"></div>
+    <div class="spiderweb top-right"></div>
+    <div class="spiderweb bottom-left"></div>
+    <div class="spiderweb bottom-right"></div> -->
+
+    <div class="spiderweb" id="spiderweb"></div>
+
+
 </body>
 
 </html>
