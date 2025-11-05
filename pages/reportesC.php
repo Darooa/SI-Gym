@@ -204,29 +204,36 @@
 
             <div class="row mt-4">
                 <div class="col-lg-12 mb-lg-0 mb-4">
-                    <div class="card ">
+                    <div class="card">
                         <div class="card-header pb-0 p-3">
-                            <div class="d-flex justify-content-between">
+                            <div class="d-flex justify-content-between align-items-center">
                                 <h6 class="mb-2">Historial de Cortes de Caja</h6>
+
                                 <div class="d-flex align-items-center gap-2">
                                     <input type="date" id="fechaInicio" class="form-control form-control-sm">
                                     <input type="date" id="fechaFin" class="form-control form-control-sm">
-                                    <button id="btnFiltrarCortes" class="btn btn-success btn-sm">Filtrar</button>
+
+                                    <select id="usuarioFiltro" class="form-select form-select-sm">
+                                        <option value="">Todos los usuarios</option>
+                                    </select>
+
+                                    <button id="btnFiltrarCortes" class="btn btn-success btn-sm">
+                                        <i class="fa-solid fa-filter"></i> Filtrar
+                                    </button>
+
+                                    <button id="btnExportarPDF" class="btn btn-outline-danger btn-sm">
+                                        <i class="fa-solid fa-file-pdf"></i> Exportar PDF
+                                    </button>
                                 </div>
                             </div>
                         </div>
 
                         <div class="card-body">
-                            <p class="text-uppercase text-sm"></p>
-
-
-
                             <table id="tablaCortes" class="table table-striped align-items-center">
                                 <thead>
                                     <tr>
                                         <th>ID Corte</th>
-                                        <th>Fecha Inicio</th>
-                                        <th>Fecha Fin</th>
+                                        <th>Fecha</th>
                                         <th>Total Ingresos</th>
                                         <th>Total Egresos</th>
                                         <th>Saldo Final</th>
@@ -235,9 +242,12 @@
                                 </thead>
                                 <tbody></tbody>
                             </table>
-
                         </div>
                     </div>
+
+
+
+
                 </div>
 
             </div>

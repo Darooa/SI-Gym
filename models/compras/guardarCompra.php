@@ -87,8 +87,8 @@ try {
         $id_usuario  = $idUsuario;
 
         $stmtCajaMov = $con->prepare("
-        INSERT INTO caja_movimientos (tipo, concepto, monto, id_usuario, origen, id_referencia)
-        VALUES (?, ?, ?, ?, ?, ?)
+        INSERT INTO caja_movimientos (tipo, concepto, monto, id_usuario, origen, id_referencia, fecha)
+        VALUES (?, ?, ?, ?, ?, ?, NOW()) 
         ");
         $stmtCajaMov->bind_param("ssdssi", $tipo, $concepto, $monto, $id_usuario, $origen, $idCompra);
         $stmtCajaMov->execute();

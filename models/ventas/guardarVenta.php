@@ -89,14 +89,13 @@ try {
     $origen      = "Venta";
     $id_usuario  = $id_usuario;
 
-    $stmtCajaMov = $con->prepare("
-      INSERT INTO caja_movimientos (tipo, concepto, monto, id_usuario, origen, id_referencia)
-      VALUES (?, ?, ?, ?, ?, ?)
+   $stmtCajaMov = $con->prepare("
+    INSERT INTO caja_movimientos (tipo, concepto, monto, id_usuario, origen, id_referencia, fecha)
+    VALUES (?, ?, ?, ?, ?, ?, NOW()) 
     ");
     $stmtCajaMov->bind_param("ssdssi", $tipo, $concepto, $monto, $id_usuario, $origen, $id_venta);
     $stmtCajaMov->execute();
     $stmtCajaMov->close();
-
 
   // Confirmar todo
   $con->commit();

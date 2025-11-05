@@ -301,7 +301,7 @@
                                 © <script>
                                 document.write(new Date().getFullYear())
                                 </script>,
-                                Todos los derechos reservados <i class="fa fa-heart"></i>
+                                Todos los derechos reservados
                                 <a href="" class="font-weight-bold" target="_blank">Trasciende</a>.
                             </div>
                         </div>
